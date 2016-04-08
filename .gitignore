@@ -1,0 +1,13 @@
+/.cask
+*~
+places
+\.recentf
+\.smex-items
+ido.last
+projectile-cache
+projectile-bookmarks.eld
+auto-save-list
+backups
+eshell
+/#ido.last#
+*.el#
