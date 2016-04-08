@@ -3,7 +3,7 @@
 ;(load-theme 'zenburn t)
 (load-theme 'atom-one-dark t)
 
-(menu-bar-mode t)
+(menu-bar-mode -1)
 
 (setq inhibit-startup-message t)
 
