@@ -1,0 +1,8 @@
+(setq circe-network-options
+      '(("Freenode"
+         :tls t
+         :nick "nick"
+         :sasl-username "username"
+         :sasl-password "password"
+         :channels ("#channel")
+         )))
