@@ -1,4 +1,7 @@
-(setq my-credentials-file "~/.emacs.d/custom/private.el")
+(defvar my-private-file
+  (concat user-emacs-directory "custom/private.el"))
+
+(setq my-credentials-file my-private-file)
 
 (defun my-nickserv-password (_)
   (with-temp-buffer
