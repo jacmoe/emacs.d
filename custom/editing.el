@@ -1,4 +1,6 @@
 ;; EDITING
+(require 'editorconfig)
+(editorconfig-mode 1)
 
 ;; Highlights matching parenthesis
 (show-paren-mode 1)
