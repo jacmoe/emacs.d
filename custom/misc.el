@@ -6,3 +6,5 @@
 
 ;; No need for ~ files when editing
 (setq create-lockfiles nil)
+
+(setq make-backup-files nil) ; Don't want any backup files
