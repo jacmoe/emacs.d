@@ -34,6 +34,7 @@
 (depends-on "racer")
 (depends-on "rust-mode")
 (depends-on "rustfmt")
+(depends-on "smartparens")
 (depends-on "smex")
 (depends-on "web-mode")
 (depends-on "yasnippet")

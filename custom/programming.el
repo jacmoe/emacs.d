@@ -1,3 +1,6 @@
+;; smart-parens
+(require 'smartparens-config)
+
 ;; Git
 (require 'magit)
 (eval-after-load 'magit
@@ -28,6 +31,7 @@
 (add-hook 'racer-mode-hook #'company-mode)
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
 (setq company-tooltip-align-annotations t)
+(add-hook 'rust-mode-hook #'smartparens-mode)
 
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 (require 'flymake-rust)
