@@ -28,6 +28,7 @@
     "misc"
     "irc"
     "editing"
+    "abbrevs"
     "programming"))
 
 (dolist (c my-customizations)
