@@ -46,9 +46,15 @@
 (add-to-list 'auto-mode-alist '("\\.html\\.twig\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
+;; turn on subword-mode for php mode and web mode
+(add-hook 'php-mode-hook (lambda () (subword-mode 1)))
+(add-hook 'web-mode-hook (lambda () (subword-mode 1)))
 
+;; Enable PSR2 coding style
+(add-hook 'php-mode-hook 'php-enable-psr2-coding-style)
 
-
+;; For flymake to function
+(setq php-executable "/usr/local/bin/php")
 
 ;; Irony
 ;;(add-hook 'c++-mode-hook 'irony-mode)

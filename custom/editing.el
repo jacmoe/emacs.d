@@ -2,6 +2,13 @@
 (require 'editorconfig)
 (editorconfig-mode 1)
 
+;; move cursor by camelCase
+;(subword-mode +1)
+
+;; TAB one time will indent - twice will autocomplete
+;; If already tabbed, auto-complete
+(setq tab-always-indent 'complete)
+
 ;; Highlights matching parenthesis
 (show-paren-mode 1)
 
@@ -10,10 +17,10 @@
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
+;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+;; (global-set-key (kbd "C-M-s") 'isearch-forward)
+;; (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
