@@ -1,6 +1,9 @@
 ;;; Commentary:
 ;; Misc settings
 
+;; Guru mode on
+(guru-global-mode +1)
+
 ;; Changes all yes/no questions to y/n type
 (fset 'yes-or-no-p 'y-or-n-p)
 
