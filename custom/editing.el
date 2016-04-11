@@ -3,7 +3,14 @@
 (editorconfig-mode 1)
 
 ;; move cursor by camelCase
-;(subword-mode +1)
+;;(subword-mode +1)
+
+;; key chord
+(key-chord-mode +1)
+
+;; key chords
+(key-chord-define-global "ss" 'shrink-window)
+(key-chord-define-global "of" 'other-frame)
 
 ;; TAB one time will indent - twice will autocomplete
 ;; If already tabbed, auto-complete

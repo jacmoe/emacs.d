@@ -31,6 +31,7 @@
 (depends-on "guru-mode")
 (depends-on "ido-ubiquitous")
 (depends-on "irony")
+(depends-on "key-chord")
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "markdown-mode")
