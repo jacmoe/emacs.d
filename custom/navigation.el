@@ -1,7 +1,7 @@
 ;; Navigation
 (global-set-key (kbd "<f8>") 'other-window)
 (global-set-key (kbd "<f7>") 'prev-window)
-(global-set-key (kbd "<f9>") 'other-window)
+(global-set-key (kbd "<f9>") 'speedbar)
 
 (defun prev-window ()
   (interactive)

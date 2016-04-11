@@ -5,6 +5,7 @@
 (depends-on "aggressive-indent")
 (depends-on "atom-one-dark-theme")
 (depends-on "avy")
+(depends-on "cargo")
 (depends-on "circe")
 (depends-on "cmake-ide")
 (depends-on "company")
