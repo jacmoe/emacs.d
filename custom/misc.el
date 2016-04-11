@@ -1,5 +1,6 @@
 ;;; Commentary:
 ;; Misc settings
+(desktop-save-mode 1) ; save/restore opened files
 
 ;; Guru mode on
 (guru-global-mode +1)

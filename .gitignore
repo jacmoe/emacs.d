@@ -11,3 +11,5 @@ backups
 eshell
 /#ido.last#
 *.el#
+/.emacs.desktop
+/.mc-lists.el

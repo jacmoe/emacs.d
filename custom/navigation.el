@@ -1,4 +1,11 @@
 ;; Navigation
+(global-set-key (kbd "<f8>") 'other-window)
+(global-set-key (kbd "<f7>") 'prev-window)
+(global-set-key (kbd "<f9>") 'other-window)
+
+(defun prev-window ()
+  (interactive)
+  (other-window -1))
 
 ;; avy
 (global-set-key (kbd "C-;") 'avy-goto-char)
