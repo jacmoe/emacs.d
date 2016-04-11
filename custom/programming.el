@@ -1,6 +1,11 @@
 ;; smart-parens
 (require 'smartparens-config)
 
+;; Aggressive indent
+(global-aggressive-indent-mode 1)
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+
+
 ;; Git
 (require 'magit)
 (eval-after-load 'magit

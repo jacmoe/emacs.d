@@ -19,6 +19,11 @@
 (require 'pallet)
 (pallet-mode t)
 
+;; Fix for packages needing the cl package
+(eval-when-compile
+  (require 'cl))
+
+
 (defvar my-customizations-folder
   (concat user-emacs-directory "custom/"))
 
