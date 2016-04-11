@@ -5,6 +5,11 @@
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
+;; Scss mode
+(setq scss-compile-at-save nil)
+(setq scss-sass-command "/usr/local/bin/sass")
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 
 ;; Git
 (require 'magit)

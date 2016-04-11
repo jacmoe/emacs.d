@@ -46,6 +46,7 @@
 (depends-on "racer")
 (depends-on "rust-mode")
 (depends-on "rustfmt")
+(depends-on "scss-mode")
 (depends-on "smart-mode-line")
 (depends-on "smart-mode-line-powerline-theme")
 (depends-on "smartparens")
