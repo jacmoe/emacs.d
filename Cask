@@ -26,6 +26,7 @@
 (depends-on "flymake-rust")
 (depends-on "flymake-sass")
 (depends-on "flymake-yaml")
+(depends-on "ggtags")
 (depends-on "git-commit")
 (depends-on "guru-mode")
 (depends-on "ido-ubiquitous")

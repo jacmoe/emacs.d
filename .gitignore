@@ -13,3 +13,4 @@ eshell
 *.el#
 /.emacs.desktop
 /.mc-lists.el
+/.emacs.desktop.lock
