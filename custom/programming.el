@@ -25,6 +25,38 @@
 ;; Project management
 (require 'projectile)
 (projectile-global-mode)
+;; better Projectile key bindings
+(setq projectile-keymap-prefix (kbd "C-x p"))
+(setq projectile-switch-project-action
+      #'projectile-commander)
+
+;; s in the commander window runs a shell
+(def-projectile-commander-method ?s
+  "Open a *shell* buffer for the project."
+  (shell (get-buffer-create
+          (format "*shell %s*"
+                  (projectile-project-name)))))
+;; c in the commander window runs compile
+(def-projectile-commander-method ?c
+  "Run `compile' in the project."
+  (call-interactively #'compile))
+
+;; backspace backs out of current project
+(def-projectile-commander-method ?\C-?
+  "Go back to project selection."
+  (projectile-switch-project))
+
+;; project dired instead of project find
+(def-projectile-commander-method ?d
+  "Open project root in dired."
+  (projectile-dired))
+
+;; f for git fetch
+(def-projectile-commander-method ?F
+  "Git fetch."
+  (magit-status)
+  (call-interactively #'magit-fetch-current))
+
 
 ;; Snippets
 ;; https://github.com/capitaomorte/yasnippet
