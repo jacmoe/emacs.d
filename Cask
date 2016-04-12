@@ -46,6 +46,7 @@
 (depends-on "projectile")
 (depends-on "projectile-speedbar")
 (depends-on "racer")
+(depends-on "rainbow-mode")
 (depends-on "rust-mode")
 (depends-on "rustfmt")
 (depends-on "scss-mode")
