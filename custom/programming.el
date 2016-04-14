@@ -26,7 +26,6 @@
 (require 'projectile)
 (projectile-global-mode)
 ;; better Projectile key bindings
-(setq projectile-keymap-prefix (kbd "C-x p"))
 (setq projectile-switch-project-action
       #'projectile-commander)
 
