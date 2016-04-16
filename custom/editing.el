@@ -9,7 +9,7 @@
 (key-chord-mode +1)
 
 ;; key chords
-(key-chord-define-global "ss" 'shrink-window)
+(key-chord-define-global "sw" 'shrink-window)
 (key-chord-define-global "of" 'other-frame)
 
 ;; TAB one time will indent - twice will autocomplete
