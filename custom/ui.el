@@ -3,13 +3,15 @@
 (sml/setup)
 
 (setq default-frame-alist (append (list
-  '(width  . 120)  ; Width set to 81 characters
-  '(height . 40)) ; Height set to 60 lines
-  default-frame-alist))
+				   '(width  . 120)  ; Width set to 81 characters
+				   '(height . 40)) ; Height set to 60 lines
+				  default-frame-alist))
 
-;(load-theme 'zenburn t)
-(load-theme 'atom-one-dark t)
-;(load-theme 'spacemacs-dark t)
+
+					;(load-theme 'zenburn t)
+					;(load-theme 'atom-one-dark t)
+					;(load-theme 'spacemacs-dark t)
+(load-theme 'flatland t)
 
 (menu-bar-mode -1)
 

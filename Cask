@@ -14,6 +14,7 @@
 (depends-on "editorconfig")
 (depends-on "emmet-mode")
 (depends-on "figlet")
+(depends-on "flatland-theme")
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "flycheck-google-cpplint")
