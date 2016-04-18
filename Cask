@@ -11,6 +11,7 @@
 (depends-on "cmake-ide")
 (depends-on "company")
 (depends-on "company-racer")
+(depends-on "ctags")
 (depends-on "editorconfig")
 (depends-on "emmet-mode")
 (depends-on "figlet")
