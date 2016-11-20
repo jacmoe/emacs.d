@@ -49,6 +49,7 @@
 (depends-on "projectile")
 (depends-on "projectile-speedbar")
 (depends-on "racer")
+(depends-on "racket-mode")
 (depends-on "rainbow-mode")
 (depends-on "rust-mode")
 (depends-on "rustfmt")
