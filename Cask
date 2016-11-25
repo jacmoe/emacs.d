@@ -39,6 +39,7 @@
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "markdown-mode")
+(depends-on "markdown-mode+")
 (depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "php+-mode")
