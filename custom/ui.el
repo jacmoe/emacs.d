@@ -2,6 +2,10 @@
 (setq sml/theme 'powerline)
 (sml/setup)
 
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-12"))
+
+(setq writeroom-width 120)
+
 ;; (setq default-frame-alist (append (list
 ;; 				   '(width  . 120)  ; Width set to 81 characters
 ;; 				   '(height . 40)) ; Height set to 60 lines
