@@ -38,3 +38,4 @@
 
 (dolist (c my-customizations)
   (load (concat my-customizations-folder c ".el")))
+(put 'narrow-to-region 'disabled nil)

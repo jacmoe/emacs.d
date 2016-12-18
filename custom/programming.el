@@ -113,6 +113,7 @@
 ;; (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ;; Cmake IDE
-;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/rtags/")
-;;(require 'rtags) ;; optional, must have rtags installed
-;;(cmake-ide-setup)
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/rtags/")
+(require 'rtags) ;; optional, must have rtags installed
+(cmake-ide-setup)
+
