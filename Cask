@@ -47,7 +47,6 @@
 (depends-on "markdown-mode")
 (depends-on "markdown-mode+")
 (depends-on "multiple-cursors")
-(depends-on "org-gcal")
 (depends-on "pallet")
 (depends-on "php+-mode")
 (depends-on "php-auto-yasnippets")
