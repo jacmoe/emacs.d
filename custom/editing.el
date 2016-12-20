@@ -40,9 +40,9 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Make C-w kill word backward and rebind kill-region to C-x C-k
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
+;(global-set-key "\C-w" 'backward-kill-word)
+;(global-set-key "\C-x\C-k" 'kill-region)
+;(global-set-key "\C-c\C-k" 'kill-region)
 
 
 (autoload 'markdown-mode "markdown-mode"
