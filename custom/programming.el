@@ -2,8 +2,8 @@
 (require 'smartparens-config)
 
 ;; Aggressive indent
-(global-aggressive-indent-mode 1)
-(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+;;(global-aggressive-indent-mode 1)
+;;(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
 ;; Scss mode
 (setq scss-compile-at-save nil)

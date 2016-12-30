@@ -40,13 +40,20 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Make C-w kill word backward and rebind kill-region to C-x C-k
-;(global-set-key "\C-w" 'backward-kill-word)
-;(global-set-key "\C-x\C-k" 'kill-region)
-;(global-set-key "\C-c\C-k" 'kill-region)
+;;(global-set-key "\C-w" 'backward-kill-word)
+;;(global-set-key "\C-x\C-k" 'kill-region)
+;;(global-set-key "\C-c\C-k" 'kill-region)
+
+(defadvice kill-region (before unix-werase activate compile)
+  "When called interactively with no active region, delete a single word
+    backwards instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (save-excursion (backward-word 1) (point)) (point)))))
 
 
 (autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+  "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (custom-set-variables

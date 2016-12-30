@@ -20,6 +20,7 @@
 
 (menu-bar-mode -1)
 
+
 (setq inhibit-startup-message t)
 
 (setq-default cursor-type 'bar)
