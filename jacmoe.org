@@ -272,3 +272,16 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 
 * D. Features
 
+1. [[#1-desktop][Desktop]]
+
+** 1. Desktop
+
+Save and restore Emacs status, including buffers, modes, point and windows.
+
+#+BEGIN_SRC emacs-lisp
+(use-package desktop
+  :demand t
+  :config
+  (desktop-save-mode 1)
+  (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
+#+END_SRC
