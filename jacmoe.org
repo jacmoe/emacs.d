@@ -260,6 +260,10 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
  
 * C. Languages
 
+1. [[#1-css][CSS]]
+2. [[#2-yaml][YAML]]
+
+
 ** 1. CSS
 
 #+BEGIN_SRC emacs-lisp
@@ -277,6 +281,16 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
               (setq-local comment-start "//")))
   :config (setq-default scss-compile-at-save nil))
 #+END_SRC
+
+** 2. YAML
+
+#+BEGIN_SRC emacs-lisp
+(use-package yaml-mode
+  :delight yaml-mode "YAML"
+  :mode "\\.yml\\'")
+#+END_SRC
+
+
 
 * D. Features
 
