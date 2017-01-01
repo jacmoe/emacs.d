@@ -16,8 +16,6 @@ D. [[#d-features][Features]]
 
 ** 1. Use better defaults
 
-Some UI elements are rather invasive. No-mouse master race.
-
 #+BEGIN_SRC emacs-lisp
 (when window-system
   (blink-cursor-mode 0)                          ; Disable the cursor blinking
@@ -26,13 +24,11 @@ Some UI elements are rather invasive. No-mouse master race.
   (tooltip-mode 0))                              ; Disable the tooltips
 #+END_SRC
 
-Here are what I consider better defaults as per my own experience.
+Some sane defaults
 
 #+BEGIN_SRC emacs-lisp
 (setq-default
  ad-redefinition-action 'accept                  ; Silence warnings for redefinition
- confirm-kill-emacs 'yes-or-no-p                 ; Confirm before exiting Emacs
- cursor-in-non-selected-windows t                ; Hide the cursor in inactive windows
  delete-by-moving-to-trash t                     ; Delete files to trash
  display-time-default-load-average nil           ; Don't display load average
  display-time-format "%H:%M"                     ; Format the time string
@@ -42,7 +38,6 @@ Here are what I consider better defaults as per my own experience.
  indent-tabs-mode nil                            ; Stop using tabs to indent
  inhibit-startup-screen t                        ; Disable start-up screen
  initial-scratch-message ""                      ; Empty the initial *scratch* buffer
- mode-require-final-newline 'visit               ; Add a newline at EOF on visit
  mouse-yank-at-point t                           ; Yank at point rather than cursor
  ns-use-srgb-colorspace nil                      ; Don't use sRGB colors
  scroll-conservatively most-positive-fixnum      ; Always scroll by one line
@@ -74,17 +69,14 @@ Enable some more goodies.
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
-=garbage-collect= on focus-out. Emacs /should/ feel snappier, I do however
-experience long garbage collects when returning to the Emacs frame.
+=garbage-collect= on focus-out. Emacs /should/ feel snappier.
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 (add-hook 'focus-out-hook 'garbage-collect)
 #+END_SRC
 
-I want an easy way to change the appearance of things and be consistent about
-it. Those variables are used throughout the whole configuration. You could always
-customize these in =~/.emacs.d/.secret.el= file.
+Those variables are used throughout the whole configuration.
 
 #+BEGIN_SRC emacs-lisp
 (defvar me/font-family            "Monaco"  "The font to use.")
@@ -94,10 +86,6 @@ customize these in =~/.emacs.d/.secret.el= file.
 #+END_SRC
 
 ** 2. Validate Emacs' version
-
-Most of the configuration is written and tested on a daily basis with Emacs 24.
-
-- *TODO*: Check how it actually behave on a <24 Emacs.
 
 #+BEGIN_SRC emacs-lisp
 (when (version<= emacs-version "24")
