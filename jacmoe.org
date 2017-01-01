@@ -47,6 +47,7 @@ Some sane defaults
  split-width-threshold nil                       ; Disable horizontal window splitting
  tab-width 4                                     ; Set width for tabs
  uniquify-buffer-name-style 'forward             ; Uniquify buffer names
+ ring-bell-function 'ignore                      ; Be quiet!
  window-combination-resize t)                    ; Resize windows proportionally
 
 (column-number-mode 0)                           ; Hide the column number
@@ -280,6 +281,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 * D. Features
 
 1. [[#1-desktop][Desktop]]
+2. [[#2-projectile][Projectile]]
 
 ** 1. Desktop
 
@@ -291,4 +293,25 @@ Save and restore Emacs status, including buffers, modes, point and windows.
   :config
   (desktop-save-mode 1)
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
+#+END_SRC
+
+** 2. Projectile
+
+Projectile brings project-level facilities to Emacs such as grep, find and replace.
+
+#+BEGIN_QUOTE
+Projectile is a project interaction library for Emacs. Its goal is to provide a nice
+set of features operating on a project level without introducing external
+dependencies (when feasible). For instance - finding project files has a portable
+implementation written in pure Emacs Lisp without the use of GNU find (but for
+performance sake an indexing mechanism backed by external commands exists as well).
+
+[[https://github.com/bbatsov/projectile][Bozhidar Batsov]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(use-package projectile
+  :demand t
+  :config
+  (projectile-global-mode))
 #+END_SRC
