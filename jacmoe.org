@@ -282,6 +282,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 
 1. [[#1-desktop][Desktop]]
 2. [[#2-projectile][Projectile]]
+3. [[#3-rainbow][Rainbow-mode]]
 
 ** 1. Desktop
 
@@ -316,4 +317,11 @@ performance sake an indexing mechanism backed by external commands exists as wel
   (setq projectile-switch-project-action #'projectile-commander)
   (def-projectile-commander-method ?d "Open project root in dired." (projectile-dired))
   (projectile-global-mode))
+#+END_SRC
+
+** 3. Rainbow-mode
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-mode
+  :init (add-hook 'prog-mode-hook 'rainbow-mode)
+  :config (setq-default rainbow-x-colors-major-mode-list '()))
 #+END_SRC
