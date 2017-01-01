@@ -135,8 +135,6 @@ instance, you could set your identity by customizing both =user-full-name= and
 
 Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped.
 
-- *FIXME*: It sometimes does an extra =package-refresh-contents=.
-
 #+BEGIN_SRC emacs-lisp
 (when (>= emacs-major-version 24)
   (setq-default
@@ -262,6 +260,8 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 
 1. [[#1-css][CSS]]
 2. [[#2-yaml][YAML]]
+3. [[#3-markdown][Markdown]]
+4. [[#4-org][Org]]
 
 
 ** 1. CSS
@@ -290,6 +290,58 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
   :mode "\\.yml\\'")
 #+END_SRC
 
+** 3. Markdown
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :delight markdown-mode "Markdown"
+  :mode
+  ("INSTALL\\'"
+   "CONTRIBUTORS\\'"
+   "LICENSE\\'"
+   "README\\'"
+   "\\.markdown\\'"
+   "\\.md\\'")
+  :init (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
+  :config
+  (unbind-key "M-<down>" markdown-mode-map)
+  (unbind-key "M-<up>" markdown-mode-map)
+  (setq-default markdown-asymmetric-header t))
+#+END_SRC
+
+** 4. Org
+
+#+BEGIN_QUOTE
+Org mode is for keeping notes, maintaining TODO lists, planning projects, and
+authoring documents with a fast and effective plain-text system.
+
+[[http://orgmode.org/][Carsten Dominik]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(use-package org
+  :delight org-mode "Org"
+  :bind (:map org-mode-map ("<M-return>" . org-insert-heading-after-current))
+  :init (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  :config
+  (setq-default
+   org-descriptive-links nil
+   org-edit-src-content-indentation 0
+   org-src-fontify-natively t
+   org-src-window-setup 'current-window
+   org-support-shift-select 'always
+   org-startup-folded nil
+   org-startup-truncated nil)
+  (set-face-attribute 'org-block-background nil :background zenburn/bg+0)
+  (set-face-attribute 'org-block-begin-line nil :background 'unspecified)
+  (set-face-attribute 'org-block-end-line nil :background 'unspecified)
+  (unbind-key "C-a" org-mode-map)
+  (unbind-key "C-c C-w" org-mode-map)
+  (unbind-key "C-e" org-mode-map)
+  (unbind-key "<C-return>" org-mode-map)
+  (unbind-key "<C-S-down>" org-mode-map)
+  (unbind-key "<C-S-up>" org-mode-map))
+#+END_SRC
 
 
 * D. Features
