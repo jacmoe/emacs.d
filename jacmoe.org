@@ -717,7 +717,12 @@ Enable multiple cursors at once. Some witchcraft at work here.
    ("C-S-c C-S-c" . mc/edit-lines)
    ("C-S-c C-S-l" . mc/insert-letters)
    ("C-S-c C-S-n" . mc/insert-numbers)
-   ("C-'" . mc-hide-unmatched-lines-mode))
+   ("C-'" . mc-hide-unmatched-lines-mode)
+   ("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)
+   ("C-," . mc/unmark-next-like-this)
+   ("C-." . mc/skip-to-next-like-this))
   :config
   (setq-default
    mc/edit-lines-empty-lines 'ignore
