@@ -313,5 +313,7 @@ performance sake an indexing mechanism backed by external commands exists as wel
 (use-package projectile
   :demand t
   :config
+  (setq projectile-switch-project-action #'projectile-commander)
+  (def-projectile-commander-method ?d "Open project root in dired." (projectile-dired))
   (projectile-global-mode))
 #+END_SRC
