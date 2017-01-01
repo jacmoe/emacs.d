@@ -1,1 +1,262 @@
+#+TITLE: DotEmacs
+#+AUTHOR: Jacob Moen
+
+A. [[#a-bootstrap][Bootstrap]] |
+B. [[#b-theme][Theme]] |
+
+* A. Bootstrap
+
+1. [[#1-use-better-defaults][Use better defaults]]
+2. [[2#-validate-emacs-version][Validate Emacs' version]]
+3. [[3#-load-customel][Load .custom.el]]
+4. [[4#-load-secretel][Load .secret.el]]
+5. [[5#-initialize-melpa][Initialize MELPA]]
+
+** 1. Use better defaults
+
+Some UI elements are rather invasive. No-mouse master race.
+
+#+BEGIN_SRC emacs-lisp
+(when window-system
+  (blink-cursor-mode 0)                          ; Disable the cursor blinking
+  (scroll-bar-mode 0)                            ; Disable the scroll bar
+  (tool-bar-mode 0)                              ; Disable the tool bar
+  (tooltip-mode 0))                              ; Disable the tooltips
+#+END_SRC
+
+Here are what I consider better defaults as per my own experience.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default
+ ad-redefinition-action 'accept                  ; Silence warnings for redefinition
+ confirm-kill-emacs 'yes-or-no-p                 ; Confirm before exiting Emacs
+ cursor-in-non-selected-windows t                ; Hide the cursor in inactive windows
+ delete-by-moving-to-trash t                     ; Delete files to trash
+ display-time-default-load-average nil           ; Don't display load average
+ display-time-format "%H:%M"                     ; Format the time string
+ fill-column 85                                  ; Set width for automatic line breaking
+ gc-cons-threshold most-positive-fixnum          ; Increase garbage collector treshold
+ help-window-select t                            ; Focus new help windows when opened
+ indent-tabs-mode nil                            ; Stop using tabs to indent
+ inhibit-startup-screen t                        ; Disable start-up screen
+ initial-scratch-message ""                      ; Empty the initial *scratch* buffer
+ mode-require-final-newline 'visit               ; Add a newline at EOF on visit
+ mouse-yank-at-point t                           ; Yank at point rather than cursor
+ ns-use-srgb-colorspace nil                      ; Don't use sRGB colors
+ scroll-conservatively most-positive-fixnum      ; Always scroll by one line
+ select-enable-clipboard t                       ; Merge system's and Emacs' clipboard
+ show-trailing-whitespace nil                    ; Display trailing whitespaces
+ split-height-threshold nil                      ; Disable vertical window splitting
+ split-width-threshold nil                       ; Disable horizontal window splitting
+ tab-width 4                                     ; Set width for tabs
+ uniquify-buffer-name-style 'forward             ; Uniquify buffer names
+ window-combination-resize t)                    ; Resize windows proportionally
+
+(column-number-mode 0)                           ; Hide the column number
+(display-battery-mode 0)                         ; Hide the battery level
+(display-time-mode 1)                            ; Hide the time representation
+(fringe-mode '(10 . 10))                         ; Show vertical fringes
+(global-hl-line-mode 1)                          ; Hightlight current line
+(global-subword-mode 1)                          ; Iterate through CamelCase words
+(line-number-mode 1)                             ; Show the line number
+(menu-bar-mode 0)                                ; Disable the menu bar
+(mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
+#+END_SRC
+
+Enable some more goodies.
+
+#+BEGIN_SRC emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)                    ; Replace yes/no prompts with y/n
+(put 'downcase-region 'disabled nil)             ; Enable downcase-region
+(put 'upcase-region 'disabled nil)               ; Enable upcase-region
+#+END_SRC
+
+Reset garbage collector treshold after initialization is finished and
+=garbage-collect= on focus-out. Emacs /should/ feel snappier, I do however
+experience long garbage collects when returning to the Emacs frame.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
+(add-hook 'focus-out-hook 'garbage-collect)
+#+END_SRC
+
+I want an easy way to change the appearance of things and be consistent about
+it. Those variables are used throughout the whole configuration. You could always
+customize these in =~/.emacs.d/.secret.el= file.
+
+#+BEGIN_SRC emacs-lisp
+(defvar me/font-family            "Monaco"  "The font to use.")
+(defvar me/font-size-default      120       "The font size to use for default text.")
+(defvar me/font-size-header       140       "The font size to use for headers.")
+(defvar me/font-size-mode-line    120       "The font size to use for the mode line.")
+#+END_SRC
+
+** 2. Validate Emacs' version
+
+Most of the configuration is written and tested on a daily basis with Emacs 24.
+
+- *TODO*: Check how it actually behave on a <24 Emacs.
+
+#+BEGIN_SRC emacs-lisp
+(when (version<= emacs-version "24")
+  (unless (yes-or-no-p "Your Emacs is getting old. Kitten may be killed, continue? ")
+    (kill-emacs)))
+#+END_SRC
+
+** 3. Load =.custom.el=
+
+One is able to use the customization interface that is bundled within Emacs. It is
+meant to help people who are not familiar with Emacs Lisp in the configuration of
+Emacs itself. By default, changes in the customization will be automatically detected
+and appended at the end of the configuration file, =init.el=.
+
+Since that in my case, the actual configuration file is new one, crafted by
+=org-mode=, adding code at the end of =init.el= might mess things up. The following
+tells Emacs to add extra code in another file that would be then loaded, if existing
+that is.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default custom-file (expand-file-name ".custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+#+END_SRC
+
+** 4. Load =.secret.el=
+
+I load =~/.emacs.d/.secret.el= to keep sensible things out of version control. For
+instance, you could set your identity by customizing both =user-full-name= and
+=user-mail-address= in this file.
+
+#+BEGIN_SRC emacs-lisp
+(let ((secret.el (expand-file-name ".secret.el" user-emacs-directory)))
+  (when (file-exists-p secret.el)
+    (load secret.el)))
+#+END_SRC
+
+** 5. Initialize MELPA
+
+Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped.
+
+- *FIXME*: It sometimes does an extra =package-refresh-contents=.
+
+#+BEGIN_SRC emacs-lisp
+(when (>= emacs-major-version 24)
+  (setq-default
+   load-prefer-newer t
+   package-enable-at-startup nil)
+  (package-initialize)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+  (unless (package-installed-p 'delight)
+    (package-refresh-contents)
+    (package-install 'delight))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package)))
+#+END_SRC
+
+In order to have unified package declarations in my Emacs files, I use
+[[https://github.com/jwiegley/use-package][use-package]]. It allows for isolation and
+clarity.
+
+#+BEGIN_QUOTE
+The =use-package= macro allows you to isolate package configuration in your =.emacs=
+file in a way that is both performance-oriented and, well, tidy. I created it because
+I have over 80 packages that I use in Emacs, and things were getting difficult to
+manage. Yet with this utility my total load time is around 2 seconds, with no loss of
+functionality!
+
+[[https://github.com/jwiegley/use-package][John Wiegley]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(eval-when-compile
+  (require 'use-package)
+  (setq-default
+   use-package-always-defer t
+   use-package-always-ensure t))
+#+END_SRC
+
+* B. Theme
+
+1. [[#1-set-a-color-palette][Set a color palette]]
+2. [[#2-configure-zenburn][Configure Zenburn]]
+
+** 1. Set a color palette
+
+I like to have an accessible copy of my active theme's color codes. That way, I can
+fix other packages' colors while still using the same color codes and keep a sane
+consistency everywhere.
+
+I consider this method safe because I am using the all-famous
+[[https://github.com/bbatsov/zenburn-emacs][Zenburn Emacs port]] palette. It is
+/very/ unlikely that any of its tones will ever change.
+
+#+BEGIN_SRC emacs-lisp
+(defconst zenburn/bg+3      "#6F6F6F"  "Zenburn palette: #6F6F6F.")
+(defconst zenburn/bg+2      "#5F5F5F"  "Zenburn palette: #5F5F5F.")
+(defconst zenburn/bg+1      "#4F4F4F"  "Zenburn palette: #4F4F4F.")
+(defconst zenburn/bg+0      "#494949"  "Zenburn palette: #494949.")
+(defconst zenburn/bg        "#3F3F3F"  "Zenburn palette: #3F3F3F.")
+(defconst zenburn/bg-0      "#383838"  "Zenburn palette: #383838.")
+(defconst zenburn/bg-1      "#2B2B2B"  "Zenburn palette: #2B2B2B.")
+(defconst zenburn/bg-2      "#000000"  "Zenburn palette: #000000.")
+(defconst zenburn/blue+1    "#94BFF3"  "Zenburn palette: #94BFF3.")
+(defconst zenburn/blue      "#8CD0D3"  "Zenburn palette: #8CD0D3.")
+(defconst zenburn/blue-1    "#7CB8BB"  "Zenburn palette: #7CB8BB.")
+(defconst zenburn/blue-2    "#6CA0A3"  "Zenburn palette: #6CA0A3.")
+(defconst zenburn/blue-3    "#5C888B"  "Zenburn palette: #5C888B.")
+(defconst zenburn/blue-4    "#4C7073"  "Zenburn palette: #4C7073.")
+(defconst zenburn/blue-5    "#366060"  "Zenburn palette: #366060.")
+(defconst zenburn/cyan      "#93E0E3"  "Zenburn palette: #93E0E3.")
+(defconst zenburn/fg+1      "#FFFFEF"  "Zenburn palette: #FFFFEF.")
+(defconst zenburn/fg        "#DCDCCC"  "Zenburn palette: #DCDCCC.")
+(defconst zenburn/fg-1      "#656555"  "Zenburn palette: #656555.")
+(defconst zenburn/green+4   "#BFEBBF"  "Zenburn palette: #BFEBBF.")
+(defconst zenburn/green+3   "#AFD8AF"  "Zenburn palette: #AFD8AF.")
+(defconst zenburn/green+2   "#9FC59F"  "Zenburn palette: #9FC59F.")
+(defconst zenburn/green+1   "#8FB28F"  "Zenburn palette: #8FB28F.")
+(defconst zenburn/green     "#7F9F7F"  "Zenburn palette: #7F9F7F.")
+(defconst zenburn/green-1   "#5F7F5F"  "Zenburn palette: #5F7F5F.")
+(defconst zenburn/magenta   "#DC8CC3"  "Zenburn palette: #DC8CC3.")
+(defconst zenburn/orange    "#DFAF8F"  "Zenburn palette: #DFAF8F.")
+(defconst zenburn/red+1     "#DCA3A3"  "Zenburn palette: #DCA3A3.")
+(defconst zenburn/red       "#CC9393"  "Zenburn palette: #CC9393.")
+(defconst zenburn/red-1     "#BC8383"  "Zenburn palette: #BC8383.")
+(defconst zenburn/red-2     "#AC7373"  "Zenburn palette: #AC7373.")
+(defconst zenburn/red-3     "#9C6363"  "Zenburn palette: #9C6363.")
+(defconst zenburn/red-4     "#8C5353"  "Zenburn palette: #8C5353.")
+(defconst zenburn/yellow    "#F0DFAF"  "Zenburn palette: #F0DFAF.")
+(defconst zenburn/yellow-1  "#E0CF9F"  "Zenburn palette: #E0CF9F.")
+(defconst zenburn/yellow-2  "#D0BF8F"  "Zenburn palette: #D0BF8F.")
+#+END_SRC
+
+** 2. Configure Zenburn
+
+Load =zenburn-theme= and fix some high-level faces to match my personal preferences.
+
+#+BEGIN_SRC emacs-lisp
+(use-package zenburn-theme
+  :demand t
+  :config
+  (load-theme 'zenburn t)
+  (set-face-attribute 'default nil :height me/font-size-default)
+  (set-face-attribute 'font-lock-comment-delimiter-face nil
+                      :foreground zenburn/bg+3 :italic t)
+  (set-face-attribute 'font-lock-comment-face nil :italic t)
+  (set-face-attribute 'font-lock-doc-face nil :italic t)
+  (set-face-attribute 'font-lock-function-name-face nil :foreground zenburn/blue)
+  (set-face-attribute 'fringe nil :background zenburn/bg-0 :foreground zenburn/bg+3)
+  (set-face-attribute 'header-line nil
+                      :box `(:line-width 1 :color ,zenburn/bg-1)
+                      :height me/font-size-header)
+  (set-face-attribute 'help-argument-name nil :foreground zenburn/orange)
+  (set-face-attribute 'hl-line nil :background zenburn/bg+1)
+  (set-face-attribute 'isearch nil :background zenburn/blue :foreground zenburn/bg)
+  (set-face-attribute 'isearch-lazy-highlight-face nil
+                      :background zenburn/blue-2 :foreground zenburn/bg)
+  (set-face-attribute 'region nil :foreground zenburn/green)
+  (set-face-attribute 'vertical-border nil :foreground zenburn/bg-1)
+  (when (member me/font-family (font-family-list))
+    (set-face-attribute 'default nil :font me/font-family)))
+#+END_SRC
  
