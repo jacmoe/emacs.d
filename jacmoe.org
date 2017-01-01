@@ -346,14 +346,51 @@ authoring documents with a fast and effective plain-text system.
 
 * D. Features
 
-1. [[#1-desktop][Desktop]]
-2. [[#2-projectile][Projectile]]
-3. [[#3-rainbow][Rainbow]]
-4. [[#4-writeroom][Writeroom]]
-5. [[#5-magit][Magit]]
+1. [[#1-auto-completion][Auto-Completion]]
+2. [[#2-desktop][Desktop]]
+3. [[#3-projectile][Projectile]]
+4. [[#4-rainbow][Rainbow]]
+5. [[#5-writeroom][Writeroom]]
+6. [[#6-magit][Magit]]
+7. [[#7-expand][Expand]]
 
+** 1. Auto-Completion
 
-** 1. Desktop
+Auto-completion at point. Display a small pop-in containing the candidates.
+
+#+BEGIN_QUOTE
+Company is a text completion framework for Emacs. The name stands for "complete
+anything". It uses pluggable back-ends and front-ends to retrieve and display
+completion candidates.
+
+[[http://company-mode.github.io/][Dmitry Gutov]]
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(use-package company
+  :defer 1
+  :config
+  (global-company-mode)
+  (setq-default
+   company-idle-delay .2
+   company-minimum-prefix-length 1
+   company-tooltip-align-annotations t))
+
+(use-package company-dabbrev
+  :ensure nil
+  :after company
+  :config (setq-default company-dabbrev-downcase nil))
+
+(use-package company-tern
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-tern)
+  (setq-default
+   company-tern-meta-as-single-line t
+   company-tern-property-marker " *"))
+#+END_SRC
+
+** 2. Desktop
 
 Save and restore Emacs status, including buffers, modes, point and windows.
 
@@ -365,7 +402,7 @@ Save and restore Emacs status, including buffers, modes, point and windows.
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
 #+END_SRC
 
-** 2. Projectile
+** 3. Projectile
 
 Projectile brings project-level facilities to Emacs such as grep, find and replace.
 
@@ -388,7 +425,7 @@ performance sake an indexing mechanism backed by external commands exists as wel
   (projectile-global-mode))
 #+END_SRC
 
-** 3. Rainbow
+** 4. Rainbow
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-mode
   :demand t
@@ -398,7 +435,7 @@ performance sake an indexing mechanism backed by external commands exists as wel
   (setq-default rainbow-x-colors-major-mode-list '()))
 #+END_SRC
 
-** 4. Writeroom
+** 5. Writeroom
 #+BEGIN_QUOTE
 Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X.
 [[https://github.com/joostkremers/writeroom-mode][https://github.com/joostkremers/writeroom-mode]]
@@ -410,7 +447,7 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
   (setq writeroom-width 120))
 #+END_SRC
 
-** 5. Magit
+** 6. Magit
 
 Magit provide Git facilities directly from within Emacs.
 
@@ -482,4 +519,48 @@ itself deserve to be called porcelains. [[https://magit.vc/about.html][(more)]]
 (use-package gitattributes-mode :delight gitattributes-mode "Git Attributes")
 (use-package gitconfig-mode :delight gitconfig-mode "Git Config")
 (use-package gitignore-mode :delight gitignore-mode "Git Ignore")
+#+END_SRC
+
+** 7. Expand
+
+HippieExpand manages expansions a la [[http://emmet.io/][Emmet]]. So I've gathered
+all features that look anywhere close to this behavior for it to handle under the
+same bind, that is =<C-return>=. Basically it's an expand DWIM.
+
+#+BEGIN_SRC emacs-lisp
+(use-package emmet-mode
+  :init
+  (add-hook 'css-mode-hook 'emmet-mode)
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  :config
+  (setq-default emmet-move-cursor-between-quote t)
+  (unbind-key "<C-return>" emmet-mode-keymap)
+  (unbind-key "C-M-<left>" emmet-mode-keymap)
+  (unbind-key "C-M-<right>" emmet-mode-keymap))
+
+(use-package hippie-exp
+  :ensure nil
+  :preface
+  (defun me/emmet-try-expand-line (args)
+    "Try `emmet-expand-line' if `emmet-mode' is active. Else, does nothing."
+     (interactive "P")
+     (when emmet-mode (emmet-expand-line args)))
+  :bind ("<C-return>" . hippie-expand)
+  :config
+  (setq-default
+   hippie-expand-try-functions-list '(yas-hippie-try-expand me/emmet-try-expand-line)
+   hippie-expand-verbose nil))
+
+(use-package yasnippet
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
+  (add-hook 'js-mode-hook 'yas-minor-mode)
+  (add-hook 'org-mode-hook 'yas-minor-mode)
+  (add-hook 'python-mode-hook 'yas-minor-mode)
+  (add-hook 'sgml-mode-hook 'yas-minor-mode)
+  :config
+  (setq-default yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (yas-reload-all)
+  (unbind-key "TAB" yas-minor-mode-map)
+  (unbind-key "<tab>" yas-minor-mode-map))
 #+END_SRC
