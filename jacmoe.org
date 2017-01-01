@@ -3,6 +3,8 @@
 
 A. [[#a-bootstrap][Bootstrap]] |
 B. [[#b-theme][Theme]] |
+C. [[#c-languages][Languages]] |
+D. [[#d-features][Features]]
 
 * A. Bootstrap
 
@@ -260,3 +262,25 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
     (set-face-attribute 'default nil :font me/font-family)))
 #+END_SRC
  
+* C. Languages
+
+** 1. CSS
+
+#+BEGIN_SRC emacs-lisp
+(use-package css-mode
+  :delight css-mode "CSS"
+  :config (setq-default css-indent-offset 2))
+
+(use-package scss-mode
+  :delight scss-mode "SCSS"
+  :mode ("\\.css\\'" "\\.sass\\'" "\\.scss\\'")
+  :init
+  (add-hook 'scss-mode-hook
+            (lambda ()
+              (setq-local comment-end "")
+              (setq-local comment-start "//")))
+  :config (setq-default scss-compile-at-save nil))
+#+END_SRC
+
+* D. Features
+
