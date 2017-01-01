@@ -355,6 +355,7 @@ authoring documents with a fast and effective plain-text system.
 7. [[#7-expand][Expand]]
 8. [[#8-mode-line][Mode-Line]]
 9. [[#9-autodim][Autodim]]
+10. [[#10-multiplecursors][MultipleCursors]]
 
 ** 1. Auto-Completion
 
@@ -700,6 +701,28 @@ Auto-dim other buffers. Pretty self-explanatory.
   :config
   (auto-dim-other-buffers-mode 1)
   (set-face-attribute 'auto-dim-other-buffers-face nil :background zenburn/bg-0))
+#+END_SRC
+
+
+** 10. MultipleCursors
+
+Enable multiple cursors at once. Some witchcraft at work here.
+
+#+BEGIN_SRC emacs-lisp
+(use-package multiple-cursors
+  :defer 1
+  :bind
+  (("C-S-<mouse-1>" . mc/add-cursor-on-click)
+   ("C-S-c C-S-a" . mc/vertical-align-with-space)
+   ("C-S-c C-S-c" . mc/edit-lines)
+   ("C-S-c C-S-l" . mc/insert-letters)
+   ("C-S-c C-S-n" . mc/insert-numbers)
+   ("C-'" . mc-hide-unmatched-lines-mode))
+  :config
+  (setq-default
+   mc/edit-lines-empty-lines 'ignore
+   mc/insert-numbers-default 1
+   mc/list-file (expand-file-name ".multiple-cursors.el" user-emacs-directory)))
 #+END_SRC
 
 
