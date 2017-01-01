@@ -282,7 +282,9 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 
 1. [[#1-desktop][Desktop]]
 2. [[#2-projectile][Projectile]]
-3. [[#3-rainbow][Rainbow-mode]]
+3. [[#3-rainbow][Rainbow]]
+4. [[#4-writeroom][Writeroom]]
+
 
 ** 1. Desktop
 
@@ -319,9 +321,24 @@ performance sake an indexing mechanism backed by external commands exists as wel
   (projectile-global-mode))
 #+END_SRC
 
-** 3. Rainbow-mode
+** 3. Rainbow
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-mode
-  :init (add-hook 'prog-mode-hook 'rainbow-mode)
-  :config (setq-default rainbow-x-colors-major-mode-list '()))
+  :demand t
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-mode)
+  :config
+  (setq-default rainbow-x-colors-major-mode-list '()))
+#+END_SRC
+
+** 4. Writeroom
+#+BEGIN_QUOTE
+Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X.
+[[https://github.com/joostkremers/writeroom-mode][https://github.com/joostkremers/writeroom-mode]]
+#+END_QUOTE
+#+BEGIN_SRC emacs-lisp
+(use-package writeroom-mode
+  :demand t
+  :config
+  (setq writeroom-width 120))
 #+END_SRC
