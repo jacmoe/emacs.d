@@ -284,6 +284,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 2. [[#2-projectile][Projectile]]
 3. [[#3-rainbow][Rainbow]]
 4. [[#4-writeroom][Writeroom]]
+5. [[#5-magit][Magit]]
 
 
 ** 1. Desktop
@@ -341,4 +342,78 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
   :demand t
   :config
   (setq writeroom-width 120))
+#+END_SRC
+
+** 5. Magit
+
+Magit provide Git facilities directly from within Emacs.
+
+#+BEGIN_QUOTE
+Magit is an interface to the version control system [[https://git-scm.com/][Git]],
+implemented as an [[https://www.gnu.org/software/emacs][Emacs]] package. Magit
+aspires to be a complete Git porcelain. While we cannot (yet) claim that Magit wraps
+and improves upon each and every Git command, it is complete enough to allow even
+experienced Git users to perform almost all of their daily version control tasks
+directly from within Emacs. While many fine Git clients exist, only Magit and Git
+itself deserve to be called porcelains. [[https://magit.vc/about.html][(more)]]
+
+[[https://github.com/magit/magit][Jonas Bernoulli]]
+#+END_QUOTE
+
+- *TODO*: Make a hydra.
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit
+  :bind
+  (("C-x g" . magit-status))
+  :config
+
+  ;; Redefine how Magit display buffers
+  (defun me/magit-display-buffer-function (buffer)
+    "Render some magit modes in the currently selected buffer."
+    (display-buffer
+     buffer
+     (cond ((and (derived-mode-p 'magit-mode)
+                 (eq (with-current-buffer buffer major-mode) 'magit-status-mode))
+            nil)
+           ((memq (with-current-buffer buffer major-mode)
+                  '(magit-process-mode
+                    magit-revision-mode
+                    magit-diff-mode
+                    magit-stash-mode))
+            nil)
+           (t '(display-buffer-same-window)))))
+
+  ;; Use better defaults
+  (setq-default
+   magit-display-buffer-function 'me/magit-display-buffer-function
+   magit-diff-highlight-hunk-body nil
+   magit-popup-display-buffer-action '((display-buffer-same-window))
+   magit-refs-show-commit-count (quote all)
+   magit-section-show-child-count t
+   magit-set-upstream-on-push 'askifnotset)
+
+  ;; Customize lighters
+  (delight
+   '((magit-diff-mode "Magit Diff")
+     (magit-log-mode "Magit Log")
+     (magit-popup-mode "Magit Popup")
+     (magit-status-mode "Magit Status")))
+
+  ;; Customize faces
+  (set-face-attribute 'magit-diff-added nil
+                      :background zenburn/bg+0 :foreground zenburn/green+3)
+  (set-face-attribute 'magit-diff-context nil :background zenburn/bg+0)
+  (set-face-attribute 'magit-diff-file-heading-highlight nil :background 'unspecified)
+  (set-face-attribute 'magit-diff-hunk-heading nil :background zenburn/bg+2)
+  (set-face-attribute 'magit-diff-hunk-heading-highlight nil :background zenburn/bg+2)
+  (set-face-attribute 'magit-diff-removed nil
+                      :background zenburn/bg+0 :foreground zenburn/red)
+  (set-face-attribute 'magit-popup-heading nil :height me/font-size-header)
+  (set-face-attribute 'magit-section-heading nil :height me/font-size-header)
+  (set-face-attribute 'magit-section-highlight nil :background 'unspecified))
+
+(use-package gitattributes-mode :delight gitattributes-mode "Git Attributes")
+(use-package gitconfig-mode :delight gitconfig-mode "Git Config")
+(use-package gitignore-mode :delight gitignore-mode "Git Ignore")
 #+END_SRC
