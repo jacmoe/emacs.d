@@ -1,1 +1,0 @@
-(:nickserv-password "password")

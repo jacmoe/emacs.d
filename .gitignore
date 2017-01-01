@@ -1,17 +1,20 @@
-/.cask
+# Emacs
 *~
-places
-\.recentf
-\.smex-items
-ido.last
-projectile-cache
-projectile-bookmarks.eld
-auto-save-list
-backups
-eshell
-/#ido.last#
-*.el#
-/.emacs.desktop
-/.mc-lists.el
-/.emacs.desktop.lock
-/url
+*.elc
+.custom.el
+.dir-locals.el
+.secret.el
+jacmoe.el
+auto-save-list/
+elpa/
+games/
+semanticdb/
+url/
+attic/
+
+# Third-party packages
+.emacs.desktop*
+.multiple-cursors.el
+.projectile
+.projectile.cache
+.projectile-bookmarks.eld
