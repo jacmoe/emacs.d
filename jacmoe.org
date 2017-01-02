@@ -356,6 +356,9 @@ authoring documents with a fast and effective plain-text system.
 8. [[#8-mode-line][Mode-Line]]
 9. [[#9-autodim][Autodim]]
 10. [[#10-multiplecursors][MultipleCursors]]
+11. [[#11-helm][Helm]]
+12. [[#12-helm-plugins][Helm Plugins]]
+
 
 ** 1. Auto-Completion
 
@@ -728,6 +731,130 @@ Enable multiple cursors at once. Some witchcraft at work here.
    mc/edit-lines-empty-lines 'ignore
    mc/insert-numbers-default 1
    mc/list-file (expand-file-name ".multiple-cursors.el" user-emacs-directory)))
+#+END_SRC
+
+** 11. Helm
+
+Helm is a beast. Although heavily, it replaces =ido-mode= in many ways.
+
+#+BEGIN_QUOTE
+=Helm= is an Emacs framework for incremental completions and narrowing selections. It
+helps to rapidly complete file names, buffer names, or any other Emacs interactions
+requiring selecting an item from a list of possible choices.
+
+Helm is a fork of =anything.el=, which was originally written by Tamas Patrovic and
+can be considered to be its successor. =Helm= cleans the legacy code that is leaner,
+modular, and unchained from constraints of backward compatibility.
+
+[[https://github.com/emacs-helm/helm][Bozhidar Batsov]]
+#+END_QUOTE
+
+
+#+BEGIN_SRC emacs-lisp
+(use-package helm
+  :defer 1
+  :config
+  (helm-mode 1)
+  (setq-default
+   helm-always-two-windows t
+   helm-display-header-line nil
+   helm-split-window-default-side 'left)
+  (set-face-attribute 'helm-match nil :foreground zenburn/green+2 :weight 'normal)
+  (set-face-attribute 'helm-prefarg nil :foreground zenburn/red)
+  (set-face-attribute 'helm-source-header nil
+                      :box nil :background 'unspecified :height me/font-size-header))
+#+END_SRC
+
+Helm sub-modules can be customized separately. Many basic Emacs commands have their
+Helm equivalents.
+
+#+BEGIN_SRC emacs-lisp
+(use-package helm-buffers
+  :ensure nil
+  :after helm
+  :config
+  (setq-default helm-buffers-fuzzy-matching t)
+  (set-face-attribute 'helm-buffer-directory nil
+                      :background 'unspecified :foreground zenburn/blue)
+  (set-face-attribute 'helm-buffer-size nil :foreground zenburn/bg+3))
+
+(use-package helm-color
+  :ensure nil
+  :after helm)
+
+(use-package helm-command
+  :ensure nil
+  :after helm
+  :bind ([remap execute-extended-command] . helm-M-x)
+  :config
+  (setq-default helm-M-x-fuzzy-match t)
+  (set-face-attribute 'helm-M-x-key nil :foreground zenburn/orange :underline nil))
+
+(use-package helm-files
+  :ensure nil
+  :after helm
+  :bind (:map helm-find-files-map ("C-s" . helm-ff-run-grep-ag))
+  :config
+  (set-face-attribute 'helm-ff-dotted-directory nil :background 'unspecified))
+
+(use-package helm-grep
+  :ensure nil
+  :after helm
+  :config (set-face-attribute 'helm-grep-lineno nil :foreground zenburn/yellow-2))
+
+(use-package helm-misc
+  :ensure nil
+  :after helm
+  :bind ([remap switch-to-buffer] . helm-buffers-list))
+
+(use-package helm-mode
+  :ensure nil
+  :after helm
+  :config
+  (setq-default
+   helm-completion-in-region-fuzzy-match t
+   helm-mode-fuzzy-match t))
+
+(use-package helm-net
+  :ensure nil
+  :after helm
+  :config (setq-default helm-net-prefer-curl t))
+
+(use-package helm-regexp
+  :ensure nil
+  :after helm
+  :config (set-face-attribute 'helm-moccur-buffer nil :foreground zenburn/blue))
+#+END_SRC
+
+
+** 12. Helm Plugins
+
+Fourth-party packages for Helm.
+
+- *NOTE*: Does not respect =helm-split-window-default-side=
+          (https://github.com/ShingoFukuyama/helm-css-scss/issues/7).
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package helm-css-scss
+  :after helm
+  :config (setq-default helm-css-scss-split-direction 'split-window-horizontally))
+
+(use-package helm-descbinds
+  :after helm
+  :bind ([remap describe-key] . helm-descbinds)
+  :config (setq-default helm-descbinds-window-style 'split-window))
+
+(use-package helm-describe-modes
+  :after helm
+  :bind ([remap describe-mode] . helm-describe-modes))
+
+(use-package helm-flycheck
+  :after helm)
+
+(use-package helm-projectile
+  :after helm
+  :config (helm-projectile-toggle 1))
 #+END_SRC
 
 
