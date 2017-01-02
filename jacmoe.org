@@ -366,6 +366,10 @@ for variables and properties.
 
 (use-package tern
   :config (add-hook 'js-mode-hook 'tern-mode))
+
+(use-package pug-mode
+  :delight pug-mode "Pug"
+  :mode ("\\.jade\\'" "\\.pug\\'"))
 #+END_SRC
 
 
