@@ -358,6 +358,7 @@ authoring documents with a fast and effective plain-text system.
 10. [[#10-multiplecursors][MultipleCursors]]
 11. [[#11-helm][Helm]]
 12. [[#12-helm-plugins][Helm Plugins]]
+13. [[#13-linters][Linters]]
 
 
 ** 1. Auto-Completion
@@ -857,6 +858,31 @@ Fourth-party packages for Helm.
   :config (helm-projectile-toggle 1))
 #+END_SRC
 
+
+** 13. Linters
+
+Flycheck lints warnings and errors directly within buffers. It can check a lot of
+different syntaxes, as long as you make sure that Emacs has access to the binaries
+(see [[./README.md][README.md]]).
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :init
+  (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+  (add-hook 'js-mode-hook 'flycheck-mode)
+  (add-hook 'scss-mode-hook 'flycheck-mode)
+  :config
+  (setq-default
+   flycheck-check-syntax-automatically '(save mode-enabled)
+   flycheck-disabled-checkers '(emacs-lisp-checkdoc)
+   flycheck-display-errors-delay .3)
+  (set-face-attribute 'flycheck-error nil :underline zenburn/red-1)
+  (set-face-attribute 'flycheck-info nil :underline zenburn/blue+1)
+  (set-face-attribute 'flycheck-warning nil :underline zenburn/orange)
+  (set-face-attribute 'flycheck-fringe-error nil :foreground zenburn/red-1)
+  (set-face-attribute 'flycheck-fringe-info nil :foreground zenburn/blue+1)
+  (set-face-attribute 'flycheck-fringe-warning nil :foreground zenburn/orange))
+#+END_SRC
 
 -----
 
