@@ -358,11 +358,12 @@ for variables and properties.
   :delight js-mode "JavaScript"
   :config (setq-default js-indent-level 2))
 
-(use-package json-mode
-  :delight json-mode "JSON"
-  :mode ("\\.jshintrc\\'" "\\.json\\'")
-  :config
-  (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 2))))
+;; FIXME: for some reason this triggers Emacs 25.1 error!
+;;(use-package json-mode
+;;  :delight json-mode "JSON"
+;;  :mode ("\\.jshintrc\\'" "\\.json\\'")
+;;  :config
+;;  (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 2))))
 
 (use-package tern
   :config (add-hook 'js-mode-hook 'tern-mode))
