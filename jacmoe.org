@@ -262,6 +262,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 2. [[#2-yaml][YAML]]
 3. [[#3-markdown][Markdown]]
 4. [[#4-org][Org]]
+5. [[#5-javascript][JavaScript]]
 
 
 ** 1. CSS
@@ -341,6 +342,30 @@ authoring documents with a fast and effective plain-text system.
   (unbind-key "<C-return>" org-mode-map)
   (unbind-key "<C-S-down>" org-mode-map)
   (unbind-key "<C-S-up>" org-mode-map))
+#+END_SRC
+
+** 5. JavaScript
+
+Tern is a code-analysis engine for JavaScript. I use it to check syntax and grammar
+in my JavaScript code. With an auto-complete frontend, it can also provide candidates
+for variables and properties.
+
+- *FIXME*: Indent level is broken
+           (https://github.com/joshwnj/json-mode/issues/32).
+
+#+BEGIN_SRC emacs-lisp
+(use-package js
+  :delight js-mode "JavaScript"
+  :config (setq-default js-indent-level 2))
+
+(use-package json-mode
+  :delight json-mode "JSON"
+  :mode ("\\.jshintrc\\'" "\\.json\\'")
+  :config
+  (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 2))))
+
+(use-package tern
+  :config (add-hook 'js-mode-hook 'tern-mode))
 #+END_SRC
 
 
