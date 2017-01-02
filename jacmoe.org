@@ -358,7 +358,6 @@ for variables and properties.
   :delight js-mode "JavaScript"
   :config (setq-default js-indent-level 2))
 
-;; FIXME: for some reason this triggers Emacs 25.1 error!
 (use-package json-mode
   :delight json-mode "JSON"
   :mode ("\\.jshintrc\\'" "\\.json\\'")
@@ -385,6 +384,7 @@ for variables and properties.
 11. [[#11-helm][Helm]]
 12. [[#12-helm-plugins][Helm Plugins]]
 13. [[#13-linters][Linters]]
+14. [[#14-hydra][Hydra]]
 
 
 ** 1. Auto-Completion
@@ -909,6 +909,157 @@ different syntaxes, as long as you make sure that Emacs has access to the binari
   (set-face-attribute 'flycheck-fringe-info nil :foreground zenburn/blue+1)
   (set-face-attribute 'flycheck-fringe-warning nil :foreground zenburn/orange))
 #+END_SRC
+
+
+** 14. Hydra
+
+Hydra allows me to group binds together. It also shows a list of all implemented
+commands in the eho area.
+
+#+BEGIN_QUOTE
+Once you summon the Hydra through the prefixed binding (the body + any one head), all
+heads can be called in succession with only a short extension.
+
+The Hydra is vanquished once Hercules, any binding that isn't the Hydra's head,
+arrives. Note that Hercules, besides vanquishing the Hydra, will still serve his
+original purpose, calling his proper command. This makes the Hydra very seamless,
+it's like a minor mode that disables itself auto-magically.
+
+[[https://github.com/abo-abo/hydra][Oleh Krehel]]
+#+END_QUOTE
+
+- *FIXME*: Allow =TAB= for console users.
+
+#+BEGIN_SRC emacs-lisp
+(use-package hydra
+  :bind
+  ("C-c f" . hydra-flycheck/body)
+  ("C-c g" . hydra-magit/body)
+  ("C-c h" . hydra-helm/body)
+  ("C-c o" . hydra-org/body)
+  ("C-c p" . hydra-projectile/body)
+  :config (setq-default hydra-default-hint nil))
+#+END_SRC
+
+Group Flycheck commands.
+
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-flycheck (:color blue)
+  "
+^
+^Flycheck^          ^Errors^            ^Checker^
+^────────^──────────^──────^────────────^───────^───────────
+[_q_] quit          [_c_] check         [_s_] select
+[_v_] verify setup  [_n_] next          [_d_] disable
+[_m_] manual        [_p_] previous      [_?_] describe
+^^                  ^^                  ^^
+"
+  ("q" nil)
+  ("c" flycheck-buffer)
+  ("d" flycheck-disable-checker)
+  ("m" flycheck-manual)
+  ("n" flycheck-next-error :color red)
+  ("p" flycheck-previous-error :color red)
+  ("s" flycheck-select-checker)
+  ("v" flycheck-verify-setup)
+  ("?" flycheck-describe-checker))
+#+END_SRC
+
+Group Helm commands.
+
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-helm (:color blue)
+  "
+^
+^Helm^              ^Browse^            ^Do^
+^────^──────────────^──────^────────────^──^────────────────
+[_q_] quit          [_c_] colors        [_f_] flycheck
+[_r_] resume helm   [_g_] google        [_s_] css-scss
+^^                  [_h_] headings      ^^
+^^                  [_i_] imenu         ^^
+^^                  ^^                  ^^
+"
+  ("q" nil)
+  ("c" helm-colors)
+  ("f" helm-flycheck)
+  ("g" helm-google-suggest)
+  ("h" helm-org-in-buffer-headings)
+  ("i" helm-imenu)
+  ("r" helm-resume)
+  ("s" helm-css-scss))
+#+END_SRC
+
+Group Magit commands.
+
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-magit (:color blue)
+  "
+^
+^Magit^             ^Do^
+^─────^─────────────^──^────────────────
+[_q_] quit          [_b_] blame
+^^                  [_s_] status
+^^                  ^^
+"
+  ("q" nil)
+  ("b" magit-blame)
+  ("s" magit-status))
+#+END_SRC
+
+Group Org commands.
+
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-org (:color pink)
+  "
+^
+^Org^               ^Links^             ^Outline^
+^───^───────────────^─────^─────────────^───────^───────────
+[_q_] quit          [_i_] insert        [_a_] show all
+^^                  [_n_] next          [_b_] backward
+^^                  [_o_] open          [_f_] forward
+^^                  [_p_] previous      [_v_] overview
+^^                  [_s_] store         ^^
+^^                  ^^                  ^^
+"
+  ("q" nil)
+  ("a" show-all)
+  ("b" org-backward-element)
+  ("f" org-forward-element)
+  ("i" org-insert-link)
+  ("n" org-next-link)
+  ("o" org-open-at-point)
+  ("p" org-previous-link)
+  ("s" org-store-link)
+  ("v" org-overview))
+#+END_SRC
+
+Group Projectile commands.
+
+#+BEGIN_SRC emacs-lisp
+(defhydra hydra-projectile (:color blue)
+  "
+^
+^Projectile^        ^Buffers^           ^Find^              ^Search^
+^──────────^────────^───────^───────────^────^──────────────^──────^────────────
+[_q_] quit          [_b_] list all      [_d_] directory     [_r_] replace
+[_i_] reset cache   [_k_] kill all      [_D_] root          [_s_] ag
+^^                  [_S_] save all      [_f_] file          ^^
+^^                  ^^                  [_p_] project       ^^
+^^                  ^^                  ^^                  ^^
+"
+  ("q" nil)
+  ("b" helm-projectile-switch-to-buffer)
+  ("d" helm-projectile-find-dir)
+  ("D" projectile-dired)
+  ("f" helm-projectile-find-file)
+  ("i" projectile-invalidate-cache :color red)
+  ("k" projectile-kill-buffers)
+  ("p" helm-projectile-switch-project)
+  ("r" projectile-replace)
+  ("s" helm-projectile-ag)
+  ("S" projectile-save-project-buffers :color red))
+#+END_SRC
+
 
 -----
 
