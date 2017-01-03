@@ -389,6 +389,7 @@ for variables and properties.
 12. [[#12-helm-plugins][Helm Plugins]]
 13. [[#13-linters][Linters]]
 14. [[#14-hydra][Hydra]]
+15. [[#15-restclient][RestClient]]
 
 
 ** 1. Auto-Completion
@@ -1064,6 +1065,12 @@ Group Projectile commands.
   ("S" projectile-save-project-buffers :color red))
 #+END_SRC
 
+
+** 15. RestClient
+
+#+BEGIN_SRC emacs-lisp
+(use-package restclient)
+#+END_SRC
 
 -----
 
