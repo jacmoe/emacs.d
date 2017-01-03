@@ -263,6 +263,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 3. [[#3-markdown][Markdown]]
 4. [[#4-org][Org]]
 5. [[#5-javascript][JavaScript]]
+6. [[#6-php][PHP]]
 
 
 ** 1. CSS
@@ -372,6 +373,27 @@ for variables and properties.
   :mode ("\\.jade\\'" "\\.pug\\'"))
 #+END_SRC
 
+** 6. PHP
+#+BEGIN_SRC emacs-lisp
+(use-package php-mode
+  :delight php-mode "PHP"
+  :config
+  (add-hook 'php-mode-hook (lambda () (subword-mode 1)))
+  (add-hook 'web-mode-hook (lambda () (subword-mode 1))))
+(use-package php+-mode)
+(use-package php-eldoc)
+(use-package php-refactor-mode)
+(use-package ac-php-core)
+(use-package ac-php)
+(use-package flymake-php
+  :config
+  (setq php-executable "/usr/bin/php"))
+(use-package web-mode
+  :delight web-mode "Web"
+  :mode ("\\.phtml\\'" "\\.tpl\\'" "\\.php\\'" "\\.html\\'" "\\.twig\\'" "\\.html?\\'"))
+(use-package cl)
+(use-package ggtags)
+#+END_SRC
 
 * D. Features
 
