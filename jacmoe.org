@@ -1099,7 +1099,8 @@ Group Projectile commands.
 ** 16. EditorConfig
 #+BEGIN_SRC emacs-lisp
 (use-package editorconfig
-  :config (editorconfig-mode 1))
+  :config
+  (editorconfig-mode 1))
 #+END_SRC
 
 ** 17. Abbrev
