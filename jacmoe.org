@@ -365,8 +365,8 @@ for variables and properties.
   :config
   (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 2))))
 
-(use-package tern
-  :config (add-hook 'js-mode-hook 'tern-mode))
+;;(use-package tern
+;;  :config (add-hook 'js-mode-hook 'tern-mode))
 
 (use-package pug-mode
   :delight pug-mode "Pug"
@@ -443,13 +443,13 @@ completion candidates.
   :after company
   :config (setq-default company-dabbrev-downcase nil))
 
-(use-package company-tern
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-tern)
-  (setq-default
-   company-tern-meta-as-single-line t
-   company-tern-property-marker " *"))
+;;(use-package company-tern
+;;  :after company
+;;  :config
+;;  (add-to-list 'company-backends 'company-tern)
+;;  (setq-default
+;;   company-tern-meta-as-single-line t
+;;   company-tern-property-marker " *"))
 #+END_SRC
 
 ** 2. Desktop
