@@ -264,6 +264,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 4. [[#4-org][Org]]
 5. [[#5-javascript][JavaScript]]
 6. [[#6-php][PHP]]
+7. [[#7-rust][Rust]]
 
 
 ** 1. CSS
@@ -394,6 +395,28 @@ for variables and properties.
 (use-package cl)
 (use-package ggtags)
 #+END_SRC
+
+** 7. Rust
+#+BEGIN_SRC emacs-lisp
+(use-package cargo
+  :delight cargo "Cargo"
+)
+(use-package racer
+  :delight racer "Racer"
+  :config
+  (setq racer-cmd "~/.cargo/bin/racer")
+  (setq racer-rust-src-path "/home/jacmoe/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode))
+(use-package flycheck-rust)
+(use-package flymake-rust)
+(use-package rust-mode
+  :delight rust-mode "Rust"
+  :config
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (add-hook 'rust-mode-hook #'racer-mode))
+#+END_SRC
+
 
 * D. Features
 
@@ -926,6 +949,7 @@ different syntaxes, as long as you make sure that Emacs has access to the binari
   (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
   (add-hook 'js-mode-hook 'flycheck-mode)
   (add-hook 'scss-mode-hook 'flycheck-mode)
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
   :config
   (setq-default
    flycheck-check-syntax-automatically '(save mode-enabled)
