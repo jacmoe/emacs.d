@@ -60,6 +60,7 @@ Some sane defaults
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
+(set-default-font "Anonymous Pro")
 #+END_SRC
 
 Enable some more goodies.
@@ -74,6 +75,8 @@ Enable some more goodies.
 (global-set-key (kbd "M-4") 'split-window-below) ; split pane top/bottom
 (global-set-key (kbd "M-2") 'delete-window)      ; close current pane
 (global-set-key (kbd "M-s") 'other-window)       ; cursor to other pane
+(defalias 'ts 'transpose-sentences)
+(defalias 'tp 'transpose-paragraphs)
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
@@ -87,7 +90,7 @@ Reset garbage collector treshold after initialization is finished and
 Those variables are used throughout the whole configuration.
 
 #+BEGIN_SRC emacs-lisp
-(defvar me/font-family            "Monaco"  "The font to use.")
+(defvar me/font-family            "Anonymous Pro"  "The font to use.")
 (defvar me/font-size-default      120       "The font size to use for default text.")
 (defvar me/font-size-header       140       "The font size to use for headers.")
 (defvar me/font-size-mode-line    120       "The font size to use for the mode line.")
