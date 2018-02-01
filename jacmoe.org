@@ -3,8 +3,7 @@
 
 A. [[#a-bootstrap][Bootstrap]] |
 B. [[#b-theme][Theme]] |
-C. [[#c-languages][Languages]] |
-D. [[#d-features][Features]]
+C. [[#c-features][Features]]
 
 * A. Bootstrap
 
@@ -259,226 +258,18 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
     (set-face-attribute 'default nil :font me/font-family)))
 #+END_SRC
  
-* C. Languages
+* C. Features
 
-1. [[#1-css][CSS]]
-2. [[#2-yaml][YAML]]
-3. [[#3-markdown][Markdown]]
-4. [[#4-org][Org]]
-5. [[#5-javascript][JavaScript]]
-6. [[#6-php][PHP]]
-7. [[#7-rust][Rust]]
-
-
-** 1. CSS
-
-#+BEGIN_SRC emacs-lisp
-(use-package css-mode
-  :delight css-mode "CSS"
-  :config (setq-default css-indent-offset 2))
-
-(use-package scss-mode
-  :delight scss-mode "SCSS"
-  :mode ("\\.css\\'" "\\.sass\\'" "\\.scss\\'")
-  :init
-  (add-hook 'scss-mode-hook
-            (lambda ()
-              (setq-local comment-end "")
-              (setq-local comment-start "//")))
-  :config (setq-default scss-compile-at-save nil))
-#+END_SRC
-
-** 2. YAML
-
-#+BEGIN_SRC emacs-lisp
-(use-package yaml-mode
-  :delight yaml-mode "YAML"
-  :mode "\\.yml\\'")
-#+END_SRC
-
-** 3. Markdown
-
-#+BEGIN_SRC emacs-lisp
-(use-package markdown-mode
-  :delight markdown-mode "Markdown"
-  :mode
-  ("INSTALL\\'"
-   "CONTRIBUTORS\\'"
-   "LICENSE\\'"
-   "README\\'"
-   "\\.markdown\\'"
-   "\\.md\\'")
-  :init (add-hook 'markdown-mode-hook 'turn-on-auto-fill)
-  :config
-  (unbind-key "M-<down>" markdown-mode-map)
-  (unbind-key "M-<up>" markdown-mode-map)
-  (setq-default markdown-asymmetric-header t))
-#+END_SRC
-
-** 4. Org
-
-#+BEGIN_QUOTE
-Org mode is for keeping notes, maintaining TODO lists, planning projects, and
-authoring documents with a fast and effective plain-text system.
-
-[[http://orgmode.org/][Carsten Dominik]]
-#+END_QUOTE
-
-#+BEGIN_SRC emacs-lisp
-(use-package org
-  :delight org-mode "Org"
-  :bind (:map org-mode-map ("<M-return>" . org-insert-heading-after-current))
-  :init (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  :config
-  (setq-default
-   org-descriptive-links nil
-   org-edit-src-content-indentation 0
-   org-src-fontify-natively t
-   org-src-window-setup 'current-window
-   org-support-shift-select 'always
-   org-startup-folded nil
-   org-startup-truncated nil)
-  (set-face-attribute 'org-block-background nil :background zenburn/bg+0)
-  (set-face-attribute 'org-block-begin-line nil :background 'unspecified)
-  (set-face-attribute 'org-block-end-line nil :background 'unspecified)
-  (unbind-key "C-a" org-mode-map)
-  (unbind-key "C-c C-w" org-mode-map)
-  (unbind-key "C-e" org-mode-map)
-  (unbind-key "<C-return>" org-mode-map)
-  (unbind-key "<C-S-down>" org-mode-map)
-  (unbind-key "<C-S-up>" org-mode-map))
-#+END_SRC
-
-** 5. JavaScript
-
-Tern is a code-analysis engine for JavaScript. I use it to check syntax and grammar
-in my JavaScript code. With an auto-complete frontend, it can also provide candidates
-for variables and properties.
-
-- *FIXME*: Indent level is broken
-           (https://github.com/joshwnj/json-mode/issues/32).
-
-#+BEGIN_SRC emacs-lisp
-(use-package js
-  :delight js-mode "JavaScript"
-  :config (setq-default js-indent-level 2))
-
-(use-package json-mode
-  :delight json-mode "JSON"
-  :mode ("\\.jshintrc\\'" "\\.json\\'")
-  :config
-  (add-hook 'json-mode-hook (lambda () (setq-local js-indent-level 2))))
-
-;;(use-package tern
-;;  :config (add-hook 'js-mode-hook 'tern-mode))
-
-(use-package pug-mode
-  :delight pug-mode "Pug"
-  :mode ("\\.jade\\'" "\\.pug\\'"))
-#+END_SRC
-
-** 6. PHP
-#+BEGIN_SRC emacs-lisp
-(use-package php-mode
-  :delight php-mode "PHP"
-  :config
-  (add-hook 'php-mode-hook (lambda () (subword-mode 1)))
-  (add-hook 'web-mode-hook (lambda () (subword-mode 1))))
-(use-package php+-mode)
-(use-package php-eldoc)
-(use-package php-refactor-mode)
-(use-package ac-php-core)
-(use-package ac-php)
-(use-package flymake-php
-  :config
-  (setq php-executable "/usr/bin/php"))
-(use-package web-mode
-  :delight web-mode "Web"
-  :mode ("\\.phtml\\'" "\\.tpl\\'" "\\.php\\'" "\\.html\\'" "\\.twig\\'" "\\.html?\\'"))
-(use-package cl)
-(use-package ggtags)
-#+END_SRC
-
-** 7. Rust
-#+BEGIN_SRC emacs-lisp
-(use-package cargo
-  :delight cargo "Cargo"
-)
-(use-package racer
-  :delight racer "Racer"
-  :config
-  (setq racer-cmd "~/.cargo/bin/racer")
-  (setq racer-rust-src-path "/home/jacmoe/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
-  (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode))
-(use-package flycheck-rust)
-(use-package flymake-rust)
-(use-package rust-mode
-  :delight rust-mode "Rust"
-  :config
-  (add-hook 'rust-mode-hook 'cargo-minor-mode)
-  (add-hook 'rust-mode-hook #'racer-mode))
-#+END_SRC
+1. [[#1-desktop][Desktop]]
+2. [[#2-writeroom][Writeroom]]
+3. [[#3-mode-line][Mode-Line]]
+4. [[#4-autodim][Autodim]]
+5. [[#5-multiplecursors][MultipleCursors]]
+6. [[#6-abbrev][Abbrev]]
+7. [[#7-wordcount][WordCount]]
 
 
-* D. Features
-
-1. [[#1-auto-completion][Auto-Completion]]
-2. [[#2-desktop][Desktop]]
-3. [[#3-projectile][Projectile]]
-4. [[#4-rainbow][Rainbow]]
-5. [[#5-writeroom][Writeroom]]
-6. [[#6-magit][Magit]]
-7. [[#7-expand][Expand]]
-8. [[#8-mode-line][Mode-Line]]
-9. [[#9-autodim][Autodim]]
-10. [[#10-multiplecursors][MultipleCursors]]
-11. [[#11-helm][Helm]]
-12. [[#12-helm-plugins][Helm Plugins]]
-13. [[#13-linters][Linters]]
-14. [[#14-hydra][Hydra]]
-15. [[#15-restclient][RestClient]]
-16. [[#16-editorconfig][EditorConfig]]
-17. [[#17-abbrev][Abbrev]]
-
-
-** 1. Auto-Completion
-
-Auto-completion at point. Display a small pop-in containing the candidates.
-
-#+BEGIN_QUOTE
-Company is a text completion framework for Emacs. The name stands for "complete
-anything". It uses pluggable back-ends and front-ends to retrieve and display
-completion candidates.
-
-[[http://company-mode.github.io/][Dmitry Gutov]]
-#+END_QUOTE
-
-#+BEGIN_SRC emacs-lisp
-(use-package company
-  :defer 1
-  :config
-  (global-company-mode)
-  (setq-default
-   company-idle-delay .2
-   company-minimum-prefix-length 1
-   company-tooltip-align-annotations t))
-
-(use-package company-dabbrev
-  :ensure nil
-  :after company
-  :config (setq-default company-dabbrev-downcase nil))
-
-;;(use-package company-tern
-;;  :after company
-;;  :config
-;;  (add-to-list 'company-backends 'company-tern)
-;;  (setq-default
-;;   company-tern-meta-as-single-line t
-;;   company-tern-property-marker " *"))
-#+END_SRC
-
-** 2. Desktop
+** 1. Desktop
 
 Save and restore Emacs status, including buffers, modes, point and windows.
 
@@ -490,40 +281,7 @@ Save and restore Emacs status, including buffers, modes, point and windows.
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
 #+END_SRC
 
-** 3. Projectile
-
-Projectile brings project-level facilities to Emacs such as grep, find and replace.
-
-#+BEGIN_QUOTE
-Projectile is a project interaction library for Emacs. Its goal is to provide a nice
-set of features operating on a project level without introducing external
-dependencies (when feasible). For instance - finding project files has a portable
-implementation written in pure Emacs Lisp without the use of GNU find (but for
-performance sake an indexing mechanism backed by external commands exists as well).
-
-[[https://github.com/bbatsov/projectile][Bozhidar Batsov]]
-#+END_QUOTE
-
-#+BEGIN_SRC emacs-lisp
-(use-package projectile
-  :demand t
-  :config
-  (setq projectile-switch-project-action #'projectile-commander)
-  (def-projectile-commander-method ?d "Open project root in dired." (projectile-dired))
-  (projectile-global-mode))
-#+END_SRC
-
-** 4. Rainbow
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-mode
-  :demand t
-  :init
-  (add-hook 'prog-mode-hook 'rainbow-mode)
-  :config
-  (setq-default rainbow-x-colors-major-mode-list '()))
-#+END_SRC
-
-** 5. Writeroom
+** 2. Writeroom
 #+BEGIN_QUOTE
 Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X.
 [[https://github.com/joostkremers/writeroom-mode][https://github.com/joostkremers/writeroom-mode]]
@@ -535,126 +293,7 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
   (setq writeroom-width 120))
 #+END_SRC
 
-** 6. Magit
-
-Magit provide Git facilities directly from within Emacs.
-
-#+BEGIN_QUOTE
-Magit is an interface to the version control system [[https://git-scm.com/][Git]],
-implemented as an [[https://www.gnu.org/software/emacs][Emacs]] package. Magit
-aspires to be a complete Git porcelain. While we cannot (yet) claim that Magit wraps
-and improves upon each and every Git command, it is complete enough to allow even
-experienced Git users to perform almost all of their daily version control tasks
-directly from within Emacs. While many fine Git clients exist, only Magit and Git
-itself deserve to be called porcelains. [[https://magit.vc/about.html][(more)]]
-
-[[https://github.com/magit/magit][Jonas Bernoulli]]
-#+END_QUOTE
-
-- *TODO*: Make a hydra.
-
-#+BEGIN_SRC emacs-lisp
-(use-package magit
-  :bind
-  (("C-x g" . magit-status))
-  :config
-
-  ;; Redefine how Magit display buffers
-  (defun me/magit-display-buffer-function (buffer)
-    "Render some magit modes in the currently selected buffer."
-    (display-buffer
-     buffer
-     (cond ((and (derived-mode-p 'magit-mode)
-                 (eq (with-current-buffer buffer major-mode) 'magit-status-mode))
-            nil)
-           ((memq (with-current-buffer buffer major-mode)
-                  '(magit-process-mode
-                    magit-revision-mode
-                    magit-diff-mode
-                    magit-stash-mode))
-            nil)
-           (t '(display-buffer-same-window)))))
-
-  ;; Use better defaults
-  (setq-default
-   magit-display-buffer-function 'me/magit-display-buffer-function
-   magit-diff-highlight-hunk-body nil
-   magit-popup-display-buffer-action '((display-buffer-same-window))
-   magit-refs-show-commit-count (quote all)
-   magit-section-show-child-count t
-   magit-set-upstream-on-push 'askifnotset)
-
-  ;; Customize lighters
-  (delight
-   '((magit-diff-mode "Magit Diff")
-     (magit-log-mode "Magit Log")
-     (magit-popup-mode "Magit Popup")
-     (magit-status-mode "Magit Status")))
-
-  ;; Customize faces
-  (set-face-attribute 'magit-diff-added nil
-                      :background zenburn/bg+0 :foreground zenburn/green+3)
-  (set-face-attribute 'magit-diff-context nil :background zenburn/bg+0)
-  (set-face-attribute 'magit-diff-file-heading-highlight nil :background 'unspecified)
-  (set-face-attribute 'magit-diff-hunk-heading nil :background zenburn/bg+2)
-  (set-face-attribute 'magit-diff-hunk-heading-highlight nil :background zenburn/bg+2)
-  (set-face-attribute 'magit-diff-removed nil
-                      :background zenburn/bg+0 :foreground zenburn/red)
-  (set-face-attribute 'magit-popup-heading nil :height me/font-size-header)
-  (set-face-attribute 'magit-section-heading nil :height me/font-size-header)
-  (set-face-attribute 'magit-section-highlight nil :background 'unspecified))
-
-(use-package gitattributes-mode :delight gitattributes-mode "Git Attributes")
-(use-package gitconfig-mode :delight gitconfig-mode "Git Config")
-(use-package gitignore-mode :delight gitignore-mode "Git Ignore")
-#+END_SRC
-
-** 7. Expand
-
-HippieExpand manages expansions a la [[http://emmet.io/][Emmet]]. So I've gathered
-all features that look anywhere close to this behavior for it to handle under the
-same bind, that is =<C-return>=. Basically it's an expand DWIM.
-
-#+BEGIN_SRC emacs-lisp
-(use-package emmet-mode
-  :init
-  (add-hook 'css-mode-hook 'emmet-mode)
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  :config
-  (setq-default emmet-move-cursor-between-quote t)
-  (unbind-key "<C-return>" emmet-mode-keymap)
-  (unbind-key "C-M-<left>" emmet-mode-keymap)
-  (unbind-key "C-M-<right>" emmet-mode-keymap))
-
-(use-package hippie-exp
-  :ensure nil
-  :preface
-  (defun me/emmet-try-expand-line (args)
-    "Try `emmet-expand-line' if `emmet-mode' is active. Else, does nothing."
-     (interactive "P")
-     (when emmet-mode (emmet-expand-line args)))
-  :bind ("<C-return>" . hippie-expand)
-  :config
-  (setq-default
-   hippie-expand-try-functions-list '(yas-hippie-try-expand me/emmet-try-expand-line)
-   hippie-expand-verbose nil))
-
-(use-package yasnippet
-  :init
-  (add-hook 'emacs-lisp-mode-hook 'yas-minor-mode)
-  (add-hook 'js-mode-hook 'yas-minor-mode)
-  (add-hook 'org-mode-hook 'yas-minor-mode)
-  (add-hook 'python-mode-hook 'yas-minor-mode)
-  (add-hook 'sgml-mode-hook 'yas-minor-mode)
-  :config
-  (setq-default yas-snippet-dirs '("~/.emacs.d/snippets"))
-  (yas-reload-all)
-  (unbind-key "TAB" yas-minor-mode-map)
-  (unbind-key "<tab>" yas-minor-mode-map))
-#+END_SRC
-
-
-** 8. Mode-Line
+** 3. Mode-Line
 
 - Green means buffer is clean.
 - Red means buffer is modified.
@@ -777,7 +416,7 @@ fun and profit.
 #+END_SRC
 
 
-** 9. Autodim
+** 4. Autodim
 Auto-dim other buffers. Pretty self-explanatory.
 
 #+BEGIN_SRC emacs-lisp
@@ -789,7 +428,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 10. MultipleCursors
+** 5. MultipleCursors
 
 Enable multiple cursors at once. Some witchcraft at work here.
 
@@ -815,322 +454,9 @@ Enable multiple cursors at once. Some witchcraft at work here.
    mc/list-file (expand-file-name ".multiple-cursors.el" user-emacs-directory)))
 #+END_SRC
 
-** 11. Helm
 
-Helm is a beast. Although heavily, it replaces =ido-mode= in many ways.
+** 6. Abbrev
 
-#+BEGIN_QUOTE
-=Helm= is an Emacs framework for incremental completions and narrowing selections. It
-helps to rapidly complete file names, buffer names, or any other Emacs interactions
-requiring selecting an item from a list of possible choices.
-
-Helm is a fork of =anything.el=, which was originally written by Tamas Patrovic and
-can be considered to be its successor. =Helm= cleans the legacy code that is leaner,
-modular, and unchained from constraints of backward compatibility.
-
-[[https://github.com/emacs-helm/helm][Bozhidar Batsov]]
-#+END_QUOTE
-
-
-#+BEGIN_SRC emacs-lisp
-(use-package helm
-  :defer 1
-  :config
-  (helm-mode 1)
-  (setq-default
-   helm-always-two-windows t
-   helm-display-header-line nil
-   helm-split-window-default-side 'left)
-  (set-face-attribute 'helm-match nil :foreground zenburn/green+2 :weight 'normal)
-  (set-face-attribute 'helm-prefarg nil :foreground zenburn/red)
-  (set-face-attribute 'helm-source-header nil
-                      :box nil :background 'unspecified :height me/font-size-header))
-#+END_SRC
-
-Helm sub-modules can be customized separately. Many basic Emacs commands have their
-Helm equivalents.
-
-#+BEGIN_SRC emacs-lisp
-(use-package helm-buffers
-  :ensure nil
-  :after helm
-  :config
-  (setq-default helm-buffers-fuzzy-matching t)
-  (set-face-attribute 'helm-buffer-directory nil
-                      :background 'unspecified :foreground zenburn/blue)
-  (set-face-attribute 'helm-buffer-size nil :foreground zenburn/bg+3))
-
-(use-package helm-color
-  :ensure nil
-  :after helm)
-
-(use-package helm-command
-  :ensure nil
-  :after helm
-  :bind ([remap execute-extended-command] . helm-M-x)
-  :config
-  (setq-default helm-M-x-fuzzy-match t)
-  (set-face-attribute 'helm-M-x-key nil :foreground zenburn/orange :underline nil))
-
-(use-package helm-files
-  :ensure nil
-  :after helm
-  :bind (:map helm-find-files-map ("C-s" . helm-ff-run-grep-ag))
-  :config
-  (set-face-attribute 'helm-ff-dotted-directory nil :background 'unspecified))
-
-(use-package helm-grep
-  :ensure nil
-  :after helm
-  :config (set-face-attribute 'helm-grep-lineno nil :foreground zenburn/yellow-2))
-
-(use-package helm-misc
-  :ensure nil
-  :after helm
-  :bind ([remap switch-to-buffer] . helm-buffers-list))
-
-(use-package helm-mode
-  :ensure nil
-  :after helm
-  :config
-  (setq-default
-   helm-completion-in-region-fuzzy-match t
-   helm-mode-fuzzy-match t))
-
-(use-package helm-net
-  :ensure nil
-  :after helm
-  :config (setq-default helm-net-prefer-curl t))
-
-(use-package helm-regexp
-  :ensure nil
-  :after helm
-  :config (set-face-attribute 'helm-moccur-buffer nil :foreground zenburn/blue))
-#+END_SRC
-
-
-** 12. Helm Plugins
-
-Fourth-party packages for Helm.
-
-- *NOTE*: Does not respect =helm-split-window-default-side=
-          (https://github.com/ShingoFukuyama/helm-css-scss/issues/7).
-
-#+BEGIN_SRC emacs-lisp
-
-(use-package helm-css-scss
-  :after helm
-  :config (setq-default helm-css-scss-split-direction 'split-window-horizontally))
-
-(use-package helm-descbinds
-  :after helm
-  :bind ([remap describe-key] . helm-descbinds)
-  :config (setq-default helm-descbinds-window-style 'split-window))
-
-(use-package helm-describe-modes
-  :after helm
-  :bind ([remap describe-mode] . helm-describe-modes))
-
-(use-package helm-flycheck
-  :after helm)
-
-(use-package helm-projectile
-  :after helm
-  :config (helm-projectile-toggle 1))
-#+END_SRC
-
-
-** 13. Linters
-
-Flycheck lints warnings and errors directly within buffers. It can check a lot of
-different syntaxes, as long as you make sure that Emacs has access to the binaries
-(see [[./README.md][README.md]]).
-
-#+BEGIN_SRC emacs-lisp
-(use-package flycheck
-  :init
-  (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
-  (add-hook 'js-mode-hook 'flycheck-mode)
-  (add-hook 'scss-mode-hook 'flycheck-mode)
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  :config
-  (setq-default
-   flycheck-check-syntax-automatically '(save mode-enabled)
-   flycheck-disabled-checkers '(emacs-lisp-checkdoc)
-   flycheck-display-errors-delay .3)
-  (set-face-attribute 'flycheck-error nil :underline zenburn/red-1)
-  (set-face-attribute 'flycheck-info nil :underline zenburn/blue+1)
-  (set-face-attribute 'flycheck-warning nil :underline zenburn/orange)
-  (set-face-attribute 'flycheck-fringe-error nil :foreground zenburn/red-1)
-  (set-face-attribute 'flycheck-fringe-info nil :foreground zenburn/blue+1)
-  (set-face-attribute 'flycheck-fringe-warning nil :foreground zenburn/orange))
-#+END_SRC
-
-
-** 14. Hydra
-
-Hydra allows me to group binds together. It also shows a list of all implemented
-commands in the eho area.
-
-#+BEGIN_QUOTE
-Once you summon the Hydra through the prefixed binding (the body + any one head), all
-heads can be called in succession with only a short extension.
-
-The Hydra is vanquished once Hercules, any binding that isn't the Hydra's head,
-arrives. Note that Hercules, besides vanquishing the Hydra, will still serve his
-original purpose, calling his proper command. This makes the Hydra very seamless,
-it's like a minor mode that disables itself auto-magically.
-
-[[https://github.com/abo-abo/hydra][Oleh Krehel]]
-#+END_QUOTE
-
-- *FIXME*: Allow =TAB= for console users.
-
-#+BEGIN_SRC emacs-lisp
-(use-package hydra
-  :bind
-  ("C-c f" . hydra-flycheck/body)
-  ("C-c g" . hydra-magit/body)
-  ("C-c h" . hydra-helm/body)
-  ("C-c o" . hydra-org/body)
-  ("C-c p" . hydra-projectile/body)
-  :config (setq-default hydra-default-hint nil))
-#+END_SRC
-
-Group Flycheck commands.
-
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-flycheck (:color blue)
-  "
-^
-^Flycheck^          ^Errors^            ^Checker^
-^────────^──────────^──────^────────────^───────^───────────
-[_q_] quit          [_c_] check         [_s_] select
-[_v_] verify setup  [_n_] next          [_d_] disable
-[_m_] manual        [_p_] previous      [_?_] describe
-^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("c" flycheck-buffer)
-  ("d" flycheck-disable-checker)
-  ("m" flycheck-manual)
-  ("n" flycheck-next-error :color red)
-  ("p" flycheck-previous-error :color red)
-  ("s" flycheck-select-checker)
-  ("v" flycheck-verify-setup)
-  ("?" flycheck-describe-checker))
-#+END_SRC
-
-Group Helm commands.
-
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-helm (:color blue)
-  "
-^
-^Helm^              ^Browse^            ^Do^
-^────^──────────────^──────^────────────^──^────────────────
-[_q_] quit          [_c_] colors        [_f_] flycheck
-[_r_] resume helm   [_g_] google        [_s_] css-scss
-^^                  [_h_] headings      ^^
-^^                  [_i_] imenu         ^^
-^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("c" helm-colors)
-  ("f" helm-flycheck)
-  ("g" helm-google-suggest)
-  ("h" helm-org-in-buffer-headings)
-  ("i" helm-imenu)
-  ("r" helm-resume)
-  ("s" helm-css-scss))
-#+END_SRC
-
-Group Magit commands.
-
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-magit (:color blue)
-  "
-^
-^Magit^             ^Do^
-^─────^─────────────^──^────────────────
-[_q_] quit          [_b_] blame
-^^                  [_s_] status
-^^                  ^^
-"
-  ("q" nil)
-  ("b" magit-blame)
-  ("s" magit-status))
-#+END_SRC
-
-Group Org commands.
-
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-org (:color pink)
-  "
-^
-^Org^               ^Links^             ^Outline^
-^───^───────────────^─────^─────────────^───────^───────────
-[_q_] quit          [_i_] insert        [_a_] show all
-^^                  [_n_] next          [_b_] backward
-^^                  [_o_] open          [_f_] forward
-^^                  [_p_] previous      [_v_] overview
-^^                  [_s_] store         ^^
-^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("a" show-all)
-  ("b" org-backward-element)
-  ("f" org-forward-element)
-  ("i" org-insert-link)
-  ("n" org-next-link)
-  ("o" org-open-at-point)
-  ("p" org-previous-link)
-  ("s" org-store-link)
-  ("v" org-overview))
-#+END_SRC
-
-Group Projectile commands.
-
-#+BEGIN_SRC emacs-lisp
-(defhydra hydra-projectile (:color blue)
-  "
-^
-^Projectile^        ^Buffers^           ^Find^              ^Search^
-^──────────^────────^───────^───────────^────^──────────────^──────^────────────
-[_q_] quit          [_b_] list all      [_d_] directory     [_r_] replace
-[_i_] reset cache   [_k_] kill all      [_D_] root          [_s_] ag
-^^                  [_S_] save all      [_f_] file          ^^
-^^                  ^^                  [_p_] project       ^^
-^^                  ^^                  ^^                  ^^
-"
-  ("q" nil)
-  ("b" helm-projectile-switch-to-buffer)
-  ("d" helm-projectile-find-dir)
-  ("D" projectile-dired)
-  ("f" helm-projectile-find-file)
-  ("i" projectile-invalidate-cache :color red)
-  ("k" projectile-kill-buffers)
-  ("p" helm-projectile-switch-project)
-  ("r" projectile-replace)
-  ("s" helm-projectile-ag)
-  ("S" projectile-save-project-buffers :color red))
-#+END_SRC
-
-
-** 15. RestClient
-
-#+BEGIN_SRC emacs-lisp
-(use-package restclient)
-#+END_SRC
-
-** 16. EditorConfig
-#+BEGIN_SRC emacs-lisp
-(use-package editorconfig
-  :config
-  (editorconfig-mode 1))
-#+END_SRC
-
-** 17. Abbrev
 #+BEGIN_SRC emacs-lisp
 (define-abbrev-table 'global-abbrev-table '(
 
@@ -1176,6 +502,18 @@ Group Projectile commands.
 (setq-default abbrev-mode t)
 #+END_SRC
 
------
+
+** 7. WordCount
+
+#+BEGIN_SRC emacs-lisp
+(defun djcb-count-words (&optional begin end)
+  "count words between BEGIN and END (region); if no region defined, count words in buffer"
+  (interactive "r")
+  (let ((b (if mark-active begin (point-min)))
+      (e (if mark-active end (point-max))))
+    (message "Word count: %s" (how-many "\\w+" b e))))
+#+END_SRC
+
+
 
 [[#dotemacs][Back to top]]
