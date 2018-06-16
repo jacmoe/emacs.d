@@ -19,3 +19,4 @@ attic/
 .projectile.cache
 .projectile-bookmarks.eld
 /projectile-bookmarks.eld
+.directory

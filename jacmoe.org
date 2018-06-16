@@ -268,6 +268,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 6. [[#6-abbrev][Abbrev]]
 7. [[#7-wordcount][WordCount]
 8. [[#8-orgmode][OrgMode]
+9. [[#8-spelling][Spelling]
 
 
 ** 1. Desktop
@@ -3559,8 +3560,6 @@ Enable multiple cursors at once. Some witchcraft at work here.
 
 
 
-[[#dotemacs][Back to top]]
-
 ** 8. OrgMode
 
 #+BEGIN_SRC emacs-lisp
@@ -3572,3 +3571,24 @@ Enable multiple cursors at once. Some witchcraft at work here.
 
 (setq org-hide-leading-stars t)
 #+END_SRC
+
+
+
+** 9. Spelling
+
+#+BEGIN_SRC emacs-lisp
+(defun ispell-extra-args-around (orig-fun &rest args)
+(let ((old-ispell-extra-args ispell-extra-args))
+(ispell-kill-ispell t)
+;; use emacs original arguments
+(setq ispell-extra-args (flyspell-detect-ispell-args))
+(apply orig-fun args)
+;; restore our own ispell arguments
+(setq ispell-extra-args old-ispell-extra-args)
+(ispell-kill-ispell t)))
+(advice-add 'ispell-word :around #'ispell-extra-args-around)
+(advice-add 'flyspell-auto-correct-word :around #'ispell-extra-args-around)
+(setq ispell-program-name "hunspell")
+#+END_SRC
+
+[[#dotemacs][Back to top]]
