@@ -74,6 +74,7 @@ Enable some more goodies.
 (global-set-key (kbd "M-4") 'split-window-below) ; split pane top/bottom
 (global-set-key (kbd "M-2") 'delete-window)      ; close current pane
 (global-set-key (kbd "M-s") 'other-window)       ; cursor to other pane
+(global-set-key (kbd "<f12>") 'ispell)             ; spell check
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 #+END_SRC
@@ -250,8 +251,6 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
   (set-face-attribute 'help-argument-name nil :foreground zenburn/orange)
   (set-face-attribute 'hl-line nil :background zenburn/bg+1)
   (set-face-attribute 'isearch nil :background zenburn/blue :foreground zenburn/bg)
-  (set-face-attribute 'isearch-lazy-highlight-face nil
-                      :background zenburn/blue-2 :foreground zenburn/bg)
   (set-face-attribute 'region nil :foreground zenburn/green)
   (set-face-attribute 'vertical-border nil :foreground zenburn/bg-1)
   (when (member me/font-family (font-family-list))
