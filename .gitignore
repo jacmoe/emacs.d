@@ -20,3 +20,4 @@ attic/
 .projectile-bookmarks.eld
 /projectile-bookmarks.eld
 .directory
+*.org#
