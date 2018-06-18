@@ -507,7 +507,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 ** 7. WordCount
 
 #+BEGIN_SRC emacs-lisp
-(defun djcb-count-words (&optional begin end)
+(defun novel-count-words (&optional begin end)
   "count words between BEGIN and END (region); if no region defined, count words in buffer"
   (interactive "r")
   (let ((b (if mark-active begin (point-min)))
@@ -527,6 +527,10 @@ Enable multiple cursors at once. Some witchcraft at work here.
 (lambda () (org-bullets-mode t)))
 
 (setq org-hide-leading-stars t)
+
+(setq org-display-inline-images t)
+(setq org-redisplay-inline-images t)
+(setq org-startup-with-inline-images "inlineimages")
 
 #+END_SRC
 
@@ -549,3 +553,4 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+END_SRC
 
 [[#dotemacs][Back to top]]
+
