@@ -75,6 +75,7 @@ Enable some more goodies.
 (global-set-key (kbd "M-2") 'delete-window)      ; close current pane
 (global-set-key (kbd "M-s") 'other-window)       ; cursor to other pane
 (global-set-key (kbd "<f12>") 'ispell)           ; spell check
+(global-set-key (kbd "<f6>") 'writeroom-mode)    ; writeroom mode key
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
@@ -618,7 +619,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 
 
          :bind (("<f5>" . bm-next)
-                ("S-<f5>" . bm-previous)
+                ("M-<f5>" . bm-previous)
                 ("C-<f5>" . bm-toggle))
          )
 #+END_SRC
