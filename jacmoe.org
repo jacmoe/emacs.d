@@ -507,12 +507,15 @@ Enable multiple cursors at once. Some witchcraft at work here.
 ** 7. WordCount
 
 #+BEGIN_SRC emacs-lisp
+(use-package wc-mode)
+
 (defun novel-count-words (&optional begin end)
   "count words between BEGIN and END (region); if no region defined, count words in buffer"
   (interactive "r")
   (let ((b (if mark-active begin (point-min)))
       (e (if mark-active end (point-max))))
     (message "Word count: %s" (how-many "\\w+" b e))))
+
 #+END_SRC
 
 
@@ -531,6 +534,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 (setq org-display-inline-images t)
 (setq org-redisplay-inline-images t)
 (setq org-startup-with-inline-images "inlineimages")
+
 
 #+END_SRC
 
