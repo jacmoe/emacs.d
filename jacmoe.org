@@ -68,6 +68,8 @@ Enable some more goodies.
 (fset 'yes-or-no-p 'y-or-n-p)                    ; Replace yes/no prompts with y/n
 (put 'downcase-region 'disabled nil)             ; Enable downcase-region
 (put 'upcase-region 'disabled nil)               ; Enable upcase-region
+(put 'narrow-to-region 'disabled nil)            ; Enable narrow to region
+(put 'narrow-to-page 'disabled nil)              ; Enable narrow to page
 (setq create-lockfiles nil)                      ; No need for ~ files when editing
 (setq make-backup-files nil)                     ; Don't want any backup files
 (global-set-key (kbd "M-3") 'delete-other-windows) ; expand current pane
@@ -538,6 +540,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 (setq org-redisplay-inline-images t)
 (setq org-startup-with-inline-images "inlineimages")
 
+(define-key global-map "\C-cc" 'org-capture)
 
 #+END_SRC
 
