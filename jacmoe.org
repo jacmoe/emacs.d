@@ -60,6 +60,7 @@ Some sane defaults
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
 ;(set-default-font "Anonymous Pro")
+;(set-face-attribute 'default nil :font "CMU Typewriter Text-16")
 #+END_SRC
 
 Enable some more goodies.
@@ -99,6 +100,12 @@ Those variables are used throughout the whole configuration.
 (defvar me/font-size-header       140       "The font size to use for headers.")
 (defvar me/font-size-mode-line    120       "The font size to use for the mode line.")
 #+END_SRC
+
+Add 'lisp' to the load path
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+#+END_SRC
+
 
 ** 2. Validate Emacs' version
 
@@ -273,6 +280,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 8. [[#8-orgmode][OrgMode]]
 9. [[#9-spelling][Spelling]]
 10. [[#10-bookmarks][Bookmarks]]
+11. [[#11-writeordie][WriteOrDie]]
 
 
 ** 1. Desktop
@@ -529,18 +537,21 @@ Enable multiple cursors at once. Some witchcraft at work here.
 
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets)
-
+;(use-package ox-gfm)
 
 (add-hook 'org-mode-hook
 (lambda () (org-bullets-mode t)))
 
 (setq org-hide-leading-stars t)
 
-(setq org-display-inline-images t)
-(setq org-redisplay-inline-images t)
-(setq org-startup-with-inline-images "inlineimages")
+;(setq org-display-inline-images t)
+;(setq org-redisplay-inline-images t)
+;(setq org-startup-with-inline-images "inlineimages")
 
 (define-key global-map "\C-cc" 'org-capture)
+
+(global-set-key (kbd "<f7>") 'org-mark-ring-push)
+(global-set-key (kbd "M-<f7>") 'org-mark-ring-goto)
 
 #+END_SRC
 
@@ -625,6 +636,14 @@ Enable multiple cursors at once. Some witchcraft at work here.
                 ("M-<f5>" . bm-previous)
                 ("C-<f5>" . bm-toggle))
          )
+#+END_SRC
+
+
+** 11. WriteOrDie
+
+#+BEGIN_SRC emacs-lisp
+(if (not (require 'write-or-die nil t))
+        (message "`write-or-die' not found"))
 #+END_SRC
 
 
