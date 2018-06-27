@@ -571,6 +571,9 @@ Enable multiple cursors at once. Some witchcraft at work here.
 (advice-add 'ispell-word :around #'ispell-extra-args-around)
 (advice-add 'flyspell-auto-correct-word :around #'ispell-extra-args-around)
 (setq ispell-program-name "hunspell")
+
+(add-to-list 'ispell-skip-region-alist
+             '("^ # {{{" . "^ # }}}"))
 #+END_SRC
 
 
