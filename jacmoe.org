@@ -110,7 +110,7 @@ Add 'lisp' to the load path
 ** 2. Validate Emacs' version
 
 #+BEGIN_SRC emacs-lisp
-(when (version<= emacs-version "24")
+(when (version<= emacs-version "25")
   (unless (yes-or-no-p "Your Emacs is getting old. Kitten may be killed, continue? ")
     (kill-emacs)))
 #+END_SRC
@@ -662,6 +662,11 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+BEGIN_SRC emacs-lisp
 (if (not (require 'write-or-die nil t))
         (message "`write-or-die' not found"))
+
+(global-set-key (kbd "<f8>") 'write-or-die-mode)
+(global-set-key (kbd "<f9>") 'write-or-die-go)
+(global-set-key (kbd "M-<f9>") 'write-or-die-stop)
+
 #+END_SRC
 
 
