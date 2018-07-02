@@ -82,6 +82,7 @@ Enable some more goodies.
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
+(winner-mode 1)                                  ; turn on winner-mode
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
