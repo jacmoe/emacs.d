@@ -282,6 +282,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 9. [[#9-spelling][Spelling]]
 10. [[#10-bookmarks][Bookmarks]]
 11. [[#11-writeordie][WriteOrDie]]
+12. [[#12-transparency][Transparency]]
 
 
 ** 1. Desktop
@@ -668,6 +669,24 @@ Enable multiple cursors at once. Some witchcraft at work here.
 (global-set-key (kbd "<f9>") 'write-or-die-go)
 (global-set-key (kbd "M-<f9>") 'write-or-die-stop)
 
+#+END_SRC
+
+
+** 12. Transparency
+
+#+BEGIN_SRC emacs-lisp
+ (defun toggle-transparency ()
+   (interactive)
+   (let ((alpha (frame-parameter nil 'alpha)))
+     (set-frame-parameter
+      nil 'alpha
+      (if (eql (cond ((numberp alpha) alpha)
+                     ((numberp (cdr alpha)) (cdr alpha))
+                     ;; Also handle undocumented (<active> <inactive>) form.
+                     ((numberp (cadr alpha)) (cadr alpha)))
+               100)
+          '(85 . 50) '(100 . 100)))))
+ (global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
 
 
