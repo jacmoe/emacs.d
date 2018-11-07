@@ -96,7 +96,7 @@ Reset garbage collector treshold after initialization is finished and
 Those variables are used throughout the whole configuration.
 
 #+BEGIN_SRC emacs-lisp
-(defvar me/font-family            "Anonymous Pro"  "The font to use.")
+(defvar me/font-family            "Source Sans Pro"  "The font to use.")
 (defvar me/font-size-default      130       "The font size to use for default text.")
 (defvar me/font-size-header       140       "The font size to use for headers.")
 (defvar me/font-size-mode-line    130       "The font size to use for the mode line.")
@@ -275,14 +275,15 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 2. [[#2-writeroom][Writeroom]]
 3. [[#3-mode-line][Mode-Line]]
 4. [[#4-autodim][Autodim]]
-5. [[#6-abbrev][Abbrev]]
-6. [[#7-wordcount][WordCount]]
-7. [[#8-orgmode][OrgMode]]
-8. [[#9-spelling][Spelling]]
-9. [[#10-bookmarks][Bookmarks]]
-10. [[#11-writeordie][WriteOrDie]]
-11. [[#12-transparency][Transparency]]
+5. [[#5-abbrev][Abbrev]]
+6. [[#6-wordcount][WordCount]]
+7. [[#7-orgmode][OrgMode]]
+8. [[#8-spelling][Spelling]]
+9. [[#9-bookmarks][Bookmarks]]
+10. [[#10-writeordie][WriteOrDie]]
+11. [[#11-transparency][Transparency]]
 12. [[#12-draftmode][Draftmode]]
+13. [[#13-chronos][Chronos]]
 
 
 ** 1. Desktop
@@ -534,6 +535,15 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 #+BEGIN_SRC emacs-lisp
 (use-package draft-mode)
+#+END_SRC
+
+
+** 13. Chronos
+
+#+BEGIN_SRC emacs-lisp
+(use-package chronos :ensure t :demand t
+  :config
+   (setq chronos-expiry-functions '(chronos-message-notify)))
 #+END_SRC
 
 
