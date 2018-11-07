@@ -357,7 +357,7 @@ fun and profit.
   ;; Configure the mode-line
   (setq-default
    mode-line-format '("%e" (:eval (spaceline-ml-main)))
-   powerline-default-separator 'wave
+   powerline-default-separator 'arrow
    spaceline-display-default-perspective t
    powerline-height 20
    spaceline-highlight-face-func 'spaceline-highlight-face-modified
