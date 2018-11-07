@@ -80,6 +80,7 @@ Enable some more goodies.
 (global-set-key (kbd "<f12>") 'ispell)           ; spell check
 (global-set-key (kbd "<f6>") 'writeroom-mode)    ; writeroom mode key
 (global-set-key (kbd "M-<f6>") 'writeroom-toggle-mode-line)    ; writeroom mode key
+(global-set-key (kbd "C-<f6>") 'darkroom-tentative-mode)    ; toggle darkroom mode
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
@@ -546,6 +547,12 @@ Auto-dim other buffers. Pretty self-explanatory.
 (use-package chronos :ensure t :demand t
   :config
    (setq chronos-expiry-functions '(chronos-message-notify)))
+#+END_SRC
+
+** 14. Darkroom
+#+BEGIN_SRC emacs-lisp
+(use-package darkroom  :ensure t :demand t)
+
 #+END_SRC
 
 
