@@ -84,6 +84,7 @@ Enable some more goodies.
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
 (winner-mode 1)                                  ; turn on winner-mode
+(setq sentence-end-double-space nil)                                       ; a sentence does not only end with a period and two spaces
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
