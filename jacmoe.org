@@ -275,14 +275,14 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 2. [[#2-writeroom][Writeroom]]
 3. [[#3-mode-line][Mode-Line]]
 4. [[#4-autodim][Autodim]]
-5. [[#5-multiplecursors][MultipleCursors]]
-6. [[#6-abbrev][Abbrev]]
-7. [[#7-wordcount][WordCount]]
-8. [[#8-orgmode][OrgMode]]
-9. [[#9-spelling][Spelling]]
-10. [[#10-bookmarks][Bookmarks]]
-11. [[#11-writeordie][WriteOrDie]]
-12. [[#12-transparency][Transparency]]
+5. [[#6-abbrev][Abbrev]]
+6. [[#7-wordcount][WordCount]]
+7. [[#8-orgmode][OrgMode]]
+8. [[#9-spelling][Spelling]]
+9. [[#10-bookmarks][Bookmarks]]
+10. [[#11-writeordie][WriteOrDie]]
+11. [[#12-transparency][Transparency]]
+12. [[#12-draftmode][Draftmode]]
 
 
 ** 1. Desktop
@@ -345,7 +345,9 @@ fun and profit.
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(use-package spaceline :demand t)
+(use-package spaceline :demand t
+  :config
+    (spaceline-emacs-theme))
 (use-package spaceline-config
   :ensure nil
   :after spaceline
@@ -443,74 +445,9 @@ Auto-dim other buffers. Pretty self-explanatory.
   (set-face-attribute 'auto-dim-other-buffers-face nil :background zenburn/bg-0))
 #+END_SRC
 
-
-** 5. MultipleCursors
-
-Enable multiple cursors at once. Some witchcraft at work here.
+** 5. Abbrev
 
 #+BEGIN_SRC emacs-lisp
-(use-package multiple-cursors
-  :defer 1
-  :bind
-  (("C-S-<mouse-1>" . mc/add-cursor-on-click)
-   ("C-S-c C-S-a" . mc/vertical-align-with-space)
-   ("C-S-c C-S-c" . mc/edit-lines)
-   ("C-S-c C-S-l" . mc/insert-letters)
-   ("C-S-c C-S-n" . mc/insert-numbers)
-   ("C-'" . mc-hide-unmatched-lines-mode)
-   ("C->" . mc/mark-next-like-this)
-   ("C-<" . mc/mark-previous-like-this)
-   ("C-c C-<" . mc/mark-all-like-this)
-   ("C-," . mc/unmark-next-like-this)
-   ("C-." . mc/skip-to-next-like-this))
-  :config
-  (setq-default
-   mc/edit-lines-empty-lines 'ignore
-   mc/insert-numbers-default 1
-   mc/list-file (expand-file-name ".multiple-cursors.el" user-emacs-directory)))
-#+END_SRC
-
-
-** 6. Abbrev
-
-#+BEGIN_SRC emacs-lisp
-(define-abbrev-table 'global-abbrev-table '(
-
-    ;; math/unicode symbols
-    ("8in" "∈")
-    ("8nin" "∉")
-    ("8inf" "∞")
-    ("8luv" "♥")
-    ("8smly" "☺")
-
-    ;; normal english words
-    ("8alt" "alternative")
-    ("8char" "character")
-    ("8def" "definition")
-    ("8bg" "background")
-    ("8kb" "keyboard")
-    ("8ex" "example")
-    ("8kbd" "keybinding")
-    ("8env" "environment")
-    ("8var" "variable")
-    ("8ev" "environment variable")
-    ("8cp" "computer")
-
-    ;; signature
-    ("8jm" "Jacob Moen")
-
-    ;; url
-    ("8jms" "https://jacmoe.dk/")
-
-    ;; shell commands
-    ("8cr" "cargo run")
-    ("8cb" "cargo build")
-    ("8dp" "deployer deploy")
-
-    ;; Danish words
-    ("8mvh" "Med venlig hilsen")
-
-))
 ;; stop asking whether to save newly added abbrev when quitting emacs
 (setq save-abbrevs nil)
 
@@ -519,7 +456,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+END_SRC
 
 
-** 7. WordCount
+** 6. WordCount
 
 #+BEGIN_SRC emacs-lisp
 (use-package wc-mode)
@@ -535,7 +472,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 
 
 
-** 8. OrgMode
+** 7. OrgMode
 
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets)
@@ -573,7 +510,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+END_SRC
 
 
-** 9. Spelling
+** 8. Spelling
 
 #+BEGIN_SRC emacs-lisp
 (defun ispell-extra-args-around (orig-fun &rest args)
@@ -594,7 +531,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+END_SRC
 
 
-** 10. Bookmarks
+** 9. Bookmarks
 
 #+BEGIN_SRC emacs-lisp
 (use-package bm
@@ -659,7 +596,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+END_SRC
 
 
-** 11. WriteOrDie
+** 10. WriteOrDie
 
 #+BEGIN_SRC emacs-lisp
 (if (not (require 'write-or-die nil t))
@@ -672,7 +609,7 @@ Enable multiple cursors at once. Some witchcraft at work here.
 #+END_SRC
 
 
-** 12. Transparency
+** 11. Transparency
 
 #+BEGIN_SRC emacs-lisp
  (defun toggle-transparency ()
@@ -687,6 +624,13 @@ Enable multiple cursors at once. Some witchcraft at work here.
                100)
           '(85 . 50) '(100 . 100)))))
  (global-set-key (kbd "C-c t") 'toggle-transparency)
+#+END_SRC
+
+
+** 12. Draftmode
+
+#+BEGIN_SRC emacs-lisp
+(use-package draft-mode)
 #+END_SRC
 
 
