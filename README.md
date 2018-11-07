@@ -4,9 +4,7 @@ My emacs configuration
 Highly *"inspired"* by Angrybacon's [dotemacs](https://github.com/angrybacon/dotemacs)
 
 
-Font Awesome
+Source Sans Pro
 ------------
 
-There are special characters in the mode-line. Install [Font Awesome][font-awesome].
-
-[font-awesome]: http://fontawesome.io/
+Before using this configuration, you need to install Adobe's [Source Sans Pro](https://github.com/adobe-fonts/source-sans-pro) font.
