@@ -160,6 +160,7 @@ Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped
    package-enable-at-startup nil)
   (package-initialize)
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+  (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
   (unless (package-installed-p 'delight)
     (package-refresh-contents)
     (package-install 'delight))
@@ -383,8 +384,9 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets)
-;(use-package ox-gfm)
-
+(use-package org-plus-contrib)
+(require  'ox-extra)
+(ox-extras-activate '(ignore-headlines))
 (add-hook 'org-mode-hook
 (lambda () (org-bullets-mode t)))
 
