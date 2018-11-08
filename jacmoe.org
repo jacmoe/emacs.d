@@ -395,6 +395,9 @@ Auto-dim other buffers. Pretty self-explanatory.
 (if (not (eq system-type 'windows-nt))
   (use-package org-bullets)
 )
+(if (not (eq system-type 'windows-nt))
+   (setq org-bullets-bullet-list (quote ("◉" "◉" "◉" "◉")))
+)
 
 (require  'ox-extra)
 (ox-extras-activate '(ignore-headlines))
