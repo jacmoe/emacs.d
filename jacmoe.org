@@ -158,9 +158,12 @@ Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped
   (setq-default
    load-prefer-newer t
    package-enable-at-startup nil)
+
   (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
   (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
   (unless (package-installed-p 'delight)
     (package-refresh-contents)
     (package-install 'delight))
@@ -383,8 +386,13 @@ Auto-dim other buffers. Pretty self-explanatory.
 ** 7. OrgMode
 
 #+BEGIN_SRC emacs-lisp
-(use-package org-bullets)
-(use-package org-plus-contrib)
+(use-package org-plus-contrib :ensure t)
+
+;; org-bullets does not like it when on Windows ...
+(if (not (eq system-type 'windows-nt))
+  (use-package org-bullets)
+)
+
 (require  'ox-extra)
 (ox-extras-activate '(ignore-headlines))
 
@@ -397,7 +405,9 @@ Auto-dim other buffers. Pretty self-explanatory.
 (add-hook 'org-mode-hook
 (lambda () (org-bullets-mode t)))
 
-(setq org-hide-leading-stars t)
+(if (not (eq system-type 'windows-nt))
+  (setq org-hide-leading-stars t)
+)
 
 (let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
                              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
