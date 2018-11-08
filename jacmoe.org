@@ -114,7 +114,7 @@ Add 'lisp' to the load path
 ** 2. Validate Emacs' version
 
 #+BEGIN_SRC emacs-lisp
-(when (version<= emacs-version "25")
+(when (version<= emacs-version "26")
   (unless (yes-or-no-p "Your Emacs is getting old. Kitten may be killed, continue? ")
     (kill-emacs)))
 #+END_SRC
@@ -154,7 +154,7 @@ instance, you could set your identity by customizing both =user-full-name= and
 Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped.
 
 #+BEGIN_SRC emacs-lisp
-(when (>= emacs-major-version 24)
+(when (>= emacs-major-version 26)
   (setq-default
    load-prefer-newer t
    package-enable-at-startup nil)
