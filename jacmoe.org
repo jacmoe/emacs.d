@@ -387,6 +387,13 @@ Auto-dim other buffers. Pretty self-explanatory.
 (use-package org-plus-contrib)
 (require  'ox-extra)
 (ox-extras-activate '(ignore-headlines))
+
+(setq org-todo-keywords
+      '((sequence "TODO" "IDEA" "DRAFT" "REVISED" "|" "DONE")))
+
+(setq org-tag-faces
+      '(("ignore" . (:foreground "grey"))))
+
 (add-hook 'org-mode-hook
 (lambda () (org-bullets-mode t)))
 
