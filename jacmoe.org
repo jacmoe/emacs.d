@@ -87,8 +87,15 @@ Enable some more goodies.
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
-(winner-mode 1)                                  ; turn on winner-mode
 (setq sentence-end-double-space nil)                                       ; a sentence does not only end with a period and two spaces
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(winner-mode 1)
+(global-set-key (kbd "C-<down>") 'enlarge-window)
+(global-set-key (kbd "C-<up>") 'shrink-window)
+(global-set-key (kbd "C-<left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-<right>") 'shrink-window-horizontally)
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
@@ -296,6 +303,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 13. [[#13-draftmode][Draftmode]]
 14. [[#14-chronos][Chronos]]
 15. [[#15-gurumode][Gurumode]]
+16. [[#16-acewindow][Acewindow]]
 
 
 ** 1. Desktop
@@ -582,6 +590,7 @@ Auto-dim other buffers. Pretty self-explanatory.
    (setq chronos-expiry-functions '(chronos-message-notify)))
 #+END_SRC
 
+
 ** 15. Gurumode
 
 #+BEGIN_QUOTE
@@ -589,8 +598,26 @@ Guru mode disables some common keybindings and suggests the use of the establish
 #+END_QUOTE
 
 #+BEGIN_SRC emacs-lisp
-(use-package guru-mode)
+(use-package guru-mode
+  :config
+    (guru-global-mode +1)
+)
+#+END_SRC
 
+
+** 16. Acewindow
+
+#+BEGIN_SRC emacs-lisp
+(use-package ace-window
+  :ensure t
+  :init
+    (progn
+      (global-set-key [remap other-window] 'ace-window)
+      (custom-set-faces
+        '(aw-leading-char-face
+          ((t (:inherit ace-jump-face-foreground :height 3.0 :foreground "#DCDCCC")))))
+    )
+)
 #+END_SRC
 
 
