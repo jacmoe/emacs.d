@@ -391,13 +391,10 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+BEGIN_SRC emacs-lisp
 (use-package org-plus-contrib :ensure t)
 
-;; org-bullets does not like it when on Windows ...
-(if (not (eq system-type 'windows-nt))
-  (use-package org-bullets)
-)
-(if (not (eq system-type 'windows-nt))
-   (setq org-bullets-bullet-list (quote ("◉" "◉" "◉" "◉")))
-)
+
+(use-package org-bullets)
+
+(setq org-bullets-bullet-list (quote ("◉" "◉" "◉" "◉")))
 
 (require  'ox-extra)
 (ox-extras-activate '(ignore-headlines))
@@ -411,9 +408,8 @@ Auto-dim other buffers. Pretty self-explanatory.
 (add-hook 'org-mode-hook
 (lambda () (org-bullets-mode t)))
 
-(if (not (eq system-type 'windows-nt))
-  (setq org-hide-leading-stars t)
-)
+(setq org-hide-leading-stars t)
+
 
 (let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
                              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
