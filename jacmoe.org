@@ -283,17 +283,19 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 
 1. [[#1-desktop][Desktop]]
 2. [[#2-writeroom][Writeroom]]
-3. [[#3-mode-line][Mode-Line]]
-4. [[#4-autodim][Autodim]]
-5. [[#5-abbrev][Abbrev]]
-6. [[#6-wordcount][WordCount]]
-7. [[#7-orgmode][OrgMode]]
-8. [[#8-spelling][Spelling]]
-9. [[#9-bookmarks][Bookmarks]]
-10. [[#10-writeordie][WriteOrDie]]
-11. [[#11-transparency][Transparency]]
-12. [[#12-draftmode][Draftmode]]
-13. [[#13-chronos][Chronos]]
+3. [[#3-darkroom][Darkroom]]
+4. [[#4-mode-line][Mode-Line]]
+5. [[#5-autodim][Autodim]]
+6. [[#6-abbrev][Abbrev]]
+7. [[#7-wordcount][WordCount]]
+8. [[#8-orgmode][OrgMode]]
+9. [[#9-spelling][Spelling]]
+10. [[#10-bookmarks][Bookmarks]]
+11. [[#11-writeordie][WriteOrDie]]
+12. [[#12-transparency][Transparency]]
+13. [[#13-draftmode][Draftmode]]
+14. [[#14-chronos][Chronos]]
+15. [[#15-gurumode][Gurumode]]
 
 
 ** 1. Desktop
@@ -308,7 +310,9 @@ Save and restore Emacs status, including buffers, modes, point and windows.
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
 #+END_SRC
 
+
 ** 2. Writeroom
+
 #+BEGIN_QUOTE
 Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X.
 [[https://github.com/joostkremers/writeroom-mode][https://github.com/joostkremers/writeroom-mode]]
@@ -320,7 +324,16 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
   (setq writeroom-width 120))
 #+END_SRC
 
-** 3. Mode-Line
+
+** 3. Darkroom
+
+#+BEGIN_SRC emacs-lisp
+(use-package darkroom  :ensure t :demand t)
+
+#+END_SRC
+
+
+** 4. Mode-Line
 
 - Green means buffer is clean.
 - Red means buffer is modified.
@@ -348,7 +361,8 @@ fun and profit.
 #+END_SRC
 
 
-** 4. Autodim
+** 5. Autodim
+
 Auto-dim other buffers. Pretty self-explanatory.
 
 #+BEGIN_SRC emacs-lisp
@@ -359,7 +373,8 @@ Auto-dim other buffers. Pretty self-explanatory.
   (set-face-attribute 'auto-dim-other-buffers-face nil :background zenburn/bg-0))
 #+END_SRC
 
-** 5. Abbrev
+
+** 6. Abbrev
 
 #+BEGIN_SRC emacs-lisp
 ;; stop asking whether to save newly added abbrev when quitting emacs
@@ -370,7 +385,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 6. WordCount
+** 7. WordCount
 
 #+BEGIN_SRC emacs-lisp
 (use-package wc-mode)
@@ -381,16 +396,13 @@ Auto-dim other buffers. Pretty self-explanatory.
   (let ((b (if mark-active begin (point-min)))
       (e (if mark-active end (point-max))))
     (message "Word count: %s" (how-many "\\w+" b e))))
-
 #+END_SRC
 
 
-
-** 7. OrgMode
+** 8. OrgMode
 
 #+BEGIN_SRC emacs-lisp
 (use-package org-plus-contrib :ensure t)
-
 
 (use-package org-bullets)
 
@@ -438,7 +450,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 8. Spelling
+** 9. Spelling
 
 #+BEGIN_SRC emacs-lisp
 (defun ispell-extra-args-around (orig-fun &rest args)
@@ -459,7 +471,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 9. Bookmarks
+** 10. Bookmarks
 
 #+BEGIN_SRC emacs-lisp
 (use-package bm
@@ -524,7 +536,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 10. WriteOrDie
+** 11. WriteOrDie
 
 #+BEGIN_SRC emacs-lisp
 (if (not (require 'write-or-die nil t))
@@ -537,7 +549,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 11. Transparency
+** 12. Transparency
 
 #+BEGIN_SRC emacs-lisp
  (defun toggle-transparency ()
@@ -555,14 +567,14 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+END_SRC
 
 
-** 12. Draftmode
+** 13. Draftmode
 
 #+BEGIN_SRC emacs-lisp
 (use-package draft-mode)
 #+END_SRC
 
 
-** 13. Chronos
+** 14. Chronos
 
 #+BEGIN_SRC emacs-lisp
 (use-package chronos :ensure t :demand t
@@ -570,12 +582,16 @@ Auto-dim other buffers. Pretty self-explanatory.
    (setq chronos-expiry-functions '(chronos-message-notify)))
 #+END_SRC
 
-** 14. Darkroom
+** 15. Gurumode
+
+#+BEGIN_QUOTE
+Guru mode disables some common keybindings and suggests the use of the established Emacs alternatives instead.
+#+END_QUOTE
+
 #+BEGIN_SRC emacs-lisp
-(use-package darkroom  :ensure t :demand t)
+(use-package guru-mode)
 
 #+END_SRC
 
 
 [[#dotemacs][Back to top]]
-
