@@ -88,14 +88,21 @@ Enable some more goodies.
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
 (setq sentence-end-double-space nil)                                       ; a sentence does not only end with a period and two spaces
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
 (winner-mode 1)
 (global-set-key (kbd "C-<down>") 'enlarge-window)
 (global-set-key (kbd "C-<up>") 'shrink-window)
 (global-set-key (kbd "C-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-<right>") 'shrink-window-horizontally)
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
@@ -304,6 +311,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 14. [[#14-chronos][Chronos]]
 15. [[#15-gurumode][Gurumode]]
 16. [[#16-acewindow][Acewindow]]
+17. [[#17-swiper][Swiper]]
 
 
 ** 1. Desktop
@@ -618,6 +626,22 @@ Guru mode disables some common keybindings and suggests the use of the establish
           ((t (:inherit ace-jump-face-foreground :height 3.0 :foreground "#DCDCCC")))))
     )
 )
+#+END_SRC
+
+
+** 17. Swiper
+
+#+BEGIN_SRC emacs-lisp
+(use-package counsel
+  :ensure t
+  )
+
+(use-package swiper
+  :ensure t
+  :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t))
 #+END_SRC
 
 
