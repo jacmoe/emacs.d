@@ -23,6 +23,17 @@ C. [[#c-features][Features]]
   (tooltip-mode 0))                              ; Disable the tooltips
 #+END_SRC
 
+Global variables
+#+BEGIN_SRC emacs-lisp
+(if  (eq system-type 'windows-nt) ; Source Sans Pro makes Windows happy, although that font doesn't support org-bullets ...
+  (defvar me/font-family            "Source Sans Pro"  "The font to use.")
+  (defvar me/font-family            "Open Sans"  "The font to use.")
+)
+(defvar me/font-size-default      130       "The font size to use for default text.")
+(defvar me/font-size-header       140       "The font size to use for headers.")
+(defvar me/font-size-mode-line    130       "The font size to use for the mode line.")
+#+END_SRC
+
 Some sane defaults
 
 #+BEGIN_SRC emacs-lisp
@@ -59,7 +70,7 @@ Some sane defaults
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
-(set-default-font "Source Sans Pro")
+(set-default-font me/font-family)
 (set-face-attribute 'default nil :height 130)
 #+END_SRC
 
@@ -111,15 +122,6 @@ Reset garbage collector treshold after initialization is finished and
 #+BEGIN_SRC emacs-lisp
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 (add-hook 'focus-out-hook 'garbage-collect)
-#+END_SRC
-
-Those variables are used throughout the whole configuration.
-
-#+BEGIN_SRC emacs-lisp
-(defvar me/font-family            "Source Sans Pro"  "The font to use.")
-(defvar me/font-size-default      130       "The font size to use for default text.")
-(defvar me/font-size-header       140       "The font size to use for headers.")
-(defvar me/font-size-mode-line    130       "The font size to use for the mode line.")
 #+END_SRC
 
 Add 'lisp' to the load path
@@ -464,7 +466,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 (setq org-enforce-todo-dependencies t)
 
-(let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+(let* ((variable-tuple (cond ((x-list-fonts me/font-family) '(:font me/font-family))
                              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
                              ((x-list-fonts "Verdana")         '(:font "Verdana"))
                              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
