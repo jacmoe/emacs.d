@@ -1,6 +1,8 @@
 # emacs.d
 My emacs configuration, optimized for creative writing.
 
+![](https://github.com/jacmoe/emacs.d/blob/master/emacsd.png)
+
 ## Prerequisites ##
 
 You need to install a font and MultiMarkdown before attempting to install/run/use this Emacs configuration.
