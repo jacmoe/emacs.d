@@ -326,6 +326,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 16. [[#16-acewindow][Acewindow]]
 17. [[#17-swiper][Swiper]]
 18. [[#18-expandregion][Expandregion]]
+19. [[#19-markdown][Markdown]]
 
 
 ** 1. Desktop
@@ -743,6 +744,18 @@ Expand region increases the selected region by semantic units. Just keep pressin
 (global-set-key (kbd "C-=") 'er/expand-region)
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
+** 19. Markdown
+
+#+BEGIN_SRC emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+#+END_SRC
 
 [[#dotemacs][Back to top]]
