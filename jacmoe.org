@@ -59,7 +59,7 @@ Some sane defaults
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
-(set-default-font "Open Sans")
+(set-default-font "Source Sans Pro")
 (set-face-attribute 'default nil :height 130)
 #+END_SRC
 
@@ -116,7 +116,7 @@ Reset garbage collector treshold after initialization is finished and
 Those variables are used throughout the whole configuration.
 
 #+BEGIN_SRC emacs-lisp
-(defvar me/font-family            "Open Sans"  "The font to use.")
+(defvar me/font-family            "Source Sans Pro"  "The font to use.")
 (defvar me/font-size-default      130       "The font size to use for default text.")
 (defvar me/font-size-header       140       "The font size to use for headers.")
 (defvar me/font-size-mode-line    130       "The font size to use for the mode line.")
@@ -458,13 +458,17 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 (setq org-hide-leading-stars t)
 
+(if (eq system-type 'windows-nt)
+   (setq org-bullets-bullet-list (quote ("◉" "◉" "◉" "◉")))
+)
+
 (setq org-enforce-todo-dependencies t)
 
-(let* ((variable-tuple (cond ((x-list-fonts "Open Sans") '(:font "Open Sans"))
+(let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
                              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
                              ((x-list-fonts "Verdana")         '(:font "Verdana"))
                              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-                             (nil (warn "Cannot find a Sans Serif Font.  Install Open Sans."))))
+                             (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
        (base-font-color     (face-foreground 'default nil 'default))
        (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
 
