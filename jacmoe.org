@@ -59,7 +59,7 @@ Some sane defaults
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
-(set-default-font "Source Sans Pro")
+(set-default-font "Open Sans")
 (set-face-attribute 'default nil :height 130)
 #+END_SRC
 
@@ -116,7 +116,7 @@ Reset garbage collector treshold after initialization is finished and
 Those variables are used throughout the whole configuration.
 
 #+BEGIN_SRC emacs-lisp
-(defvar me/font-family            "Source Sans Pro"  "The font to use.")
+(defvar me/font-family            "Open Sans"  "The font to use.")
 (defvar me/font-size-default      130       "The font size to use for default text.")
 (defvar me/font-size-header       140       "The font size to use for headers.")
 (defvar me/font-size-mode-line    130       "The font size to use for the mode line.")
@@ -127,6 +127,7 @@ Add 'lisp' to the load path
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 2. Validate Emacs' version
 
@@ -154,6 +155,8 @@ that is.
   (load custom-file))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
+
 ** 4. Load =.secret.el=
 
 I load =~/.emacs.d/.secret.el= to keep sensible things out of version control. For
@@ -165,6 +168,8 @@ instance, you could set your identity by customizing both =user-full-name= and
   (when (file-exists-p secret.el)
     (load secret.el)))
 #+END_SRC
+
+[[#dotemacs][Back to top]]
 
 ** 5. Initialize MELPA
 
@@ -210,6 +215,8 @@ functionality!
    use-package-always-defer t
    use-package-always-ensure t))
 #+END_SRC
+
+[[#dotemacs][Back to top]]
 
 * B. Theme
 
@@ -265,6 +272,8 @@ I consider this method safe because I am using the all-famous
 (defconst zenburn/yellow-2  "#D0BF8F"  "Zenburn palette: #D0BF8F.")
 #+END_SRC
 
+[[#dotemacs][Back to top]]
+
 ** 2. Configure Zenburn
 
 Load =zenburn-theme= and fix some high-level faces to match my personal preferences.
@@ -293,6 +302,8 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
     (set-face-attribute 'default nil :font me/font-family)))
 #+END_SRC
  
+[[#dotemacs][Back to top]]
+
 * C. Features
 
 1. [[#1-desktop][Desktop]]
@@ -312,6 +323,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 15. [[#15-gurumode][Gurumode]]
 16. [[#16-acewindow][Acewindow]]
 17. [[#17-swiper][Swiper]]
+18. [[#18-expandregion][Expandregion]]
 
 
 ** 1. Desktop
@@ -326,6 +338,7 @@ Save and restore Emacs status, including buffers, modes, point and windows.
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 2. Writeroom
 
@@ -340,6 +353,7 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
   (setq writeroom-width 120))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 3. Darkroom
 
@@ -348,6 +362,7 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
 
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 4. Mode-Line
 
@@ -376,6 +391,7 @@ fun and profit.
 (setq powerline-arrow-shape 'arrow))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 5. Autodim
 
@@ -389,6 +405,7 @@ Auto-dim other buffers. Pretty self-explanatory.
   (set-face-attribute 'auto-dim-other-buffers-face nil :background zenburn/bg-0))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 6. Abbrev
 
@@ -400,6 +417,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 (setq-default abbrev-mode t)
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 7. WordCount
 
@@ -414,6 +432,7 @@ Auto-dim other buffers. Pretty self-explanatory.
     (message "Word count: %s" (how-many "\\w+" b e))))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 8. OrgMode
 
@@ -422,13 +441,14 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 (use-package org-bullets)
 
-(setq org-bullets-bullet-list (quote ("◉" "◉" "◉" "◉")))
-
 (require  'ox-extra)
 (ox-extras-activate '(ignore-headlines))
 
 (setq org-todo-keywords
       '((sequence "TODO" "IDEA" "DRAFT" "REVISED" "|" "DONE")))
+
+(setq org-todo-keyword-faces
+      '(("TODO" . org-warning) ("IDEA" . "goldenrod1")  ("DRAFT" . "SpringGreen") ("REVISED" . "OliveDrab4") "|" ("DONE" . "SeaGreen4")))
 
 (setq org-tag-faces
       '(("ignore" . (:foreground "grey"))))
@@ -438,12 +458,13 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 (setq org-hide-leading-stars t)
 
+(setq org-enforce-todo-dependencies t)
 
-(let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+(let* ((variable-tuple (cond ((x-list-fonts "Open Sans") '(:font "Open Sans"))
                              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
                              ((x-list-fonts "Verdana")         '(:font "Verdana"))
                              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-                             (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+                             (nil (warn "Cannot find a Sans Serif Font.  Install Open Sans."))))
        (base-font-color     (face-foreground 'default nil 'default))
        (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
 
@@ -460,11 +481,35 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 (define-key global-map "\C-cc" 'org-capture)
 
+
+(defun +org/opened-buffer-files ()
+  "Return the list of files currently opened in emacs"
+  (delq nil
+        (mapcar (lambda (x)
+                  (if (and (buffer-file-name x)
+                           (string-match "\\.org$"
+                                         (buffer-file-name x)))
+                      (buffer-file-name x)))
+                (buffer-list))))
+
+(setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 5)))
+(setq org-refile-use-outline-path 'file)
+;; makes org-refile outline working with helm/ivy
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+(setq org-refile-use-cache t)
+
+(run-with-idle-timer 300 t (lambda ()
+                                (org-refile-cache-clear)
+                                (org-refile-get-targets)))
+
 (global-set-key (kbd "<f7>") 'org-mark-ring-push)
 (global-set-key (kbd "M-<f7>") 'org-mark-ring-goto)
 
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 9. Spelling
 
@@ -486,6 +531,7 @@ Auto-dim other buffers. Pretty self-explanatory.
              '("^ # {{{" . "^ # }}}"))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 10. Bookmarks
 
@@ -551,6 +597,7 @@ Auto-dim other buffers. Pretty self-explanatory.
          )
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 11. WriteOrDie
 
@@ -564,6 +611,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 12. Transparency
 
@@ -582,6 +630,7 @@ Auto-dim other buffers. Pretty self-explanatory.
  (global-set-key (kbd "C-c t") 'toggle-transparency)
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 13. Draftmode
 
@@ -589,6 +638,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 (use-package draft-mode)
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 14. Chronos
 
@@ -598,6 +648,7 @@ Auto-dim other buffers. Pretty self-explanatory.
    (setq chronos-expiry-functions '(chronos-message-notify)))
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 15. Gurumode
 
@@ -612,6 +663,7 @@ Guru mode disables some common keybindings and suggests the use of the establish
 )
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 16. Acewindow
 
@@ -628,6 +680,7 @@ Guru mode disables some common keybindings and suggests the use of the establish
 )
 #+END_SRC
 
+[[#dotemacs][Back to top]]
 
 ** 17. Swiper
 
@@ -643,6 +696,22 @@ Guru mode disables some common keybindings and suggests the use of the establish
     (setq ivy-use-virtual-buffers t)
     (setq enable-recursive-minibuffers t))
 #+END_SRC
+
+[[#dotemacs][Back to top]]
+
+** 18. Expandregion
+
+#+BEGIN_QUOTE
+Expand region increases the selected region by semantic units. Just keep pressing the key until it selects what you want.
+#+END_QUOTE
+
+#+BEGIN_SRC emacs-lisp
+(use-package expand-region
+  :ensure t
+  )
+(global-set-key (kbd "C-=") 'er/expand-region)
+#+END_SRC
+
 
 
 [[#dotemacs][Back to top]]
