@@ -483,8 +483,8 @@ Auto-dim other buffers. Pretty self-explanatory.
 (ox-extras-activate '(ignore-headlines))
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t!)"  "|" "DRAFT(d!)")
-      (sequence "REVISE(r!)" "|" "DONE")
+      (quote ((sequence "TODO(t)"  "|" "DRAFT(d)")
+      (sequence "REVISE(r)" "|" "DONE")
 )))
 
 (setq org-todo-keyword-faces
