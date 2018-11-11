@@ -801,17 +801,17 @@ Expand region increases the selected region by semantic units. Just keep pressin
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
 
-(defun c/god-mode-update-cursor ()
-  (let ((limited-colors-p (> 257 (length (defined-colors)))))
-    (cond (god-local-mode (progn
-                            (set-face-background 'mode-line (if limited-colors-p "white" "#e9e2cb"))
-                            (set-face-background 'mode-line-inactive (if limited-colors-p "white" "#e9e2cb"))))
-          (t (progn
-               (set-face-background 'mode-line (if limited-colors-p "black" "#0a2832"))
-               (set-face-background 'mode-line-inactive (if limited-colors-p "black" "#0a2832")))))))
+  (defun hook-update-cursor ()
+  (cond (god-local-mode
+         (progn
+            (set-cursor-color "Goldenrod")))
+        (t
+         (progn
+            (set-cursor-color "#DCDCCC")))))
+            
+(add-hook 'god-mode-enabled-hook 'hook-update-cursor)
+(add-hook 'god-mode-disabled-hook  'hook-update-cursor)
 
-;(add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
-;(add-hook 'god-mode-disabled-hook 'c/god-mode-update-cursor)
 #+END_SRC
 
 [[#dotemacs][Back to top]]
