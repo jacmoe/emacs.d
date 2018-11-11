@@ -113,6 +113,11 @@ Enable some more goodies.
 (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
 (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+(global-set-key (kbd "C-<f5>") 'bookmark-set)
+(global-set-key (kbd "<f5>")   'bookmark-jump)
+(global-set-key (kbd "S-<f5>") 'list-bookmarks)
+(setq bookmark-default-file "~/Dropbox/bookmarks")
+(setq bookmark-save-flag 1)
 #+END_SRC
 
 Reset garbage collector treshold after initialization is finished and
