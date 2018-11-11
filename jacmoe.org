@@ -357,6 +357,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 18. [[#18-expandregion][Expandregion]]
 19. [[#19-markdown][Markdown]]
 20. [[#20-godmode][Godmode]]
+21. [[#21-speedtype][Speedtype]]
 
 
 ** 1. Desktop
@@ -794,10 +795,8 @@ Expand region increases the selected region by semantic units. Just keep pressin
 
 #+BEGIN_SRC emacs-lisp
 (use-package god-mode
-  :ensure t
-  :config
-    
-)
+  :ensure t)
+
 (global-set-key (kbd "<escape>") 'god-mode-all)
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
@@ -813,6 +812,15 @@ Expand region increases the selected region by semantic units. Just keep pressin
 
 ;(add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
 ;(add-hook 'god-mode-disabled-hook 'c/god-mode-update-cursor)
+#+END_SRC
+
+[[#dotemacs][Back to top]]
+
+** 21. Speedtype
+
+#+BEGIN_SRC emacs-lisp
+(use-package speed-type
+  :ensure t)
 #+END_SRC
 
 [[#dotemacs][Back to top]]
