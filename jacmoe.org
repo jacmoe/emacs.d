@@ -483,10 +483,12 @@ Auto-dim other buffers. Pretty self-explanatory.
 (ox-extras-activate '(ignore-headlines))
 
 (setq org-todo-keywords
-      '((sequence "TODO" "IDEA" "DRAFT" "REVISED" "|" "DONE")))
+      (quote ((sequence "TODO(t!)"  "|" "DRAFT(d!)")
+      (sequence "REVISE(r!)" "|" "DONE")
+)))
 
 (setq org-todo-keyword-faces
-      '(("TODO" . org-warning) ("IDEA" . "goldenrod1")  ("DRAFT" . "SpringGreen") ("REVISED" . "OliveDrab4") "|" ("DONE" . "SeaGreen4")))
+      '(("TODO" . org-warning) ("IDEA" . "goldenrod1")  ("DRAFT" . "SpringGreen") ("REVISE" . "OliveDrab4") "|" ("DONE" . "SeaGreen4")))
 
 (setq org-tag-faces
       '(("ignore" . (:foreground "grey"))))
@@ -501,6 +503,10 @@ Auto-dim other buffers. Pretty self-explanatory.
 )
 
 (setq org-enforce-todo-dependencies t)
+
+(setq org-hierarchical-todo-statistics nil) ; I want org-mode to cascade done statistics up through the tree
+
+(setq org-tags-column -80)
 
 (if (eq system-type 'windows-nt)
   (progn
