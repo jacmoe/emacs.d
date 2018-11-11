@@ -356,6 +356,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 17. [[#17-swiper][Swiper]]
 18. [[#18-expandregion][Expandregion]]
 19. [[#19-markdown][Markdown]]
+20. [[#20-godmode][Godmode]]
 
 
 ** 1. Desktop
@@ -785,6 +786,21 @@ Expand region increases the selected region by semantic units. Just keep pressin
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
+#+END_SRC
+
+[[#dotemacs][Back to top]]
+
+** 20. Godmode
+
+#+BEGIN_SRC emacs-lisp
+(use-package god-mode
+  :ensure t
+  :config
+    
+)
+(global-set-key (kbd "<escape>") 'god-mode-all)
+(setq god-exempt-major-modes nil)
+(setq god-exempt-predicates nil)
 #+END_SRC
 
 [[#dotemacs][Back to top]]
