@@ -28,7 +28,9 @@ Markdown is like Org-mode: it is non-proprietary plain text.
 Therefore, you need to install [MultiMarkdown](https://github.com/fletcher/MultiMarkdown-6/releases) - most Linux distributions have MultiMarkdown in their package repositories; otherwise (like, if using Windows), use the Github release page to fetch it.
 
 ## Installation ##
-
+### Windows ###
+**Important!**
+You need to set the `HOME` environment variable to point to your user directory (usually `c:/Users/[username]`)
 
 ## How to use it ##
 
