@@ -1,5 +1,6 @@
 #+TITLE: DotEmacs
 #+AUTHOR: Jacob Moen
+#+STARTUP: showeverything
 
 A. [[#a-bootstrap][Bootstrap]] | 
 B. [[#b-theme][Theme]] | 
@@ -480,6 +481,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 (use-package org-bullets)
 
 (require  'ox-extra)
+;; Headlines that has the 'ignore' tag will not be exported!
 (ox-extras-activate '(ignore-headlines))
 
 (setq org-todo-keywords
@@ -554,6 +556,10 @@ Auto-dim other buffers. Pretty self-explanatory.
 )
 
 (define-key global-map "\C-cc" 'org-capture)
+
+(setq org-capture-templates
+      '(("n" "Note" entry (file+headline "~/Dropbox/skriv/notes.org" "Notes")
+	 "* %?\n %a")))
 
 (defun +org/opened-buffer-files ()
   "Return the list of files currently opened in emacs"
