@@ -9,16 +9,7 @@ You need to install a font and MultiMarkdown before attempting to install/run/us
 
 ### Fonts ###
 
-This Emacs configuration uses Open Sans, except on Windows, where Source Sans Pro is used. 
-The problem with Source Sans Pro, is that it doesn't support rendering the bullet types that Org-bullets wants, but Windows lags considerably with Open Sans ...
-
-#### Linux, Mac ####
-
 Install Open Sans if it's not already installed on your system.
-
-#### Windows ####
-
-On Windows, install Adobe's [Source Sans Pro](https://github.com/adobe-fonts/source-sans-pro) font. 
 
 ### Markdown ###
 
