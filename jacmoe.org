@@ -477,6 +477,8 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 (use-package org-bullets)
 
+(setq org-bullets-bullet-list (quote ("◉" "✿" "★" "•")))
+
 (setq inhibit-compacting-font-caches t)
 
 (require  'ox-extra)
