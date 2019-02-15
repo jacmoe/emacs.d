@@ -358,7 +358,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 16. [[#16-swiper][Swiper]]
 17. [[#17-expandregion][Expandregion]]
 18. [[#18-markdown][Markdown]]
-19. [[#19-godmode][Godmode]]
+19. [[#19-ryomode][Ryomodal]]
 20. [[#20-speedtype][Speedtype]]
 
 
@@ -712,27 +712,26 @@ Expand region increases the selected region by semantic units. Just keep pressin
 
 [[#dotemacs][Back to top]]
 
-** 19. Godmode
+** 19. Ryomodal
 
 #+BEGIN_SRC emacs-lisp
-(use-package god-mode
-  :ensure t)
+(use-package ryo-modal
+  :commands ryo-modal-mode
+  :bind ("<escape>" . ryo-modal-mode)
+  :config
+  (ryo-modal-keys
+   ("b" backward-char)
+   ("n" next-line)
+   ("p" previous-line)
+   ("f" forward-char))
 
-(global-set-key (kbd "<escape>") 'god-mode-all)
-(setq god-exempt-major-modes nil)
-(setq god-exempt-predicates nil)
+  (ryo-modal-keys
+   ;; First argyment to ryo-modal-keys may be a list of keywords.
+   ;; These keywords will be applied to all keybindings.
+   (:norepeat t)))
 
-  (defun hook-update-cursor ()
-  (cond (god-local-mode
-         (progn
-            (set-cursor-color "Goldenrod")))
-        (t
-         (progn
-            (set-cursor-color "#DCDCCC")))))
-            
-(add-hook 'god-mode-enabled-hook 'hook-update-cursor)
-(add-hook 'god-mode-disabled-hook  'hook-update-cursor)
-
+(setq ryo-modal-cursor-color "Goldenrod")
+   
 #+END_SRC
 
 [[#dotemacs][Back to top]]
