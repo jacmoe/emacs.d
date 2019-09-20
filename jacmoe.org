@@ -43,7 +43,7 @@ Some sane defaults
  fill-column 85                                  ; Set width for automatic line breaking
  gc-cons-threshold most-positive-fixnum          ; Increase garbage collector treshold
  help-window-select t                            ; Focus new help windows when opened
- indent-tabs-mode nil                            ; Stop using tabs to indent
+ indent-tabs-mode nil                            ; Don't use tabs to indent
  inhibit-startup-screen t                        ; Disable start-up screen
  initial-scratch-message ""                      ; Empty the initial *scratch* buffer
  mouse-yank-at-point t                           ; Yank at point rather than cursor
@@ -86,16 +86,18 @@ Enable some more goodies.
 (global-set-key (kbd "M-2") 'delete-window)      ; close current pane
 (global-set-key (kbd "M-s") 'other-window)       ; cursor to other pane
 (global-set-key (kbd "<f12>") 'ispell)           ; spell check
-(if (not (eq system-type 'windows-nt))           ; Use Darkroom instead of Writeroom on Windows
-  (global-set-key (kbd "<f6>") 'writeroom-mode)    ; writeroom mode key
-  (global-set-key (kbd "<f6>") 'darkroom-tentative-mode)    ; writeroom mode key
-)
-(global-set-key (kbd "M-<f6>") 'writeroom-toggle-mode-line)    ; writeroom mode key
-(global-set-key (kbd "C-<f6>") 'darkroom-tentative-mode)    ; toggle darkroom mode
+(global-set-key (kbd "<f6>") 'darkroom-mode)    ; darkroom mode key
+(global-set-key (kbd "M-<f6>") 'writeroom-toggle-mode-line)    ; writeroom modeline key
+(global-unset-key (kbd "M-j"))
+(global-set-key (kbd "M-j") 'join-line)    ; join line
+(global-unset-key (kbd "C-M-p"))
+(global-set-key (kbd "C-M-p") 'scroll-down-line)    ; scroll down
+(global-unset-key (kbd "C-M-n"))
+(global-set-key (kbd "C-M-n") 'scroll-up-line)    ; scroll up
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
-(setq sentence-end-double-space nil)                                       ; a sentence does not only end with a period and two spaces
+(setq sentence-end-double-space t)                                       ; a sentence does end with a period and two spaces
 (winner-mode 1)
 (global-set-key (kbd "C-<down>") 'enlarge-window)
 (global-set-key (kbd "C-<up>") 'shrink-window)
@@ -361,7 +363,6 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 19. [[#19-ryomode][Ryomodal]]
 20. [[#20-speedtype][Speedtype]]
 
-
 ** 1. Desktop
 
 Save and restore Emacs status, including buffers, modes, point and windows.
@@ -394,7 +395,9 @@ Writeroom-mode is a minor mode for Emacs that implements a distraction-free writ
 ** 3. Darkroom
 
 #+BEGIN_SRC emacs-lisp
-(use-package darkroom  :ensure t :demand t)
+(use-package darkroom  :ensure t :demand t
+  :config
+  (setq darkroom-text-scale-increase 1))
 
 #+END_SRC
 
@@ -447,7 +450,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 
 #+BEGIN_SRC emacs-lisp
 ;; stop asking whether to save newly added abbrev when quitting emacs
-(setq save-abbrevs nil)
+(setq save-abbrevs 'silently)
 
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
@@ -629,7 +632,7 @@ Auto-dim other buffers. Pretty self-explanatory.
 #+BEGIN_SRC emacs-lisp
 (use-package chronos :ensure t :demand t
   :config
-   (setq chronos-expiry-functions '(chronos-message-notify)))
+   (setq chronos-expiry-functions '(chronos-message-notify chronos-desktop-notifications-notify)))
 #+END_SRC
 
 [[#dotemacs][Back to top]]
@@ -643,7 +646,8 @@ Guru mode disables some common keybindings and suggests the use of the establish
 #+BEGIN_SRC emacs-lisp
 (use-package guru-mode
   :config
-    (guru-global-mode +1)
+    (guru-global-mode t)
+    (guru-mode t)
 )
 #+END_SRC
 
