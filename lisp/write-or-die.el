@@ -52,7 +52,7 @@
   "The target time (in seconds) for which you want to write after
   write-or-die-go is invoked."
   :group 'write-or-die)
-(defcustom write-or-die-progress-format " [%s of %s, TIMER: %s]"
+(defcustom write-or-die-progress-format " [%s of %s, TIMER: %s, %s]"
   "A format string that controls how your current progress is
 displayed"
   :group 'write-or-die)
@@ -104,7 +104,8 @@ warning routine or stimulus routine."
 	      (format write-or-die-progress-format
 		      num-words-written
 		      write-or-die-target-words
-		      time-to-go))
+		      time-to-go
+              write-or-die-state))
 	)
     (setq write-or-die-mode-text " write!"))
   ;; If we're being punished for not writing for too long!
