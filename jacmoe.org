@@ -476,7 +476,10 @@ Auto-dim other buffers. Pretty self-explanatory.
 ** 8. OrgMode
 
 #+BEGIN_SRC emacs-lisp
-(use-package org-plus-contrib :ensure t)
+(use-package org
+    :pin org
+    :ensure org-plus-contrib)
+;(use-package  org-plus-contrib :ensure t)
 
 (use-package org-bullets)
 
