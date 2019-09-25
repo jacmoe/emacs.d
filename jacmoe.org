@@ -364,6 +364,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 19. [[#19-ryomode][Ryomodal]]
 20. [[#20-speedtype][Speedtype]]
 21. [[#21-twitteringmode][Twittering-mode]]
+22. [[#22-magit][Magit]]
 
 ** 1. Desktop
 
@@ -900,6 +901,15 @@ Expand region increases the selected region by semantic units. Just keep pressin
 "))
 
 ;;(setq twittering-convert-fix-size 360)
+
+#+END_SRC
+
+[[#dotemacs][Back to top]]
+
+** 22. Magit
+
+#+BEGIN_SRC emacs-lisp
+(use-package magit)
 
 #+END_SRC
 
