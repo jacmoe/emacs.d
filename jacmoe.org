@@ -365,6 +365,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 20. [[#20-speedtype][Speedtype]]
 21. [[#21-twitteringmode][Twittering-mode]]
 22. [[#22-magit][Magit]]
+23. [[#23-orgsidebar][Org-sidebar]]
 
 ** 1. Desktop
 
@@ -910,6 +911,15 @@ Expand region increases the selected region by semantic units. Just keep pressin
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit)
+
+#+END_SRC
+
+[[#dotemacs][Back to top]]
+
+** 23. Org-sidebar
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-sidebar)
 
 #+END_SRC
 
