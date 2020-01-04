@@ -366,6 +366,8 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 21. [[#21-twitteringmode][Twittering-mode]]
 22. [[#22-magit][Magit]]
 23. [[#23-orgsidebar][Org-sidebar]]
+24. [[#24-orgtracktable][Org-tracktable]]
+25. [[#25-org2blog][Org2blog]]
 
 ** 1. Desktop
 
@@ -924,3 +926,30 @@ Expand region increases the selected region by semantic units. Just keep pressin
 #+END_SRC
 
 [[#dotemacs][Back to top]]
+
+** 24. Org-tracktable
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-tracktable)
+
+#+END_SRC
+
+[[#dotemacs][Back to top]]
+
+** 25. Org2blog
+
+#+BEGIN_SRC emacs-lisp
+(use-package org2blog
+             :ensure t)
+
+(setq org2blog/wp-blog-alist
+      '(("Jacmoe's Cyber Soapbox"
+         :url "https://jacmoes.wordpress.com/xmlrpc.php"
+         :username "jacmoe")))
+
+(add-hook 'org-mode-hook #'org2blog-maybe-start)
+
+#+END_SRC
+
+[[#dotemacs][Back to top]]
+
