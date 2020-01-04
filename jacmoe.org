@@ -368,6 +368,7 @@ Load =zenburn-theme= and fix some high-level faces to match my personal preferen
 23. [[#23-orgsidebar][Org-sidebar]]
 24. [[#24-orgtracktable][Org-tracktable]]
 25. [[#25-org2blog][Org2blog]]
+26. [[#26-dictionary][Dictionary]]
 
 ** 1. Desktop
 
@@ -953,3 +954,11 @@ Expand region increases the selected region by semantic units. Just keep pressin
 
 [[#dotemacs][Back to top]]
 
+** 26. Dictionary
+
+#+BEGIN_SRC emacs-lisp
+(use-package dictionary)
+
+#+END_SRC
+
+[[#dotemacs][Back to top]]
