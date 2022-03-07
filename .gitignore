@@ -32,3 +32,4 @@ transient/history.el
 /.org-id-locations
 /org-roam.db
 /custom.el
+network-security.data
