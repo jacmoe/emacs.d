@@ -91,9 +91,6 @@
 (global-set-key (kbd "M-4") 'split-window-below) ; split pane top/bottom
 (global-set-key (kbd "M-2") 'delete-window)      ; close current pane
 (global-set-key (kbd "M-s") 'other-window)       ; cursor to other pane
-(global-set-key (kbd "<f12>") 'ispell)           ; spell check
-(global-set-key (kbd "<f6>") 'darkroom-mode)    ; darkroom mode key
-(global-set-key (kbd "M-<f6>") 'writeroom-toggle-mode-line)    ; writeroom modeline key
 (global-unset-key (kbd "M-j"))
 (global-set-key (kbd "M-j") 'join-line)    ; join line
 (global-unset-key (kbd "C-M-p"))
@@ -109,16 +106,6 @@
 (global-set-key (kbd "C-<up>") 'shrink-window)
 (global-set-key (kbd "C-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-<right>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 (global-set-key (kbd "C-<f5>") 'bookmark-set)
 (global-set-key (kbd "<f5>")   'bookmark-jump)
 (global-set-key (kbd "S-<f5>") 'list-bookmarks)
@@ -129,12 +116,6 @@
 ;; =garbage-collect= on focus-out. Emacs /should/ feel snappier.
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 (add-hook 'focus-out-hook 'garbage-collect)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Add 'lisp' to the load path
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(add-to-list 'load-path "~/.emacs.d/lisp/twittering-mode/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Very basic version scheme / backup routine
@@ -276,41 +257,17 @@
 ;; Desktop
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package desktop
   :demand t
   :config
   (desktop-save-mode 1)
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;  Writeroom
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package writeroom-mode
-  :demand t
-  :config
-  (setq writeroom-width 120))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Darkroom
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package darkroom  :ensure t :demand t
-  :config
-  (setq darkroom-text-scale-increase 1))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Modeline
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package spaceline :demand t
   :config
                     (spaceline-emacs-theme)
@@ -322,7 +279,6 @@
 ;; Autodim
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package auto-dim-other-buffers
   :demand t
   :config
@@ -334,7 +290,6 @@
 ;; Abbrev
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; stop asking whether to save newly added abbrev when quitting emacs
 (setq save-abbrevs 'silently)
 
@@ -343,25 +298,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Wordcount
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package wc-mode)
-
-(defun novel-count-words (&optional begin end)
-  "count words between BEGIN and END (region); if no region defined, count words in buffer"
-  (interactive "r")
-  (let ((b (if mark-active begin (point-min)))
-      (e (if mark-active end (point-max))))
-    (message "Word count: %s" (how-many "\\w+" b e))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; Org-mode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package org
 :ensure t)
 
@@ -449,45 +388,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Spelling
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun ispell-extra-args-around (orig-fun &rest args)
-(let ((old-ispell-extra-args ispell-extra-args))
-(ispell-kill-ispell t)
-;; use emacs original arguments
-(setq ispell-extra-args (flyspell-detect-ispell-args))
-(apply orig-fun args)
-;; restore our own ispell arguments
-(setq ispell-extra-args old-ispell-extra-args)
-(ispell-kill-ispell t)))
-(advice-add 'ispell-word :around #'ispell-extra-args-around)
-(advice-add 'flyspell-auto-correct-word :around #'ispell-extra-args-around)
-(setq ispell-program-name "hunspell")
-
-(add-to-list 'ispell-skip-region-alist
-             '("^ # {{{" . "^ # }}}"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; WriteOrDie
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(if (not (require 'write-or-die nil t))
-        (message "`write-or-die' not found"))
-
-(global-set-key (kbd "<f8>") 'write-or-die-mode)
-(global-set-key (kbd "<f9>") 'write-or-die-go)
-(global-set-key (kbd "M-<f9>") 'write-or-die-stop)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; Transparency
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
  (defun toggle-transparency ()
    (interactive)
    (let ((alpha (frame-parameter nil 'alpha)))
@@ -503,28 +406,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; DraftMode
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package draft-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Chronos
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package chronos :ensure t :demand t
-  :config
-   (setq chronos-expiry-functions '(chronos-message-notify chronos-desktop-notifications-notify)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; GuroMode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package guru-mode
   :config
     (guru-global-mode t)
@@ -536,7 +420,6 @@
 ;; AceWindow
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package ace-window
   :ensure t
   :init
@@ -550,259 +433,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Swiper
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package counsel
-  :ensure t
-  )
-
-(use-package swiper
-  :ensure t
-  :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq enable-recursive-minibuffers t))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Expandregion
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package expand-region
-  :ensure t
-  )
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Markdown
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Ryomodal
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package ryo-modal
-  :commands ryo-modal-mode
-  :bind ("<escape>" . ryo-modal-mode)
-  :config
-  (ryo-modal-keys
-   ("b" backward-char)
-   ("n" next-line)
-   ("p" previous-line)
-   ("f" forward-char))
-
-  (ryo-modal-keys
-   ;; First argyment to ryo-modal-keys may be a list of keywords.
-   ;; These keywords will be applied to all keybindings.
-   (:norepeat t)))
-
-(setq ryo-modal-cursor-color "Goldenrod")
-   
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Speedtype
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package speed-type
-  :ensure t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Twittering-mode
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(if (not (require 'twittering-mode nil t))
-        (message "`twittering-mode' not found"))
-
-(setq twittering-use-master-password t)
-(setq epa-pinentry-mode 'loopback)
-(twittering-enable-unread-status-notifier)
-(setq twittering-display-remaining t)
-(setq twittering-edit-skeleton 'inherit-any)
-
-(defun twitrender ()
-  (interactive)
-
-    (with-current-buffer
-      (twittering-rerender-timeline-all (current-buffer) t)
-      (setq-local line-spacing 0.2)
-      (goto-char (point-min))
-      ))
-
-(with-eval-after-load 'twittering-mode 
-(defun *twittering-generate-format-table (status-sym prefix-sym)
-  `(("%" . "%")
-    ("}" . "}")
-    ("#" . (cdr (assq 'id ,status-sym)))
-    ("'" . (when (cdr (assq 'truncated ,status-sym))
-             "..."))
-    ("c" .
-     (let ((system-time-locale "C"))
-       (format-time-string "%a %b %d %H:%M:%S %z %Y"
-                           (cdr (assq 'created-at ,status-sym)))))
-    ("d" . (cdr (assq 'user-description ,status-sym)))
-    ("f" .
-     (twittering-make-string-with-source-property
-      (cdr (assq 'source ,status-sym)) ,status-sym))
-    ("i" .
-     (when (and twittering-icon-mode window-system)
-       (let ((url
-              (cond
-               ((and twittering-use-profile-image-api
-                     (eq twittering-service-method 'twitter)
-                     (or (null twittering-convert-fix-size)
-                         (member twittering-convert-fix-size '(48 73))))
-                (let ((user (cdr (assq 'user-screen-name ,status-sym)))
-                      (size
-                       (if (or (null twittering-convert-fix-size)
-                               (= 48 twittering-convert-fix-size))
-                           "normal"
-                         "bigger")))
-                  (format "http://%s/%s/%s.xml?size=%s" twittering-api-host
-                          (twittering-api-path "users/profile_image") user size)))
-               (t
-                (cdr (assq 'user-profile-image-url ,status-sym))))))
-         (twittering-make-icon-string nil nil url))))
-    ("I" .
-     (let* ((entities (cdr (assq 'entity ,status-sym)))
-            text)
-       (mapc (lambda (url-info)
-               (setq text (or (cdr (assq 'media-url url-info)) "")))
-             (cdr (assq 'media entities)))
-       (if (string-equal "" text)
-           text
-         (let ((twittering-convert-fix-size 600))
-           (twittering-make-icon-string nil nil text)))))
-    ("j" . (cdr (assq 'user-id ,status-sym)))
-    ("L" .
-     (let ((location (or (cdr (assq 'user-location ,status-sym)) "")))
-       (unless (string= "" location)
-         (concat " [" location "]"))))
-    ("l" . (cdr (assq 'user-location ,status-sym)))
-    ("p" . (when (cdr (assq 'user-protected ,status-sym))
-             "[x]"))
-    ("r" .
-     (let ((reply-id (or (cdr (assq 'in-reply-to-status-id ,status-sym)) ""))
-           (reply-name (or (cdr (assq 'in-reply-to-screen-name ,status-sym))
-                           ""))
-           (recipient-screen-name
-            (cdr (assq 'recipient-screen-name ,status-sym))))
-       (let* ((pair
-               (cond
-                (recipient-screen-name
-                 (cons (format "sent to %s" recipient-screen-name)
-                       (twittering-get-status-url recipient-screen-name)))
-                ((and (not (string= "" reply-id))
-                      (not (string= "" reply-name)))
-                 (cons (format "in reply to %s" reply-name)
-                       (twittering-get-status-url reply-name reply-id)))
-                (t nil)))
-              (str (car pair))
-              (url (cdr pair))
-              (properties
-               (list 'mouse-face 'highlight 'face 'twittering-uri-face
-                     'keymap twittering-mode-on-uri-map
-                     'uri url
-                     'front-sticky nil
-                     'rear-nonsticky t)))
-         (when (and str url)
-           (concat " " (apply 'propertize str properties))))))
-    ("R" .
-     (let ((retweeted-by
-            (or (cdr (assq 'retweeting-user-screen-name ,status-sym)) "")))
-       (unless (string= "" retweeted-by)
-         (concat " (retweeted by " retweeted-by ")"))))
-    ("S" .
-     (twittering-make-string-with-user-name-property
-      (cdr (assq 'user-name ,status-sym)) ,status-sym))
-    ("s" .
-     (twittering-make-string-with-user-name-property
-      (cdr (assq 'user-screen-name ,status-sym)) ,status-sym))
-    ("U" .
-     (twittering-make-fontified-tweet-unwound ,status-sym))
-    ;; ("D" .
-    ;;  (twittering-make-fontified-tweet-unwound ,status-sym))
-    ("T" .
-     ,(twittering-make-fontified-tweet-text
-       `(twittering-make-fontified-tweet-text-with-entity ,status-sym)
-       twittering-regexp-hash twittering-regexp-atmark))
-    ("t" .
-     ,(twittering-make-fontified-tweet-text
-       `(twittering-make-fontified-tweet-text-with-entity ,status-sym)
-       twittering-regexp-hash twittering-regexp-atmark))
-    ("u" . (cdr (assq 'user-url ,status-sym)))))
-  (advice-add #'twittering-generate-format-table :override #'*twittering-generate-format-table)
-  (defface twitter-divider
-    `((t (:underline (:color "grey"))))
-    "The vertical divider between tweets."
-    :group 'twittering-mode)
-  (setq twittering-icon-mode t
-        twittering-use-icon-storage t
-        twittering-convert-fix-size 40
-        twittering-status-format "
-  %i  %FACE[font-lock-function-name-face]{  @%s}  %FACE[italic]{%@}  %FACE[error]{%FIELD-IF-NONZERO[❤ %d]{favorite_count}}  %FACE[warning]{%FIELD-IF-NONZERO[↺ %d]{retweet_count}}
-
-%FOLD[   ]{%FILL{%t}
-%QT{
-%FOLD[   ]{%FACE[font-lock-function-name-face]{@%s}\t%FACE[shadow]{%@}
-%FOLD[ ]{%FILL{%t}}
-}}}
-
-    %I
-
-%FACE[twitter-divider]{                                                                                                                                                                                  }
-"))
-
-;;(setq twittering-convert-fix-size 360)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
 ;; Magit
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package magit)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Org-sidebar
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package org-sidebar)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Org-trackable
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(use-package org-tracktable)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Org2blog
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package org2blog
              :ensure t)
 
@@ -818,7 +458,6 @@
 ;; Dictionary
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package dictionary)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -826,7 +465,6 @@
 ;; Org-roam
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (use-package org-roam
   :after org
   :init (setq org-roam-v2-ack t) ;; Acknowledge V2 upgrade
