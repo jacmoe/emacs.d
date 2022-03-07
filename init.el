@@ -304,15 +304,14 @@
 (use-package org
 :ensure t)
 
-(use-package org-bullets)
-
-(setq org-bullets-bullet-list (quote ("◉" "✿" "★" "•")))
+;; Nice bullets
+(use-package org-superstar
+    :config
+    (setq org-superstar-special-todo-items t)
+    (add-hook 'org-mode-hook (lambda ()
+                               (org-superstar-mode 1))))
 
 (setq inhibit-compacting-font-caches t)
-
-;;(require  'ox-extra)
-;; Headlines that has the 'ignore' tag will not be exported!
-;;(ox-extras-activate '(ignore-headlines))
 
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)"  "|" "DRAFT(d)")
@@ -324,9 +323,6 @@
 
 (setq org-tag-faces
       '(("ignore" . (:foreground "grey"))))
-
-(add-hook 'org-mode-hook
-(lambda () (org-bullets-mode t)))
 
 (setq org-hide-leading-stars t)
 
@@ -406,7 +402,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; GuroMode
+;; GuruMode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package guru-mode
@@ -459,6 +455,32 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package dictionary)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Olivetti
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Distraction-free screen
+(use-package olivetti
+  :init
+  (setq olivetti-body-width 0.57)
+  :config
+  (defun distraction-free ()
+    "Distraction-free writing environment"
+    (interactive)
+    (if (equal olivetti-mode nil)
+        (progn
+          (window-configuration-to-register 1)
+          (delete-other-windows)
+          (text-scale-increase 2)
+          (olivetti-mode t))
+      (progn
+        (jump-to-register 1)
+        (olivetti-mode 0)
+        (text-scale-decrease 2))))
+  :bind
+  (("<f9>" . distraction-free)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
