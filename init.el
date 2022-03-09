@@ -164,6 +164,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load =.secret.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; I load =~/.emacs.d/.secret.el= to keep sensible things out of version control. For
+;; instance, you could set your identity by customizing both =user-full-name= and
+;; =user-mail-address= in this file.
 (let ((secret.el (expand-file-name ".secret.el" user-emacs-directory)))
   (when (file-exists-p secret.el)
     (load secret.el)))
@@ -171,11 +174,24 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped.
+;;
 ;; Define and initialise package repositories
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
+;; In order to have unified package declarations in my Emacs files, I use
+;; [[https://github.com/jwiegley/use-package][use-package]]. It allows for isolation and
+;; clarity.
+
+;; "The =use-package= macro allows you to isolate package configuration in your =.emacs=
+;; file in a way that is both performance-oriented and, well, tidy. I created it because
+;; I have over 80 packages that I use in Emacs, and things were getting difficult to
+;; manage. Yet with this utility my total load time is around 2 seconds, with no loss of
+;; functionality!"
+;; ~John Wiegley
+;;
 ;; use-package to simplify the config file
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -186,6 +202,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Theme
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; I like to have an accessible copy of my active theme's color codes. That way, I can
+;;fix other packages' colors while still using the same color codes and keep a sane
+;;consistency everywhere.
+;;
+;;I consider this method safe because I am using the all-famous
+;;[[https://github.com/bbatsov/zenburn-emacs][Zenburn Emacs port]] palette. It is
+;;/very/ unlikely that any of its tones will ever change.
 
 ;; Set a color palette
 (defconst zenburn/bg+3      "#6F6F6F"  "Zenburn palette: #6F6F6F.")
@@ -225,7 +248,7 @@
 (defconst zenburn/yellow-1  "#E0CF9F"  "Zenburn palette: #E0CF9F.")
 (defconst zenburn/yellow-2  "#D0BF8F"  "Zenburn palette: #D0BF8F.")
 
-;; Configure Zenburn
+;;Load =zenburn-theme= and fix some high-level faces to match my personal preferences.
 (use-package zenburn-theme
   :demand t
   :config
@@ -251,12 +274,27 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Features
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Desktop
+;; Modeline
+;; Autodim
+;; Abbrev
+;; Org-mode
+;; Transparency
+;; Gurumode
+;; Acewindow
+;; Magit
+;; Org2blog
+;; Dictionary
+;; Writeroom
+;; Org-roam
+;; 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Desktop
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Save and restore Emacs status, including buffers, modes, point and windows.
 (use-package desktop
   :demand t
   :config
@@ -268,6 +306,21 @@
 ;; Modeline
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;- Green means buffer is clean.
+;;- Red means buffer is modified.
+;;- Blue means buffer is read-only.
+;;- Colored bullets represent =flycheck= critical, warning and informational errors.
+;;- The segment next to the clock indicate the current perspective from =persp-mode=,
+;;  red when the buffer doesn't belong to the current perspective.
+;;
+;;Spaceline, is a mode-line configuration framework. Like what =powerline= does but at
+;;a shallower level. It's still very customizable nonetheless.
+;;
+;;This is the package that provides [[http://spacemacs.org/][Spacemacs]] with its
+;;famous mode-line theme. It has been extracted as an independent package for general
+;;fun and profit.
+;;
+;;[[https://github.com/TheBB/spaceline][Eivind Fonn]]
 (use-package spaceline :demand t
   :config
                     (spaceline-emacs-theme)
@@ -279,6 +332,7 @@
 ;; Autodim
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Auto-dim other buffers. Pretty self-explanatory.
 (use-package auto-dim-other-buffers
   :demand t
   :config
@@ -405,6 +459,7 @@
 ;; GuruMode
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;Guru mode disables some common keybindings and suggests the use of the established Emacs alternatives instead.
 (use-package guru-mode
   :config
     (guru-global-mode t)
@@ -462,9 +517,12 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Distraction-free screen
+;;"Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X."
+;;[[https://github.com/joostkremers/writeroom-mode][https://github.com/joostkremers/writeroom-mode]]
 (use-package writeroom-mode
   :bind
-  (("<f9>" . writeroom-mode)))
+  (("<f9>" . writeroom-mode)
+   ("S-<f9>" . writeroom-toggle-mode-line )))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
