@@ -15,9 +15,6 @@
 
 ;; To install, clone .emacs.d/ into ~/.emacs.d/.
 ;;
-;; Following lines load an Org file and build the configuration code out of it. This
-;; process is known as tangling.
-;;
 ;; See README.md for more details.
 
 ;;; Code:
