@@ -75,7 +75,7 @@
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
-(set-default-font me/font-family)
+;;(set-default-font me/font-family)
 (set-face-attribute 'default nil :height 130)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -277,6 +277,7 @@
 ;; Desktop
 ;; Modeline
 ;; Autodim
+;; Vertico, savehist, and Marginalia
 ;; Abbrev
 ;; Org-mode
 ;; Transparency
@@ -338,6 +339,31 @@
   :config
   (auto-dim-other-buffers-mode 1)
   (set-face-attribute 'auto-dim-other-buffers-face nil :background zenburn/bg-0))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Vertico, savehist, and Marginalia
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Minimal interface for minibuffer completions
+(use-package vertico
+  :ensure t
+:custom
+(vertico-cycle t)
+  :init
+  (vertico-mode))
+
+(use-package savehist
+:init
+(savehist-mode))
+
+(use-package marginalia
+:after vertico
+:ensure t
+:custom
+(marginalia-annotators '(marginalia-annotators-heavy marginalia/annotators-light nil))
+:init
+(marginalia-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
