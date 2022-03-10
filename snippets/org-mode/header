@@ -1,11 +1,15 @@
-#+TITLE: Emacs survival
-#+AUTHOR: Jacob Moen
+# name : header
+# key : header
+# --
+#+TITLE: $1
+#+AUTHOR: $2
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+OPTIONS: toc:nil
 #+OPTIONS: num:nil
 #+DESCRIPTION:
 #+EXCLUDE_TAGS: noexport
 #+KEYWORDS:
-#+LANGUAGE: en
+#+LANGUAGE: ${3:en}
 #+SELECT_TAGS: export
 #+STARTUP: showeverything
+$0
