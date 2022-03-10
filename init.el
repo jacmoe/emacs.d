@@ -292,6 +292,7 @@
 ;; Autodim
 ;; Vertico, savehist, and Marginalia
 ;; Abbrev
+;; Yasnippet
 ;; Org-mode
 ;; Transparency
 ;; Gurumode
@@ -388,6 +389,26 @@
 
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Yasnippet
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package yasnippet
+  :ensure t
+  :init
+  (setq yas-snippet-dirs
+        '("~/.emacs.d/snippets"                 ;; personal snippets
+          ))
+  (yas-global-mode 1)
+  :bind
+  (
+   ("C-c y e" . yas-expand)
+   ("C-c y n" . yas-new-snippet)
+   ("C-c y v" . yas-visit-snippet-file)
+   )
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
