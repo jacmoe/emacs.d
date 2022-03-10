@@ -259,6 +259,8 @@
     stage
 **** c
     commit
+**** C-c C-c
+    Execute commit, after having written the commit message
 **** P
     push
 **** F
