@@ -406,6 +406,8 @@
 
 (setq inhibit-compacting-font-caches t)
 
+(setq org-superstar-headline-bullets-list (quote ("◉" "✿" "★" "•")))
+
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)"  "|" "DRAFT(d)")
       (sequence "REVISE(r)" "|" "DONE")
