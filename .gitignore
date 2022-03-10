@@ -33,3 +33,5 @@ transient/history.el
 /org-roam.db
 /custom.el
 network-security.data
+history
+places

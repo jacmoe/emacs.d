@@ -68,7 +68,6 @@
 (fringe-mode '(10 . 10))                         ; Show vertical fringes
 (global-hl-line-mode 1)                          ; Hightlight current line
 (global-subword-mode 1)                          ; Iterate through CamelCase words
-(line-number-mode 1)                             ; Show the line number
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
@@ -103,11 +102,23 @@
 (global-set-key (kbd "C-<up>") 'shrink-window)
 (global-set-key (kbd "C-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-<right>") 'shrink-window-horizontally)
+
 (global-set-key (kbd "C-<f5>") 'bookmark-set)
 (global-set-key (kbd "<f5>")   'bookmark-jump)
 (global-set-key (kbd "S-<f5>") 'list-bookmarks)
 (setq bookmark-default-file "~/Dropbox/bookmarks")
 (setq bookmark-save-flag 1)
+
+(recentf-mode 1)                        ; Remember recently opened files
+
+;; Remember and restore the last cursor location of opened files
+(save-place-mode 1)
+
+;; Revert buffers when the underlying file has changed
+(global-auto-revert-mode 1)
+
+;; Revert Dired and other buffers
+(setq global-auto-revert-non-file-buffers t)
 
 ;; Reset garbage collector treshold after initialization is finished and
 ;; =garbage-collect= on focus-out. Emacs /should/ feel snappier.
