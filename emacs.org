@@ -252,6 +252,22 @@
 **** S-F9
      Writeroom modeline toggle
 
+*** Magit
+**** C-x g
+    run Magit
+**** s
+    stage
+**** c
+    commit
+**** P
+    push
+**** F
+    pull
+**** h
+    show Magit keyboard commands
+**** q
+    exit Magit
+
 *** Draftmode
 **** M-x draft-mode
      Turn on draft-mode
