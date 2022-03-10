@@ -470,6 +470,13 @@
 (global-set-key (kbd "<f7>") 'org-mark-ring-push)
 (global-set-key (kbd "M-<f7>") 'org-mark-ring-goto)
 
+;; Org-mode timer settings
+(setq org-clock-sound "~/.emacs.d/res/siren.wav")
+(global-set-key(kbd "C-c C-x t") 'org-timer-set-timer)
+(global-set-key(kbd "C-c C-x p") 'org-timer-pause-or-continue)
+(global-set-key(kbd "C-c C-x a") 'org-timer-start) ; activate
+(global-set-key(kbd "C-c C-x e") 'org-timer-stop)  ; end
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Transparency
