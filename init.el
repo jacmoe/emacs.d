@@ -504,6 +504,9 @@
 (global-set-key(kbd "C-c C-x a") 'org-timer-start) ; activate
 (global-set-key(kbd "C-c C-x e") 'org-timer-stop)  ; end
 
+;; Enable the markdown exporter
+(require 'ox-md)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Transparency
