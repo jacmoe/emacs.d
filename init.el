@@ -404,7 +404,6 @@
   (yas-global-mode 1)
   :bind
   (
-   ("C-c y e" . yas-expand)
    ("C-c y n" . yas-new-snippet)
    ("C-c y v" . yas-visit-snippet-file)
    )

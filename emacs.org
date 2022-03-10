@@ -134,6 +134,10 @@
     S-F5 List bookmarks
     F5 Bookmark jump
 
+*** Counting words
+    M-= count words in region
+    C-u M-= count words in whole buffer
+
 *** Mark-ring
     C-<SPC> C-<SPC> set the mark to the mark ring
     C-u C-<SPC> move point to where the mark was
@@ -152,6 +156,11 @@
 
 *** Draftmode
     M-x draft-mode
+
+*** Yasnippet
+    TAB expand snippet
+    C-c y n new snippet
+    C-c y v visit snippet file
 
 *** Transparency
     C-c t toggle transparency
