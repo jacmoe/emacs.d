@@ -49,6 +49,13 @@
     go to first non-whitespace on line, forward or backward
 
 ** Editing
+*** Files
+**** C-x C-f
+     Find and open an existing file, or create a new file
+**** C-x C-s
+     Save file to disk
+**** C-x C-c
+     Exit Emacs
 
 *** Formatting
 **** C-j
