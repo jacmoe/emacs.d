@@ -222,5 +222,5 @@
     C-u C-c C-l add link to a file
 
 *** Capturing / Refiling
-  C-c c Run Org-capture
-  C-c C-w Run Org-refile
+    C-c c Run Org-capture
+    C-c C-w Run Org-refile
