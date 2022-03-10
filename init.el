@@ -119,6 +119,10 @@
 
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
+;; Open dired in same buffer
+(put 'dired-find-alternate-file 'disabled nil)
+;; Sort Dired buffers
+(setq dired-listing-switches "-agho --group-directories-first")
 
 ;; Reset garbage collector treshold after initialization is finished and
 ;; =garbage-collect= on focus-out. Emacs /should/ feel snappier.
