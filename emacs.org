@@ -13,214 +13,347 @@
 * Regular
 
 ** Navigate
-   C-f / C-b move forward/backward by character
-   M-f / M-b move forward/backward by word
-   C-n / C-p move forward/backward by line
-   C-a / C-e go to line beginning/end
-   M-a / M-e go to sentence beginning/end
-   M-{ / M-} go to paragraph beginning/end
-   C-x [ / C-x ] go to page beginning/end
-   M-< / M-> go to buffer beginning/end
-   C-v scroll to next screen
-   M-v scroll to previous screen
-   C-x < scroll left
-   C-x > scroll right
-   C-M-p scroll-down-line
-   C-M-n scroll-up-line
-   C-l scroll current line to center, top, bottom
-   M-r reposition cursor to center, top, bottom
-   M-m go to first non-whitespace on line, forward or backward
+*** C-f / C-b
+   move forward/backward by character
+*** M-f / M-b
+    move forward/backward by word
+*** C-n / C-p
+    move forward/backward by line
+*** C-a / C-e
+    go to line beginning/end
+*** M-a / M-e
+    go to sentence beginning/end
+*** M-{ / M-}
+    go to paragraph beginning/end
+*** C-x [ / C-x ]
+    go to page beginning/end
+*** M-< / M->
+    go to buffer beginning/end
+*** C-v
+    scroll to next screen
+*** M-v
+    scroll to previous screen
+*** C-x <
+    scroll left
+*** C-x >
+    scroll right
+*** C-M-p
+    scroll-down-line
+*** C-M-n
+    scroll-up-line
+*** C-l
+    scroll current line to center, top, bottom
+*** M-r
+    reposition cursor to center, top, bottom
+*** M-m
+    go to first non-whitespace on line, forward or backward
 
 ** Editing
 
 *** Formatting
-    C j perform ENTER followed by TAB
-    C-o insert blank line
-    C-x C-o remove all blank lines except one
-    M-\ delete all white space around point
-    M-x canonically-space-region fix up spacing and casing in region
+**** C-j
+     perform ENTER followed by TAB
+**** C-o
+     insert blank line
+**** C-x C-o
+     remove all blank lines except one
+**** M-\
+     delete all white space around point
+**** M-x
+     canonically-space-region fix up spacing and casing in region
 
 *** Case change
-    M-u uppercase word
-    M-l lowercase word
-    M-c capitalize word
-	M-- M-l Convert last word to lower case.  Note ‘Meta--’ is Meta-minus.
-	M-- M-u Convert last word to all upper case.
-	M-- M-c Convert last word to lower case with capital initial.
-    C-x C-u uppercase region
-    C-x C-l lowercase region
+**** M-u
+     uppercase word
+****  M-l
+     lowercase word
+****  M-c
+     capitalize word
+****  M-- M-l
+     Convert last word to lower case.  Note ‘Meta--’ is Meta-minus.
+****  M-- M-u
+     Convert last word to all upper case.
+****  M-- M-c
+     Convert last word to lower case with capital initial.
+****  C-x C-u
+     uppercase region
+****  C-x C-l
+     lowercase region
 
 ** Frames and Windows
-   C-x 1 delete other windows
-   C-x 2 split window, above and below
-   C-x 3 split window, side by side
-   C-M-v scroll other window
-   C-x o switch cursor to another window
-   C-x 4 b select buffer in other window
-   C-x 4 C-o display buffer in other window
-   C-x 4 f find file in other window
-   C-x 4 d run dired in other window
-   C-RIGHT grow window narrower
-   C-LEFT grow window wider
-   C-DOWN make window taller
-   C-UP make window smaller
-   M-x follow-mode toggle follow mode
-   
-** Other
+*** C-x 1
+    delete other windows
+*** C-x 2
+    split window, above and below
+*** C-x 3
+    split window, side by side
+*** C-M-v
+    scroll other window
+*** C-x o
+    switch cursor to another window
+*** C-x 4 b
+    select buffer in other window
+*** C-x 4 C-o
+    display buffer in other window
+*** C-x 4 f
+    find file in other window
+*** C-x 4 d
+    run dired in other window
+*** C-RIGHT
+    grow window narrower
+*** C-LEFT
+    grow window wider
+*** C-DOWN
+    make window taller
+*** C-UP
+    make window smaller
+*** M-x follow-mode
+    toggle follow mode
 
+** Other
 *** Transposing
-    C-t transpose two characters
-    M-t transpose two words
-    C-x C-t transpose two lines
-    M-x ts transpose sentences
-    M-x tp transpose paragraphs
+**** C-t
+     transpose two characters
+**** M-t
+     transpose two words
+**** C-x C-t
+     transpose two lines
+**** M-x ts
+     transpose sentences
+**** M-x tp
+     transpose paragraphs
 
 *** Read-only mode
-    C-x C-q Toggle read-only mode
+**** C-x C-q
+     Toggle read-only mode
 
 *** Numeric argument
-    C-u num repeat following instruction num times
+**** C-u num
+     repeat following instruction num times
 
 *** Abbrevs
-    C-x a g Add global abbrev
+**** C-x a g
+     Add global abbrev
 
 *** Spell check
-    F12 Ispell buffer
-    M-x ispell-change-dictionary change current dictionary
+**** F12
+     Ispell buffer
+**** M-x ispell-change-dictionary
+     change current dictionary
 
 *** Tabs
-    C-j perform ENTER followed by TAB
-    M-i indent from the point to the next TAB-point
+**** C-j
+     perform ENTER followed by TAB
+**** M-i
+     indent from the point to the next TAB-point
 
 *** Killing and deleting
-    C-w kill region
-    M-w copy region to kill buffer
-    C-y yank back last thing killed
-    M-y replace last yank with previous kill, cycle kill ring
-	M-z char zap to char
-   
+**** C-w
+     kill region
+**** M-w
+     copy region to kill buffer
+**** C-y
+     yank back last thing killed
+**** M-y
+     replace last yank with previous kill, cycle kill ring
+**** M-z char
+     zap to char
+
 *** Marking
-    C-@ / C-SPACE set mark here
-    C-x C-x Exchange mark and point
-    M-@ mark arg words away
-    M-h mark paragraph
-    C-x h mark entire buffer
-    C-= expand region -> will mark the word at point, and then subsequently mark semantically
+**** C-@ / C-SPACE
+     set mark here
+**** C-x C-x
+     Exchange mark and point
+**** M-@
+     mark arg words away
+**** M-h
+     mark paragraph
+**** C-x h
+     mark entire buffer
 
 *** Narrowing
-    C-x n n narrow to region
-    C-x n p narrow to page
-    C-x n w widen view
+**** C-x n n
+     narrow to region
+**** C-x n p
+     narrow to page
+**** C-x n w
+     widen view
 
 *** Undo / Redo
-    C-x u undo
-    C-g C-x u redo
-    C-/ undo
-    C-g C-/ redo
-    M-x revert-buffer revert buffer to its original contents
+**** C-x u
+     undo
+**** C-g C-x u
+     redo
+**** C-/
+     undo
+**** C-g C-/
+     redo
+**** M-x revert-buffer
+     revert buffer to its original contents
 
 *** Registers
-    C-x r s save region in register
-    C-x r i insert register contents into buffer
-    C-x r SPACE save value of point in register
-    C-x r j jump to point saved in register
+**** C-x r s
+     save region in register
+**** C-x r i
+     insert register contents into buffer
+**** C-x r SPACE
+     save value of point in register
+**** C-x r j
+     jump to point saved in register
 
 *** Keyboard Macros
-    F3 record keyboard macro
-    F4 end record keyboard macro / run keyboard macro
+**** F3
+     record keyboard macro
+**** F4
+     end record keyboard macro / run keyboard macro
 
 *** Bookmarks
-    C-F5 Bookmark set
-    S-F5 List bookmarks
-    F5 Bookmark jump
+**** C-F5
+     Bookmark set
+**** S-F5
+     List bookmarks
+**** F5
+     Bookmark jump
 
 *** Counting words
-    M-= count words in region
-    C-u M-= count words in whole buffer
+**** M-=
+     count words in region
+**** C-u M-=
+     count words in whole buffer
 
 *** Mark-ring
-    C-<SPC> C-<SPC> set the mark to the mark ring
-    C-u C-<SPC> move point to where the mark was
-    <f7> push current position to the mark ring
-    M-<f7> jump to last position in the mark ring (go back)
+**** C-<SPC> C-<SPC>
+     set the mark to the mark ring
+**** C-u C-<SPC>
+     move point to where the mark was
+**** <f7>
+     push current position to the mark ring
+**** M-<f7>
+     jump to last position in the mark ring (go back)
 
 *** Whitespace
-    M-x whitespace-mode toggles rendering of white space
+**** M-x whitespace-mode
+     toggles rendering of white space
 
 *** Winner-mode
-    C-c  left / right redo/undo window configuration
+**** C-c  left / right
+     redo/undo window configuration
 
 *** Writeroom
-    F9 Writeroom mode
-    M-F9  Writeroom modeline toggle
+**** F9
+     Writeroom mode
+**** S-F9
+     Writeroom modeline toggle
 
 *** Draftmode
-    M-x draft-mode
+**** M-x draft-mode
+     Turn on draft-mode
 
 *** Yasnippet
-    TAB expand snippet
-    C-c y n new snippet
-    C-c y v visit snippet file
+**** TAB
+     expand snippet
+**** C-c y n
+     new snippet
+**** C-c y v
+     visit snippet file
 
 *** Transparency
-    C-c t toggle transparency
+**** C-c t
+     toggle transparency
 
 *** wc-mode
-    M-x wc-mode
-    M-x wc-reset
-    C-c C-w w set word goal
-    C-c C-w c wc-count
+**** M-x wc-mode
+     Turn on wc-mode
+**** M-x wc-reset
+     Reset wc-mode
+**** C-c C-w w
+     set word goal
+**** C-c C-w c
+     wc-count
 
 *** Zoom
-    C-x C-+ Zoom in / make the text larger
-    C-x C-- Zoom out / make the text smaller
-    C-x C-0 Reset zoom level
-
+**** C-x C-+
+     Zoom in / make the text larger
+**** C-x C--
+     Zoom out / make the text smaller
+**** C-x C-0
+     Reset zoom level
 
 * Org-mode
 
 ** Visibility
-   TAB rotate current subtree between states
-   S-TAB rotate entire buffer between states
-   C-c C-x C-v toggle visibility of inline images
+*** TAB
+    rotate current subtree between states
+*** S-TAB
+    rotate entire buffer between states
+*** C-c C-x C-v
+    toggle visibility of inline images
 
 ** Navigate
-   C-c C-n/p next/previous heading
-   C-c C-f/b next/previous heading, same level
-   C-c C-u backward to higher level heading
-   C-c C-j jump to another place in document
+*** C-c C-n/p
+    next/previous heading
+*** C-c C-f/b
+    next/previous heading, same level
+*** C-c C-u
+    backward to higher level heading
+*** C-c C-j
+    jump to another place in document
 
 ** Edit
-   M-RET insert new heading/item at current level
-   C-RET insert new heading after subtree
-   C-c - turn line into item, cycle item type
-   C-c * turn item/line into headline
-   M-LEFT/RIGHT promote/demote heading
-   M-S-LEFT/RIGHT promote/demote current subtree
-   M-UP/DOWN move subtree item up/down
-   C-c C-x c clone a subtree
-   C-c C-x v copy visible text
-   C-c C-x C-w/M-w kill/copy subtree
-   C-c C-x C-y or C-y yank subtree
+*** M-RET
+    insert new heading/item at current level
+*** C-RET
+    insert new heading after subtree
+*** C-c -
+    turn line into item, cycle item type
+*** C-c *
+    turn item/line into headline
+*** M-LEFT/RIGHT
+    promote/demote heading
+*** M-S-LEFT/RIGHT
+    promote/demote current subtree
+*** M-UP/DOWN
+    move subtree item up/down
+*** C-c C-x c
+    clone a subtree
+*** C-c C-x v
+    copy visible text
+*** C-c C-x C-w/M-w
+    kill/copy subtree
+*** C-c C-x C-y or C-y
+    yank subtree
 
 ** Marking
-   M-h mark the element at point. Hitting M-h multiple times will mark next item
-   C-c @ mark subtree
+*** M-h
+    mark the element at point. Hitting M-h multiple times will mark next item
+*** C-c @
+    mark subtree
    
 ** Other
-
 *** Narrowing
-    C-x n s org-narrow-to-subtree
+**** C-x n s
+     org-narrow-to-subtree
 
 *** Tags
-    C-c C-c set tags for heading
-    C-c C-q set tags for current heading
-    C-u C-c C-q realign tags in all headings
+**** C-c C-c
+     set tags for heading
+**** C-c C-q
+     set tags for current heading
+**** C-u C-c C-q
+     realign tags in all headings
 
 *** Links
-    C-c C-o open link at point
-    C-u C-c C-l add link to a file
+**** C-c C-o
+     open link at point
+**** C-u C-c C-l
+     add link to a file
 
 *** Capturing / Refiling
-    C-c c Run Org-capture
-    C-c C-w Run Org-refile
+**** C-c c
+     Run Org-capture
+**** C-c C-w
+     Run Org-refile
+
+*** Export
+**** C-c C-e
+     run org-mode export dialog
