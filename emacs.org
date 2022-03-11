@@ -408,3 +408,14 @@
 **** C-c C-e
      run org-mode export dialog
 
+*** Timer
+**** C-c C-x t
+    set timer
+**** C-c C-x p
+    pause or restart timer
+**** C-c C-x a
+    activate timer
+**** C-c C-x e
+    end timer
+
+
