@@ -144,7 +144,15 @@
 
 *** Spell check
 **** F12
-     Ispell buffer
+     spellcheck buffer
+**** S-F12
+    spellcheck word
+**** C-F12
+    mark all spelling errors in document, refresh spelling on the fly
+**** C-h
+    show options screen for spellchecking session
+**** q
+    end spellchecking session
 **** M-x ispell-change-dictionary
      change current dictionary
 

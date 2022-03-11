@@ -293,6 +293,7 @@
 ;; Vertico, savehist, and Marginalia
 ;; Abbrev
 ;; Yasnippet
+;; Flyspell
 ;; Org-mode
 ;; Transparency
 ;; Gurumode
@@ -408,6 +409,20 @@
    ("C-c y v" . yas-visit-snippet-file)
    )
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Flyspell
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package flyspell
+  :config
+  (setq ispell-program-name "hunspell"
+        ispell-default-dictionary "en_US")
+  :hook (text-mode . flyspell-mode)
+  :bind (("<f12>" . ispell-buffer)
+         ("C-<f12>" . flyspell-buffer)
+         ("S-<f12>" . ispell-word)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
