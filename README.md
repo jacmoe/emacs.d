@@ -55,7 +55,6 @@ If you are on Windows, you need to set the `HOME` environment variable to point 
 
 ## How to use it ##
 
-See the [Emacs survival guide](emacs.org) where most of the keyboard commands are listed.
+See the [Emacs survival guide](emacs.org) where most of the keyboard commands are listed. It's easier to read if you open it in Emacs. I usually have it open in a buffer for whenever I am wondering what keyboard command to use.
 
-
-See my [Creative Writing with Emacs](https://jacmoes.wordpress.com/2019/09/24/creative-writing-with-emacs/) blog post.
+See my [Creative Writing with Emacs](https://jacmoes.wordpress.com/2019/09/24/creative-writing-with-emacs/) blog post for a more thorough explanation, and rationale, for using Emacs for creative writing.
