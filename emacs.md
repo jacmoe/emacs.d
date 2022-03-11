@@ -1,4 +1,13 @@
+
+
 # Emacs Survival Guide
+
+Notation:
+
+\`C\` means \`Control\`, \`S\` means \`SHIFT\`, \`M\` means \`Alt\` (Meta)
+
+For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
+
 
 # Regular
 
