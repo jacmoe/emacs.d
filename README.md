@@ -46,11 +46,11 @@ See [https://www.orgroam.com/manual.html#C-Compiler](https://www.orgroam.com/man
 If you don't want to deal with the C compiler, you need to comment out the `org-roam` section of `init.el`, but you don't want to miss out on the amazing features that `org-roam` provides! It's definitely worth the extra effort.
 
 ## Installation ##
-### Windows ###
-**Important!**
-You need to set the `HOME` environment variable to point to your user directory (usually `c:/Users/[username]`)
 
 Clone this repository into `.emacs.d` in your home directory. That would be in `C:/Users/[username]/.emacs.d` on Windows, and `~/.emacs.d` on Linux.
+
+**Important!**
+If you are on Windows, you need to set the `HOME` environment variable to point to your user directory (usually `c:/Users/[username]`). This Emacs configuration uses it to determine the location of the Emacs configuration directory when you are on Windows.
 
 
 ## How to use it ##
