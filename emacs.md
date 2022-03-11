@@ -1,5 +1,4 @@
 # Emacs Survival Guide
-====================================
 
 # Regular
 
