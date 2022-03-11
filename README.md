@@ -49,6 +49,8 @@ If you don't want to deal with the C compiler, you need to comment out the `org-
 
 Clone this repository into `.emacs.d` in your home directory. That would be in `C:/Users/[username]/.emacs.d` on Windows, and `~/.emacs.d` on Linux.
 
+Create `secret.el` using `secret.el.template` as a template.
+
 **Important!**
 If you are on Windows, you need to set the `HOME` environment variable to point to your user directory (usually `c:/Users/[username]`). This Emacs configuration uses it to determine the location of the Emacs configuration directory when you are on Windows.
 
