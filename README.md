@@ -11,6 +11,8 @@ This configuration requires at least Emacs 27.1.
 
 If you have an older version installed, you need to install a new version. Version 27.2 is recommended, but 27.1 will do.
 
+If you do not want to upgrade your version of Emacs, you can comment out the `vertico` section of `init.el`, but upgrading is going to be worth the trouble!
+
 ### Fonts ###
 
 Install Open Sans if it's not already installed on your system.
@@ -41,10 +43,15 @@ On Linux, there are very likely to be a C compiler installed, but Windows is dif
 
 See [https://www.orgroam.com/manual.html#C-Compiler](https://www.orgroam.com/manual.html#C-Compiler) for how to install a C compiler compatible with Emacs on Windows.
 
+If you don't want to deal with the C compiler, you need to comment out the `org-roam` section of `init.el`, but you don't want to miss out on the amazing features that `org-roam` provides! It's definitely worth the extra effort.
+
 ## Installation ##
 ### Windows ###
 **Important!**
 You need to set the `HOME` environment variable to point to your user directory (usually `c:/Users/[username]`)
+
+Clone this repository into `.emacs.d` in your home directory. That would be in `C:/Users/[username]/.emacs.d` on Windows, and `~/.emacs.d` on Linux.
+
 
 ## How to use it ##
 
