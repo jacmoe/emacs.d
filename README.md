@@ -47,7 +47,7 @@ If you don't want to deal with the C compiler, you need to comment out the `org-
 
 ## Installation ##
 
-Clone this repository into `.emacs.d` in your home directory. That would be in `C:/Users/[username]/.emacs.d` on Windows, and `~/.emacs.d` on Linux.
+Clone this repository, or download archive and extract, into `.emacs.d` in your home directory. That would be in `C:/Users/[username]/.emacs.d` on Windows, and `~/.emacs.d` on Linux.
 
 Create `secret.el` using `secret.el.template` as a template.
 
