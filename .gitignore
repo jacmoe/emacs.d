@@ -35,3 +35,4 @@ transient/history.el
 network-security.data
 history
 places
+/secret.el

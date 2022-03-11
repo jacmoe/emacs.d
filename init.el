@@ -107,7 +107,6 @@
 (global-set-key (kbd "C-<f5>") 'bookmark-set)
 (global-set-key (kbd "<f5>")   'bookmark-jump)
 (global-set-key (kbd "S-<f5>") 'list-bookmarks)
-(setq bookmark-default-file "~/Dropbox/bookmarks")
 (setq bookmark-save-flag 1)
 
 (recentf-mode 1)                        ; Remember recently opened files
@@ -164,7 +163,7 @@
 ;; Validate Emacs' version
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (when (version<= emacs-version "27")
-  (unless (yes-or-no-p "Your Emacs is getting old. Kitten may be killed, continue? ")
+  (unless (yes-or-no-p "This Emacs configuration requires at least Emacs 27.1. Continue anyway? ")
     (kill-emacs)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -180,9 +179,12 @@
 ;; I load =~/.emacs.d/.secret.el= to keep sensible things out of version control. For
 ;; instance, you could set your identity by customizing both =user-full-name= and
 ;; =user-mail-address= in this file.
-(let ((secret.el (expand-file-name ".secret.el" user-emacs-directory)))
+(let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
   (when (file-exists-p secret.el)
     (load secret.el)))
+
+;; Apply settings
+(setq bookmark-default-file my-bookmarks)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
@@ -418,7 +420,7 @@
 (use-package flyspell
   :config
   (setq ispell-program-name "hunspell"
-        ispell-default-dictionary "en_US")
+        ispell-default-dictionary my-default-dictionary)
   :hook (text-mode . flyspell-mode)
   :bind (("<f12>" . ispell-buffer)
          ("C-<f12>" . flyspell-buffer)
@@ -484,7 +486,7 @@
 (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-capture-templates
-      '(("n" "Note" entry (file+headline "~/Dropbox/skriv/notes.org" "Notes")
+      '(("n" "Note" entry (file+headline my-org-capture-notes "Notes")
 	 "* %?\n %a")))
 
 (defun +org/opened-buffer-files ()
@@ -513,7 +515,7 @@
 (global-set-key (kbd "M-<f7>") 'org-mark-ring-goto)
 
 ;; Org-mode timer settings
-(setq org-clock-sound "~/.emacs.d/res/siren.wav")
+(setq org-clock-sound my-org-clock-sound)
 (global-set-key(kbd "C-c C-x t") 'org-timer-set-timer)
 (global-set-key(kbd "C-c C-x p") 'org-timer-pause-or-continue)
 (global-set-key(kbd "C-c C-x a") 'org-timer-start) ; activate
@@ -583,10 +585,7 @@
 (use-package org2blog
              :ensure t)
 
-(setq org2blog/wp-blog-alist
-      '(("Jacmoe's Cyber Soapbox"
-         :url "https://jacmoes.wordpress.com/xmlrpc.php"
-         :username "jacmoe")))
+(setq org2blog/wp-blog-alist my-bloglist)
 
 (add-hook 'org-mode-hook #'org2blog-maybe-start)
 
@@ -621,7 +620,7 @@
   :init
   (setq org-roam-v2-ack t)
   :custom
-  (org-roam-directory "~/RoamNotes")
+  (org-roam-directory my-org-roam-directory)
   (org-roam-completion-everywhere t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
