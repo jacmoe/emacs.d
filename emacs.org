@@ -312,6 +312,23 @@
 **** C-x C-0
      Reset zoom level
 
+*** Org-roam
+**** C-c n f
+    find node, or insert new node
+**** C-c n i
+    insert link to node
+**** C-c n I
+    insert link to node, without creating a node
+**** C-c n p
+    find project
+**** C-c n t
+    capture task
+**** C-c n b
+    capture inbox
+**** C-c n d
+    roam dailies
+
+
 * Org-mode
 
 ** Visibility
@@ -390,3 +407,4 @@
 *** Export
 **** C-c C-e
      run org-mode export dialog
+
