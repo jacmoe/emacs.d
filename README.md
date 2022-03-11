@@ -47,4 +47,8 @@ See [https://www.orgroam.com/manual.html#C-Compiler](https://www.orgroam.com/man
 You need to set the `HOME` environment variable to point to your user directory (usually `c:/Users/[username]`)
 
 ## How to use it ##
+
+See the [Emacs survival guide](emacs.org) where most of the keyboard commands are listed.
+
+
 See my [Creative Writing with Emacs](https://jacmoes.wordpress.com/2019/09/24/creative-writing-with-emacs/) blog post.
