@@ -285,9 +285,9 @@
 *** Yasnippet
 **** TAB
      expand snippet
-**** C-c y n
+**** C-c s n
      new snippet
-**** C-c y v
+**** C-c s v
      visit snippet file
 
 *** Transparency
