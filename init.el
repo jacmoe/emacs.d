@@ -110,6 +110,7 @@
 (setq bookmark-save-flag 1)
 
 (recentf-mode 1)                        ; Remember recently opened files
+(global-set-key (kbd "C-c r") 'recentf-open-files)
 
 ;; Remember and restore the last cursor location of opened files
 (save-place-mode 1)

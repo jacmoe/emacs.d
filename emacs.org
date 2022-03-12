@@ -19,7 +19,6 @@ Notation:
 For example, `C-x` means hold down the `Control` key while typing `x`.
 
 * Regular
-
 ** Navigate
 | C-f / C-b | move forward/backward by character |
 | M-f / M-b | move forward/backward by word      |
@@ -42,8 +41,12 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 ** Editing
 *** Files
 | C-x C-f | Find and open an existing file, or create a new file |
-| C-x C-s | Save file to disk |
-| C-x C-c | Exit Emacs |
+| C-c r   | Open recently opened file                            |
+| C-x C-r | Find and open file read-only                         |
+| C-x i   | Insert file                                          |
+| C-x C-s | Save file                                            |
+| C-x C-w | Save file as                                         |
+| C-x C-c | Exit Emacs                                           |
 
 *** Formatting
 | C-j | perform ENTER followed by TAB |
