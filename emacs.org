@@ -200,9 +200,9 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | C-c C-w c | wc-count |
 
 *** Zoom
-| C-x C-+ | Zoom in / make the text larger |
+| C-x C-+ | Zoom in / make the text larger   |
 | C-x C-- | Zoom out / make the text smaller |
-| C-x C-0 | Reset zoom level |
+| C-x C-0 | Reset zoom level                 |
 
 *** Org-roam
 | C-c n f | find node, or insert new node |
@@ -213,6 +213,9 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | C-c n b | capture inbox |
 | C-c n d | roam dailies |
 
+*** Deft
+| C-c n d | run deft |
+| C-c C-q | quit deft |
 
 * Org-mode
 ** Visibility
