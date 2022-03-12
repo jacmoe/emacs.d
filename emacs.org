@@ -41,6 +41,7 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 ** Editing
 *** Files
 | C-x C-f | Find and open an existing file, or create a new file |
+| C-x d   | Open directory                                       |
 | C-c r   | Open recently opened file                            |
 | C-x C-r | Find and open file read-only                         |
 | C-x i   | Insert file                                          |
