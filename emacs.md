@@ -148,8 +148,38 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 
 
 <tr>
+<td class="org-left">C-x d</td>
+<td class="org-left">Open directory</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-c r</td>
+<td class="org-left">Open recently opened file</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-x C-r</td>
+<td class="org-left">Find and open file read-only</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-x i</td>
+<td class="org-left">Insert file</td>
+</tr>
+
+
+<tr>
 <td class="org-left">C-x C-s</td>
-<td class="org-left">Save file to disk</td>
+<td class="org-left">Save file</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-x C-w</td>
+<td class="org-left">Save file as</td>
 </tr>
 
 
@@ -1165,6 +1195,31 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 <tr>
 <td class="org-left">C-c n d</td>
 <td class="org-left">roam dailies</td>
+</tr>
+</tbody>
+</table>
+
+
+### Deft
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">C-c n d</td>
+<td class="org-left">run deft</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-c C-q</td>
+<td class="org-left">quit deft</td>
 </tr>
 </tbody>
 </table>
