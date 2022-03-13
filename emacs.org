@@ -193,10 +193,10 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | C-c t | toggle transparency |
 
 *** wc-mode
-| M-x wc-mode | Turn on wc-mode |
-| M-x wc-reset | Reset wc-mode |
-| C-c C-w w | set word goal |
-| C-c C-w c | wc-count |
+| C-c w        | Turn on wc-mode |
+| M-x wc       | count words in buffer |
+| M-x wc-reset | Reset wc-mode   |
+| C-c C-w w    | set word goal   |
 
 *** Zoom
 | C-x C-+ | Zoom in / make the text larger   |
