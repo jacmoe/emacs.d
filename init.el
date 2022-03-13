@@ -97,7 +97,7 @@
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
-(setq sentence-end-double-space t)                                       ; a sentence does end with a period and two spaces
+(setq sentence-end-double-space nil)                                       ; a sentence does end with a period and two spaces
 (winner-mode 1)
 (global-set-key (kbd "C-<down>") 'enlarge-window)
 (global-set-key (kbd "C-<up>") 'shrink-window)
