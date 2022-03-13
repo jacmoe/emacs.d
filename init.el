@@ -747,4 +747,4 @@ capture was not aborted."
         deft-strip-summary-regexp ":PROPERTIES:\n\\(.+\n\\)+:END:\n"
         deft-use-filename-as-title t)
   :bind
-  ("C-c n d" . deft))
+  ("C-c d" . deft))

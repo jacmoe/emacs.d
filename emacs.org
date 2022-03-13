@@ -53,7 +53,7 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | C-o | insert blank line |
 | C-x C-o | remove all blank lines except one |
 | M-\ | delete all white space around point |
-| M-x | canonically-space-region fix up spacing and casing in region |
+| M-x canonically-space-region| fix up spacing and casing in region  |
 
 *** Case change
 | M-u | uppercase word |
@@ -213,7 +213,7 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | C-c n d | roam dailies |
 
 *** Deft
-| C-c n d | run deft |
+| C-c d   | run deft |
 | C-c C-q | quit deft |
 
 * Org-mode
