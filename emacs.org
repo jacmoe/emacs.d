@@ -27,7 +27,6 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | M-a / M-e | go to sentence beginning/end  |
 | M-{ / M-} | go to paragraph beginning/end |
 | C-x [ / C-x ] | go to page beginning/end |
-| M-< / M-> | go to buffer beginning/end |
 | C-v | scroll to next screen |
 | M-v | scroll to previous screen |
 | C-x < | scroll left |
