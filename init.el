@@ -624,7 +624,9 @@
 ;; Org-tracktable
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package org-tracktable)
+(use-package org-tracktable
+  :config
+  (setq org-tracktable-daily-goal my-org-tracktable-daily-goal))
 (defalias 'tti 'org-tracktable-insert-table)
 (defalias 'ttu 'org-tracktable-write)
 (defalias 'tts 'org-tracktable-status)
