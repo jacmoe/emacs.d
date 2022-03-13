@@ -304,6 +304,7 @@
 ;; Acewindow
 ;; Magit
 ;; Org2blog
+;; Org-sidebar
 ;; Dictionary
 ;; Writeroom
 ;; Org-roam
@@ -606,6 +607,27 @@
 (setq org2blog/wp-blog-alist my-bloglist)
 
 (add-hook 'org-mode-hook #'org2blog-maybe-start)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Org-sidebar
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package org-sidebar)
+(defalias 'sbtree 'org-sidebar-tree)
+(defalias 'sbtreet 'org-sidebar-tree-toggle)
+(defalias 'sb 'org-sidebar)
+(defalias 'sbt 'org-sidebar-toggle)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Org-tracktable
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package org-tracktable)
+(defalias 'tti 'org-tracktable-insert-table)
+(defalias 'ttu 'org-tracktable-write)
+(defalias 'tts 'org-tracktable-status)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;

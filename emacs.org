@@ -212,6 +212,20 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 | C-c n b | capture inbox |
 | C-c n d | roam dailies |
 
+*** Org-sidebar
+| M-x sb      | show sidebar      |
+| M-x sbtree  | show tree sidebar |
+| M-x sbt     | toggle sidebar    |
+| M-x sbtreet | toggle tree sidebar |
+Hint: use ~C-x n w~ to widen the view of the main org-mode buffer if needed.
+
+*** Org-tracktable
+| M-x tti | insert tracktable |
+| Mx-ttu  | update tracktable |
+| M-x tts | show tracktable status |
+Hint: use ~C-c &~ to get back to where you were prior to updating the tracktable.
+Use tag ~nowc~ or ~noexport~ tags for the headings which content you do not want to be counted by the tracktable.
+
 *** Deft
 | C-c d   | run deft |
 | C-c C-q | quit deft |
