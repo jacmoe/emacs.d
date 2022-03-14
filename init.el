@@ -33,9 +33,9 @@
 ;; Global variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar me/font-family            "Open Sans"  "The font to use.")
-(defvar me/font-size-default      130       "The font size to use for default text.")
-(defvar me/font-size-header       140       "The font size to use for headers.")
-(defvar me/font-size-mode-line    130       "The font size to use for the mode line.")
+(defvar me/font-size-default      170       "The font size to use for default text.")
+(defvar me/font-size-header       180       "The font size to use for headers.")
+(defvar me/font-size-mode-line    170       "The font size to use for the mode line.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some sane defaults
@@ -72,7 +72,7 @@
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
-;;(set-default-font me/font-family)
+(set-frame-font me/font-family)
 (set-face-attribute 'default nil :height 130)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -309,6 +309,7 @@
 ;; Writeroom
 ;; Org-roam
 ;; Deft
+;; God-mode
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -789,3 +790,27 @@ capture was not aborted."
         deft-use-filename-as-title t)
   :bind
   ("C-c d" . deft))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; God-mode
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package god-mode
+  :ensure t)
+
+(global-set-key (kbd "<escape>") 'god-mode)
+(setq god-exempt-major-modes nil)
+(setq god-exempt-predicates nil)
+
+  (defun hook-update-cursor ()
+  (cond (god-local-mode
+           (set-cursor-color "Goldenrod")
+           (read-only-mode t))
+        (t
+           (set-cursor-color "#DCDCCC")
+           (read-only-mode -1))))
+            
+(add-hook 'god-mode-enabled-hook 'hook-update-cursor)
+(add-hook 'god-mode-disabled-hook  'hook-update-cursor)
+
