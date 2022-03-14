@@ -14,9 +14,9 @@
 
 Notation:
 
-`C` means `Control`, `S` means `SHIFT`, `M` means `Alt` (Meta)
+~C~ means ~Control~, ~S~ means ~SHIFT~, ~M~ means ~Alt~ (Meta)
 
-For example, `C-x` means hold down the `Control` key while typing `x`.
+For example, ~C-x~ means hold down the ~Control~ key while typing ~x~.
 
 * Regular
 ** Navigate
@@ -64,6 +64,9 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 |  M-- M-c | Convert last word to lower case with capital initial. |
 |  C-x C-u | uppercase region |
 |  C-x C-l | lowercase region |
+
+*** Search and replace
+| M-% | Search and replace |
 
 ** Frames and Windows
 | C-x 1 | delete other windows |

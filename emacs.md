@@ -4,9 +4,9 @@
 
 Notation:
 
-\`C\` means \`Control\`, \`S\` means \`SHIFT\`, \`M\` means \`Alt\` (Meta)
+`C` means `Control`, `S` means `SHIFT`, `M` means `Alt` (Meta)
 
-For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
+For example, `C-x` means hold down the `Control` key while typing `x`.
 
 
 # Regular
@@ -62,12 +62,6 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 <tr>
 <td class="org-left">C-x [ / C-x ]</td>
 <td class="org-left">go to page beginning/end</td>
-</tr>
-
-
-<tr>
-<td class="org-left">M-&lt; / M-&gt;</td>
-<td class="org-left">go to buffer beginning/end</td>
 </tr>
 
 
@@ -227,8 +221,8 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 
 
 <tr>
-<td class="org-left">M-x</td>
-<td class="org-left">canonically-space-region fix up spacing and casing in region</td>
+<td class="org-left">M-x canonically-space-region</td>
+<td class="org-left">fix up spacing and casing in region</td>
 </tr>
 </tbody>
 </table>
@@ -290,6 +284,25 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 <tr>
 <td class="org-left">C-x C-l</td>
 <td class="org-left">lowercase region</td>
+</tr>
+</tbody>
+</table>
+
+
+### Search and replace
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">M-%</td>
+<td class="org-left">Search and replace</td>
 </tr>
 </tbody>
 </table>
@@ -1089,8 +1102,14 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">M-x wc-mode</td>
+<td class="org-left">C-c w</td>
 <td class="org-left">Turn on wc-mode</td>
+</tr>
+
+
+<tr>
+<td class="org-left">M-x wc</td>
+<td class="org-left">count words in buffer</td>
 </tr>
 
 
@@ -1103,12 +1122,6 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 <tr>
 <td class="org-left">C-c C-w w</td>
 <td class="org-left">set word goal</td>
-</tr>
-
-
-<tr>
-<td class="org-left">C-c C-w c</td>
-<td class="org-left">wc-count</td>
 </tr>
 </tbody>
 </table>
@@ -1200,6 +1213,79 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 </table>
 
 
+### Org-sidebar
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">M-x sb</td>
+<td class="org-left">show sidebar</td>
+</tr>
+
+
+<tr>
+<td class="org-left">M-x sbtree</td>
+<td class="org-left">show tree sidebar</td>
+</tr>
+
+
+<tr>
+<td class="org-left">M-x sbt</td>
+<td class="org-left">toggle sidebar</td>
+</tr>
+
+
+<tr>
+<td class="org-left">M-x sbtreet</td>
+<td class="org-left">toggle tree sidebar</td>
+</tr>
+</tbody>
+</table>
+
+Hint: use `C-x n w` to widen the view of the main org-mode buffer if needed.
+
+
+### Org-tracktable
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">M-x tti</td>
+<td class="org-left">insert tracktable</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Mx-ttu</td>
+<td class="org-left">update tracktable</td>
+</tr>
+
+
+<tr>
+<td class="org-left">M-x tts</td>
+<td class="org-left">show tracktable status</td>
+</tr>
+</tbody>
+</table>
+
+Hint: use `C-c &` to get back to where you were prior to updating the tracktable.
+Use tag `nowc` or `noexport` tags for the headings which content you do not want to be counted by the tracktable.
+
+
 ### Deft
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -1212,7 +1298,7 @@ For example, \`C-x\` means hold down the \`Control\` key while typing \`x\`.
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">C-c n d</td>
+<td class="org-left">C-c d</td>
 <td class="org-left">run deft</td>
 </tr>
 
