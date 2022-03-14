@@ -33,9 +33,6 @@
 ;; Global variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defvar me/font-family            "Open Sans"  "The font to use.")
-(defvar me/font-size-default      170       "The font size to use for default text.")
-(defvar me/font-size-header       180       "The font size to use for headers.")
-(defvar me/font-size-mode-line    170       "The font size to use for the mode line.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some sane defaults
@@ -186,6 +183,9 @@
 
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
+(defvar me/font-size-default      my-font-size       "The font size to use for default text.")
+(defvar me/font-size-header       (+ my-font-size 10)       "The font size to use for headers.")
+(defvar me/font-size-mode-line    my-font-size       "The font size to use for the mode line.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
