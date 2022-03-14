@@ -224,7 +224,7 @@ Hint: use ~C-x n w~ to widen the view of the main org-mode buffer if needed.
 
 *** Org-tracktable
 | M-x tti | insert tracktable |
-| Mx-ttu  | update tracktable |
+| Mx-ttw  | write new tracktable entry  |
 | M-x tts | show tracktable status |
 Hint: use ~C-c &~ to get back to where you were prior to updating the tracktable.
 Use tag ~nowc~ or ~noexport~ tags for the headings which content you do not want to be counted by the tracktable.

@@ -327,6 +327,7 @@
 ;;
 ;; Modeline
 ;;
+;; https://github.com/TheBB/spaceline][Eivind Fonn]]
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;- Green means buffer is clean.
 ;;- Red means buffer is modified.
@@ -342,7 +343,6 @@
 ;;famous mode-line theme. It has been extracted as an independent package for general
 ;;fun and profit.
 ;;
-;;[[https://github.com/TheBB/spaceline][Eivind Fonn]]
 (use-package spaceline :demand t
   :config
                     (spaceline-emacs-theme)
@@ -365,7 +365,10 @@
 ;;
 ;; Vertico, savehist, and Marginalia
 ;;
+;; https://github.com/minad/vertico
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Vertico provides a performant and minimalistic vertical completion UI based on the default completion system. 
+
 ;; Minimal interface for minibuffer completions
 (use-package vertico
   :ensure t
@@ -391,6 +394,8 @@
 ;; Abbrev
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Auto-text for Emacs
+
 ;; stop asking whether to save newly added abbrev when quitting emacs
 (setq save-abbrevs 'silently)
 
@@ -401,7 +406,9 @@
 ;;
 ;; Yasnippet
 ;;
+;; https://github.com/joaotavora/yasnippet
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; A template system for Emacs
 (use-package yasnippet
   :ensure t
   :init
@@ -421,6 +428,7 @@
 ;; Flyspell
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; On the fly spell checking
 (use-package flyspell
   :config
   (setq ispell-program-name "hunspell"
@@ -434,7 +442,10 @@
 ;;
 ;; Org-mode
 ;;
+;; https://orgmode.org/
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; A GNU Emacs major mode for keeping notes, authoring documents, computational notebooks,
+;; literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain text system.
 (use-package org
 :ensure t)
 
@@ -533,7 +544,8 @@
 ;; Transparency
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
- (defun toggle-transparency ()
+;; Toggles background transparency
+(defun toggle-transparency ()
    (interactive)
    (let ((alpha (frame-parameter nil 'alpha)))
      (set-frame-parameter
@@ -550,6 +562,7 @@
 ;;
 ;; GuruMode
 ;;
+;; https://github.com/bbatsov/guru-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;Guru mode disables some common keybindings and suggests the use of the established Emacs alternatives instead.
 (use-package guru-mode
@@ -562,7 +575,9 @@
 ;;
 ;; Wc-mode
 ;;
+;; https://github.com/bnbeckwith/wc-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Word count minor mode for Emacs
 (use-package wc-mode
   :bind
   ("C-c w" . wc-mode))
@@ -578,7 +593,9 @@
 ;;
 ;; AceWindow
 ;;
+;; https://github.com/abo-abo/ace-window
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Quickly switch windows in Emacs
 (use-package ace-window
   :ensure t
   :init
@@ -594,13 +611,16 @@
 ;;
 ;; Magit
 ;;
+;; https://magit.vc/
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; A git client for emacs
 (use-package magit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Org2blog
 ;;
+;; https://github.com/org2blog/org2blog
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org2blog
              :ensure t)
@@ -613,6 +633,7 @@
 ;;
 ;; Org-sidebar
 ;;
+;; https://github.com/alphapapa/org-sidebar
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org-sidebar)
 (defalias 'sbtree 'org-sidebar-tree)
@@ -624,18 +645,21 @@
 ;;
 ;; Org-tracktable
 ;;
+;; https://github.com/tty-tourist/org-tracktable
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; an emacs/org-mode package for tracking your writing progress in an org-table.
 (use-package org-tracktable
   :config
   (setq org-tracktable-daily-goal my-org-tracktable-daily-goal))
 (defalias 'tti 'org-tracktable-insert-table)
-(defalias 'ttu 'org-tracktable-write)
+(defalias 'ttw 'org-tracktable-write)
 (defalias 'tts 'org-tracktable-status)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Dictionary
 ;;
+;; https://www.manueluberti.eu/emacs/2021/07/31/dictionary/
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package dictionary)
 
@@ -643,10 +667,10 @@
 ;;
 ;; Writeroom
 ;;
+;; https://github.com/joostkremers/writeroom-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Distraction-free screen
 ;;"Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X."
-;;[[https://github.com/joostkremers/writeroom-mode][https://github.com/joostkremers/writeroom-mode]]
 (use-package writeroom-mode
   :bind
   (("<f9>" . writeroom-mode)
@@ -656,6 +680,7 @@
 ;;
 ;; Org-roam
 ;;
+;; https://github.com/org-roam/org-roam
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org-roam
   :ensure t
@@ -781,6 +806,7 @@ capture was not aborted."
 ;;
 ;; Deft
 ;;
+;; https://github.com/jrblevin/deft
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package deft
   :config
@@ -795,6 +821,7 @@ capture was not aborted."
 ;;
 ;; God-mode
 ;;
+;; https://github.com/emacsorphanage/god-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package god-mode
   :ensure t)
