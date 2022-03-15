@@ -833,7 +833,7 @@ capture was not aborted."
 (require 'boon-tutorial)
 (require 'boon-powerline)
 :config
-(boon-mode)
-(boon-powerline-theme) ;; if you want use powerline with Boon
+;;(boon-mode)
+;;(boon-powerline-theme)
 )
 
