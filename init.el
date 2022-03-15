@@ -833,7 +833,8 @@ capture was not aborted."
 (require 'boon-tutorial)
 (require 'boon-powerline)
 :config
-;;(boon-mode)
-;;(boon-powerline-theme)
+(if (eq my-use-boon t)
+    (progn 
+(boon-mode)
+(boon-powerline-theme)))
 )
-
