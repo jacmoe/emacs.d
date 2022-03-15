@@ -70,7 +70,6 @@
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
 (set-frame-font me/font-family)
-(set-face-attribute 'default nil :height 130)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable some more goodies.
@@ -88,13 +87,14 @@
 (global-unset-key (kbd "M-j"))
 (global-set-key (kbd "M-j") 'join-line)    ; join line
 (global-unset-key (kbd "C-M-p"))
+
 (global-set-key (kbd "C-M-p") 'scroll-down-line)    ; scroll down
 (global-unset-key (kbd "C-M-n"))
 (global-set-key (kbd "C-M-n") 'scroll-up-line)    ; scroll up
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
 (global-visual-line-mode t)                      ; turn on word wrap
-(setq sentence-end-double-space nil)                                       ; a sentence does end with a period and two spaces
+(setq sentence-end-double-space nil)                                       ; a sentence does not end with a period and two spaces
 (winner-mode 1)
 (global-set-key (kbd "C-<down>") 'enlarge-window)
 (global-set-key (kbd "C-<up>") 'shrink-window)
@@ -186,6 +186,7 @@
 (defvar me/font-size-default      my-font-size       "The font size to use for default text.")
 (defvar me/font-size-header       (+ my-font-size 10)       "The font size to use for headers.")
 (defvar me/font-size-mode-line    my-font-size       "The font size to use for the mode line.")
+(set-face-attribute 'default nil :height my-font-size)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
@@ -833,6 +834,6 @@ capture was not aborted."
 (require 'boon-powerline)
 :config
 (boon-mode)
-;;(boon-powerline-theme) ;; if you want use powerline with Boon
+(boon-powerline-theme) ;; if you want use powerline with Boon
 )
 
