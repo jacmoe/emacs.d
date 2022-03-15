@@ -827,14 +827,14 @@ capture was not aborted."
 ;; An Ergonomic Command Mode for Emacs
 ;; Run tutorial with M-x boon-tutorial
 (use-package boon
-:ensure t
-:init
-(require 'boon-qwerty)
-(require 'boon-tutorial)
-(require 'boon-powerline)
-:config
-(if (eq my-use-boon t)
-    (progn 
-(boon-mode)
-(boon-powerline-theme)))
-)
+  :ensure t
+  :init
+  (require 'boon-qwerty)
+  (require 'boon-tutorial)
+  (require 'boon-powerline)
+  :config
+  (if (eq my-use-boon t)
+      (progn 
+        (boon-mode)
+        (boon-powerline-theme)))
+  )
