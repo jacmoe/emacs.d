@@ -309,7 +309,7 @@
 ;; Writeroom
 ;; Org-roam
 ;; Deft
-;; God-mode
+;; Boon
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -819,25 +819,20 @@ capture was not aborted."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; God-mode
+;; Boon
 ;;
-;; https://github.com/emacsorphanage/god-mode
+;; https://github.com/jyp/boon
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package god-mode
-  :ensure t)
-
-(global-set-key (kbd "<escape>") 'god-mode)
-(setq god-exempt-major-modes nil)
-(setq god-exempt-predicates nil)
-
-  (defun hook-update-cursor ()
-  (cond (god-local-mode
-           (set-cursor-color "Goldenrod")
-           (read-only-mode t))
-        (t
-           (set-cursor-color "#DCDCCC")
-           (read-only-mode -1))))
-            
-(add-hook 'god-mode-enabled-hook 'hook-update-cursor)
-(add-hook 'god-mode-disabled-hook  'hook-update-cursor)
+;; An Ergonomic Command Mode for Emacs
+;; Run tutorial with M-x boon-tutorial
+(use-package boon
+:ensure t
+:init
+(require 'boon-qwerty)
+(require 'boon-tutorial)
+(require 'boon-powerline)
+:config
+(boon-mode)
+;;(boon-powerline-theme) ;; if you want use powerline with Boon
+)
 
