@@ -540,6 +540,9 @@
 ;; Enable the markdown exporter
 (require 'ox-md)
 
+;; Tell Emacs to render fonts in variable pitch mode when using org-mode
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Transparency
@@ -837,4 +840,7 @@ capture was not aborted."
       (progn 
         (boon-mode)
         (boon-powerline-theme)))
+  :bind
+  ("C-c b" . turn-on-boon-mode)
+  ("C-c e" . turn-off-boon-mode)
   )
