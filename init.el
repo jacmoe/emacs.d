@@ -30,11 +30,6 @@
   (tooltip-mode 0))                              ; Disable the tooltips
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Global variables
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar me/font-family            "Open Sans"  "The font to use.")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some sane defaults
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default
@@ -69,7 +64,6 @@
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
-(set-frame-font me/font-family)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable some more goodies.
@@ -183,10 +177,12 @@
 
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
+(defvar me/font-family            my-font-family  "The font to use.")
 (defvar me/font-size-default      my-font-size       "The font size to use for default text.")
 (defvar me/font-size-header       (+ my-font-size 10)       "The font size to use for headers.")
 (defvar me/font-size-mode-line    my-font-size       "The font size to use for the mode line.")
 (set-face-attribute 'default nil :height my-font-size)
+(set-frame-font me/font-family)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
@@ -299,6 +295,7 @@
 ;; Yasnippet
 ;; Flyspell
 ;; Org-mode
+;; Mixed-pitch
 ;; Transparency
 ;; Gurumode
 ;; Wc-mode
@@ -480,25 +477,6 @@
 
 (setq org-tags-column -80)
 
-(let* ((variable-tuple (cond ((x-list-fonts "Open Sans") '(:font "Open Sans"))
-                             ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-                             ((x-list-fonts "Verdana")         '(:font "Verdana"))
-                             ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-                             (nil (warn "Cannot find a Sans Serif Font.  Install Open Sans."))))
-       (base-font-color     (face-foreground 'default nil 'default))
-       (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-
-  (custom-theme-set-faces 'user
-                          `(org-level-8 ((t (,@headline ,@variable-tuple))))
-                          `(org-level-7 ((t (,@headline ,@variable-tuple))))
-                          `(org-level-6 ((t (,@headline ,@variable-tuple))))
-                          `(org-level-5 ((t (,@headline ,@variable-tuple))))
-                          `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-                          `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-                          `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-                          `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-                          `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
-
 (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-capture-templates
@@ -540,8 +518,19 @@
 ;; Enable the markdown exporter
 (require 'ox-md)
 
-;; Tell Emacs to render fonts in variable pitch mode when using org-mode
-(add-hook 'org-mode-hook 'variable-pitch-mode)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Mixed-pitch
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package mixed-pitch
+  :hook
+  (text-mode . mixed-pitch-mode)
+  :config
+  (set-face-attribute 'default nil "Tahoma" :height 170)
+  (set-face-attribute 'fixed-pitch nil "Tahoma")
+  (set-face-attribute 'variable-pitch nil "Tahoma")
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -844,3 +833,4 @@ capture was not aborted."
   ("C-c b" . turn-on-boon-mode)
   ("C-c e" . turn-off-boon-mode)
   )
+
