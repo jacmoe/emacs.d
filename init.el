@@ -59,7 +59,7 @@
 (display-battery-mode 0)                         ; Hide the battery level
 (display-time-mode 1)                            ; Hide the time representation
 (fringe-mode '(10 . 10))                         ; Show vertical fringes
-(global-hl-line-mode 1)                          ; Hightlight current line
+(global-hl-line-mode 0)                          ; Hightlight current line
 (global-subword-mode 1)                          ; Iterate through CamelCase words
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
