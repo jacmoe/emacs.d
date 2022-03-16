@@ -47,7 +47,7 @@
  ns-use-srgb-colorspace nil                      ; Don't use sRGB colors
  scroll-conservatively most-positive-fixnum      ; Always scroll by one line
  select-enable-clipboard t                       ; Merge system's and Emacs' clipboard
- show-trailing-whitespace nil                    ; Display trailing whitespaces
+ show-trailing-whitespace nil                    ; Do not display trailing whitespaces
  split-height-threshold nil                      ; Disable vertical window splitting
  split-width-threshold nil                       ; Disable horizontal window splitting
  tab-width 4                                     ; Set width for tabs
@@ -59,7 +59,7 @@
 (display-battery-mode 0)                         ; Hide the battery level
 (display-time-mode 1)                            ; Hide the time representation
 (fringe-mode '(10 . 10))                         ; Show vertical fringes
-(global-hl-line-mode 0)                          ; Hightlight current line
+(global-hl-line-mode 0)                          ; Do not hightlight current line
 (global-subword-mode 1)                          ; Iterate through CamelCase words
 (menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
@@ -81,7 +81,6 @@
 (global-unset-key (kbd "M-j"))
 (global-set-key (kbd "M-j") 'join-line)    ; join line
 (global-unset-key (kbd "C-M-p"))
-
 (global-set-key (kbd "C-M-p") 'scroll-down-line)    ; scroll down
 (global-unset-key (kbd "C-M-n"))
 (global-set-key (kbd "C-M-n") 'scroll-up-line)    ; scroll up
@@ -94,28 +93,22 @@
 (global-set-key (kbd "C-<up>") 'shrink-window)
 (global-set-key (kbd "C-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-<right>") 'shrink-window-horizontally)
-
 (global-set-key (kbd "C-<f5>") 'bookmark-set)
 (global-set-key (kbd "<f5>")   'bookmark-jump)
 (global-set-key (kbd "S-<f5>") 'list-bookmarks)
 (setq bookmark-save-flag 1)
-
 (recentf-mode 1)                        ; Remember recently opened files
 (global-set-key (kbd "C-c r") 'recentf-open-files)
-
 ;; Remember and restore the last cursor location of opened files
 (save-place-mode 1)
-
 ;; Revert buffers when the underlying file has changed
 (global-auto-revert-mode 1)
-
 ;; Revert Dired and other buffers
 (setq global-auto-revert-non-file-buffers t)
 ;; Open dired in same buffer
 (put 'dired-find-alternate-file 'disabled nil)
 ;; Sort Dired buffers
 (setq dired-listing-switches "-agho --group-directories-first")
-
 ;; Reset garbage collector treshold after initialization is finished and
 ;; =garbage-collect= on focus-out. Emacs /should/ feel snappier.
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
@@ -168,9 +161,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load =.secret.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; I load =~/.emacs.d/.secret.el= to keep sensible things out of version control. For
-;; instance, you could set your identity by customizing both =user-full-name= and
-;; =user-mail-address= in this file.
+;; Load personal settings from secret.el. Needs to be created.
+;; See secret.el.example
 (let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
   (when (file-exists-p secret.el)
     (load secret.el)))
@@ -345,7 +337,6 @@
   :config
                     (spaceline-emacs-theme)
 (setq powerline-arrow-shape 'arrow))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
