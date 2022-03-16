@@ -175,6 +175,7 @@
 (defvar me/font-size-mode-line    my-font-size       "The font size to use for the mode line.")
 (set-face-attribute 'default nil :height my-font-size)
 (set-frame-font me/font-family)
+(setq-default line-spacing my-line-spacing)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
