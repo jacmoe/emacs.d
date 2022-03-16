@@ -523,14 +523,14 @@
 ;; Mixed-pitch
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (font-family-list) C-j
 (use-package mixed-pitch
   :hook
   (text-mode . mixed-pitch-mode)
-  :config
-  (set-face-attribute 'default nil "Tahoma" :height 170)
-  (set-face-attribute 'fixed-pitch nil "Tahoma")
-  (set-face-attribute 'variable-pitch nil "Tahoma")
   )
+(set-face-attribute 'default nil :font my-font-family :height my-font-size)
+(set-face-attribute 'fixed-pitch nil :font my-font-family :height my-font-size)
+(set-face-attribute 'variable-pitch nil :font my-font-family :height my-font-size)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
