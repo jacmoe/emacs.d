@@ -1,10 +1,9 @@
 ;; -*- lexical-binding: t; -*-
-;;; init.el --- My Emacs configuration
+;;; init.el --- My Emacs configuration, optimized for creative writing
 
 ;; Copyright (C) 2017-2022 Jacob Moen
 
 ;; Author: Jacob Moen <jacmoe.dk@gmail.com>
-;; Created: 01 January 2017
 ;; Homepage: https://github.com/jacmoe/.emacs.d
 
 ;; This program is free software. It comes without any warranty, to the extent
@@ -12,13 +11,9 @@
 ;; terms of the Do What The Fuck You Want To Public License, Version 2, as published
 ;; by Sam Hocevar. See http://www.wtfpl.net/ for more details.
 
-;;; Commentary:
-
 ;; To install, clone .emacs.d/ into ~/.emacs.d/.
 ;;
 ;; See README.md for more details.
-
-;;; Code:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Use better defaults

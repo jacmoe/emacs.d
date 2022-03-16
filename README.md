@@ -13,10 +13,6 @@ If you have an older version installed, you need to install a new version. Versi
 
 If you do not want to upgrade your version of Emacs, you can comment out the `vertico` section of `init.el`, but upgrading is going to be worth the trouble!
 
-### Fonts ###
-
-Install Open Sans if it's not already installed on your system.
-
 ### Hunspell
 
 #### Linux
