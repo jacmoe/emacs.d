@@ -340,8 +340,13 @@
   :config
   (setq ispell-program-name "hunspell"
         ispell-default-dictionary my-default-dictionary)
+        (eval-after-load "ispell"
+        '(progn (defun ispell-get-coding/system () 'utf-8)))
+  ;; tell ispell that ' can be part of a word
+  (setq ispell-local-dictionary-alist
+        `(("english" "[[:alpha:]]" "[^[:alpha:]]"
+               "['']" t ("-d" "en_US") nil utf-8)))
   :bind (("<f12>" . ispell-buffer)
-         ("C-<f12>" . flyspell-buffer)
          ("S-<f12>" . ispell-word)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
