@@ -53,7 +53,7 @@
 (column-number-mode 0)                           ; Hide the column number
 (display-battery-mode 0)                         ; Hide the battery level
 (display-time-mode 1)                            ; Hide the time representation
-(fringe-mode '(10 . 10))                         ; Show vertical fringes
+(fringe-mode '(50 . 50))                         ; Show vertical fringes
 (global-hl-line-mode 0)                          ; Do not hightlight current line
 (global-subword-mode 1)                          ; Iterate through CamelCase words
 (menu-bar-mode 0)                                ; Disable the menu bar
@@ -248,7 +248,7 @@
   :demand t
   :config
   (load-theme 'zenburn t)
-  (set-face-attribute 'default nil :height my-fixed-font-size)
+  (set-face-attribute 'default nil :height my-font-size)
   (set-face-attribute 'font-lock-comment-delimiter-face nil
                       :foreground zenburn/bg+3 :italic t)
   (set-face-attribute 'font-lock-comment-face nil :italic t)
@@ -257,7 +257,7 @@
   (set-face-attribute 'fringe nil :background zenburn/bg-0 :foreground zenburn/bg+3)
   (set-face-attribute 'header-line nil
                       :box `(:line-width 1 :color ,zenburn/bg-1)
-                      :height (+ my-fixed-font-size 10))
+                      :height (+ my-font-size 10))
   (set-face-attribute 'help-argument-name nil :foreground zenburn/orange)
   (set-face-attribute 'hl-line nil :background zenburn/bg+1)
   (set-face-attribute 'isearch nil :background zenburn/blue :foreground zenburn/bg)
@@ -509,9 +509,9 @@
   :hook
   (text-mode . mixed-pitch-mode)
   )
-(set-face-attribute 'default nil :font my-fixed-font-family :height my-fixed-font-size)
-(set-face-attribute 'fixed-pitch nil :font my-fixed-font-family :height my-fixed-font-size)
-(set-face-attribute 'variable-pitch nil :font my-variable-font-family :height my-variable-font-size)
+(set-face-attribute 'default nil :font my-fixed-font-family :height my-font-size)
+(set-face-attribute 'fixed-pitch nil :font my-fixed-font-family)
+(set-face-attribute 'variable-pitch nil :font my-variable-font-family)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
