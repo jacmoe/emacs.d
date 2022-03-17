@@ -14,6 +14,8 @@
 ;; To install, clone .emacs.d/ into ~/.emacs.d/.
 ;;
 ;; See README.md for more details.
+;; Tell Emacs to trust themes
+(setq custom-safe-themes t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Use better defaults
@@ -149,9 +151,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load =.custom.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq-default custom-file (expand-file-name ".custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(setq-default custom-file (expand-file-name "bah.el" user-emacs-directory))
+;; (when (file-exists-p custom-file)
+;;   (load custom-file))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load =.secret.el=
@@ -195,87 +197,25 @@
 (setq use-package-always-ensure 't)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Theme
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; I like to have an accessible copy of my active theme's color codes. That way, I can
-;;fix other packages' colors while still using the same color codes and keep a sane
-;;consistency everywhere.
 ;;
-;;I consider this method safe because I am using the all-famous
-;;[[https://github.com/bbatsov/zenburn-emacs][Zenburn Emacs port]] palette. It is
-;;/very/ unlikely that any of its tones will ever change.
-
-;; Set a color palette
-(defconst zenburn/bg+3      "#6F6F6F"  "Zenburn palette: #6F6F6F.")
-(defconst zenburn/bg+2      "#5F5F5F"  "Zenburn palette: #5F5F5F.")
-(defconst zenburn/bg+1      "#4F4F4F"  "Zenburn palette: #4F4F4F.")
-(defconst zenburn/bg+0      "#494949"  "Zenburn palette: #494949.")
-(defconst zenburn/bg        "#3F3F3F"  "Zenburn palette: #3F3F3F.")
-(defconst zenburn/bg-0      "#383838"  "Zenburn palette: #383838.")
-(defconst zenburn/bg-1      "#2B2B2B"  "Zenburn palette: #2B2B2B.")
-(defconst zenburn/bg-2      "#000000"  "Zenburn palette: #000000.")
-(defconst zenburn/blue+1    "#94BFF3"  "Zenburn palette: #94BFF3.")
-(defconst zenburn/blue      "#8CD0D3"  "Zenburn palette: #8CD0D3.")
-(defconst zenburn/blue-1    "#7CB8BB"  "Zenburn palette: #7CB8BB.")
-(defconst zenburn/blue-2    "#6CA0A3"  "Zenburn palette: #6CA0A3.")
-(defconst zenburn/blue-3    "#5C888B"  "Zenburn palette: #5C888B.")
-(defconst zenburn/blue-4    "#4C7073"  "Zenburn palette: #4C7073.")
-(defconst zenburn/blue-5    "#366060"  "Zenburn palette: #366060.")
-(defconst zenburn/cyan      "#93E0E3"  "Zenburn palette: #93E0E3.")
-(defconst zenburn/fg+1      "#FFFFEF"  "Zenburn palette: #FFFFEF.")
-(defconst zenburn/fg        "#DCDCCC"  "Zenburn palette: #DCDCCC.")
-(defconst zenburn/fg-1      "#656555"  "Zenburn palette: #656555.")
-(defconst zenburn/green+4   "#BFEBBF"  "Zenburn palette: #BFEBBF.")
-(defconst zenburn/green+3   "#AFD8AF"  "Zenburn palette: #AFD8AF.")
-(defconst zenburn/green+2   "#9FC59F"  "Zenburn palette: #9FC59F.")
-(defconst zenburn/green+1   "#8FB28F"  "Zenburn palette: #8FB28F.")
-(defconst zenburn/green     "#7F9F7F"  "Zenburn palette: #7F9F7F.")
-(defconst zenburn/green-1   "#5F7F5F"  "Zenburn palette: #5F7F5F.")
-(defconst zenburn/magenta   "#DC8CC3"  "Zenburn palette: #DC8CC3.")
-(defconst zenburn/orange    "#DFAF8F"  "Zenburn palette: #DFAF8F.")
-(defconst zenburn/red+1     "#DCA3A3"  "Zenburn palette: #DCA3A3.")
-(defconst zenburn/red       "#CC9393"  "Zenburn palette: #CC9393.")
-(defconst zenburn/red-1     "#BC8383"  "Zenburn palette: #BC8383.")
-(defconst zenburn/red-2     "#AC7373"  "Zenburn palette: #AC7373.")
-(defconst zenburn/red-3     "#9C6363"  "Zenburn palette: #9C6363.")
-(defconst zenburn/red-4     "#8C5353"  "Zenburn palette: #8C5353.")
-(defconst zenburn/yellow    "#F0DFAF"  "Zenburn palette: #F0DFAF.")
-(defconst zenburn/yellow-1  "#E0CF9F"  "Zenburn palette: #E0CF9F.")
-(defconst zenburn/yellow-2  "#D0BF8F"  "Zenburn palette: #D0BF8F.")
-
-;;Load =zenburn-theme= and fix some high-level faces to match my personal preferences.
-(use-package zenburn-theme
-  :demand t
-  :config
-  (load-theme 'zenburn t)
-  (set-face-attribute 'default nil :height my-font-size)
-  (set-face-attribute 'font-lock-comment-delimiter-face nil
-                      :foreground zenburn/bg+3 :italic t)
-  (set-face-attribute 'font-lock-comment-face nil :italic t)
-  (set-face-attribute 'font-lock-doc-face nil :italic t)
-  (set-face-attribute 'font-lock-function-name-face nil :foreground zenburn/blue)
-  (set-face-attribute 'fringe nil :background zenburn/bg-0 :foreground zenburn/bg+3)
-  (set-face-attribute 'header-line nil
-                      :box `(:line-width 1 :color ,zenburn/bg-1)
-                      :height (+ my-font-size 10))
-  (set-face-attribute 'help-argument-name nil :foreground zenburn/orange)
-  (set-face-attribute 'hl-line nil :background zenburn/bg+1)
-  (set-face-attribute 'isearch nil :background zenburn/blue :foreground zenburn/bg)
-  (set-face-attribute 'region nil :foreground zenburn/green)
-  (set-face-attribute 'vertical-border nil :foreground zenburn/bg-1)
-  (when (member my-fixed-font-family (font-family-list))
-    (set-face-attribute 'default nil :font my-fixed-font-family)))
+;; Theme
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package spacemacs-theme
+:defer t
+:init
+(load-theme 'spacemacs-light t)
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Features
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Desktop
 ;; Modeline
-;; Autodim
 ;; Vertico, savehist, and Marginalia
 ;; Abbrev
 ;; Yasnippet
-;; Flyspell
+;; ISpell
 ;; Org-mode
 ;; Mixed-pitch
 ;; Transparency
@@ -327,18 +267,6 @@
   :config
                     (spaceline-emacs-theme)
 (setq powerline-arrow-shape 'arrow))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Autodim
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;Auto-dim other buffers. Pretty self-explanatory.
-(use-package auto-dim-other-buffers
-  :demand t
-  :config
-  (auto-dim-other-buffers-mode 1)
-  (set-face-attribute 'auto-dim-other-buffers-face nil :background zenburn/bg-0))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -404,15 +332,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;; Flyspell
+;; ISpell
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; On the fly spell checking
-(use-package flyspell
+;; Interactive spelling
+(use-package ispell
   :config
   (setq ispell-program-name "hunspell"
         ispell-default-dictionary my-default-dictionary)
-  :hook (text-mode . flyspell-mode)
   :bind (("<f12>" . ispell-buffer)
          ("C-<f12>" . flyspell-buffer)
          ("S-<f12>" . ispell-word)))
@@ -600,6 +527,7 @@
              :ensure t)
 
 (setq org2blog/wp-blog-alist my-bloglist)
+
 
 (add-hook 'org-mode-hook #'org2blog-maybe-start)
 
@@ -796,7 +724,7 @@ capture was not aborted."
 ;; Boon
 ;;
 ;; https://github.com/jyp/boon
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; An Ergonomic Command Mode for Emacs
 ;; Run tutorial with M-x boon-tutorial
 (use-package boon
@@ -809,9 +737,19 @@ capture was not aborted."
   (if (eq my-use-boon t)
       (progn 
         (boon-mode)
-        (boon-powerline-theme)))
+        (boon-powerline-theme)
+        (setq boon-insert-cursor-color "orange")
+        (setq boon-default-cursor-color "black")
+        (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1")
+        (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "white")
+        ))
   :bind
   ("C-c b" . turn-on-boon-mode)
   ("C-c e" . turn-off-boon-mode)
+  ("C-;" . boon-set-command-state); used to quit insert mode
   )
+
+(defun my-boon-fix-hook ()
+(define-key flyspell-mode-map (kbd "C-;") nil))
+(add-hook 'text-mode-hook 'my-boon-fix-hook)
 
