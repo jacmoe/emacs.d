@@ -164,12 +164,6 @@
 
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
-(defvar me/font-family            my-font-family  "The font to use.")
-(defvar me/font-size-default      my-font-size       "The font size to use for default text.")
-(defvar me/font-size-header       (+ my-font-size 10)       "The font size to use for headers.")
-(defvar me/font-size-mode-line    my-font-size       "The font size to use for the mode line.")
-(set-face-attribute 'default nil :height my-font-size)
-(set-frame-font me/font-family)
 (setq-default line-spacing my-line-spacing)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -254,7 +248,7 @@
   :demand t
   :config
   (load-theme 'zenburn t)
-  (set-face-attribute 'default nil :height me/font-size-default)
+  (set-face-attribute 'default nil :height my-fixed-font-size)
   (set-face-attribute 'font-lock-comment-delimiter-face nil
                       :foreground zenburn/bg+3 :italic t)
   (set-face-attribute 'font-lock-comment-face nil :italic t)
@@ -263,14 +257,14 @@
   (set-face-attribute 'fringe nil :background zenburn/bg-0 :foreground zenburn/bg+3)
   (set-face-attribute 'header-line nil
                       :box `(:line-width 1 :color ,zenburn/bg-1)
-                      :height me/font-size-header)
+                      :height (+ my-fixed-font-size 10))
   (set-face-attribute 'help-argument-name nil :foreground zenburn/orange)
   (set-face-attribute 'hl-line nil :background zenburn/bg+1)
   (set-face-attribute 'isearch nil :background zenburn/blue :foreground zenburn/bg)
   (set-face-attribute 'region nil :foreground zenburn/green)
   (set-face-attribute 'vertical-border nil :foreground zenburn/bg-1)
-  (when (member me/font-family (font-family-list))
-    (set-face-attribute 'default nil :font me/font-family)))
+  (when (member my-fixed-font-family (font-family-list))
+    (set-face-attribute 'default nil :font my-fixed-font-family)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Features
@@ -515,9 +509,9 @@
   :hook
   (text-mode . mixed-pitch-mode)
   )
-(set-face-attribute 'default nil :font my-font-family :height my-font-size)
-(set-face-attribute 'fixed-pitch nil :font my-font-family :height my-font-size)
-(set-face-attribute 'variable-pitch nil :font my-font-family :height my-font-size)
+(set-face-attribute 'default nil :font my-fixed-font-family :height my-fixed-font-size)
+(set-face-attribute 'fixed-pitch nil :font my-fixed-font-family :height my-fixed-font-size)
+(set-face-attribute 'variable-pitch nil :font my-variable-font-family :height my-variable-font-size)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
