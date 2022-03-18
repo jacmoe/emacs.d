@@ -338,17 +338,14 @@
 ;; Interactive spelling
 (use-package ispell
   :config
-  (setq ispell-program-name "hunspell"
-        ispell-default-dictionary my-default-dictionary)
-        (eval-after-load "ispell"
-        '(progn (defun ispell-get-coding/system () 'utf-8)))
-  ;; tell ispell that ' can be part of a word
+  (setq ispell-program-name "hunspell")
+  (setq ispell-local-dictionary "en_US") 
+
   (setq ispell-local-dictionary-alist
-        `(("english" "[[:alpha:]]" "[^[:alpha:]]"
-               "['']" t ("-d" "en_US") nil utf-8)))
+'(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "['’]" nil ("-d" "en_US") nil utf-8)))
   :bind (("<f12>" . ispell-buffer)
          ("S-<f12>" . ispell-word)))
-
+ 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Org-mode
