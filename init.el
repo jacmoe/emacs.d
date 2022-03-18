@@ -338,11 +338,10 @@
 ;; Interactive spelling
 (use-package ispell
   :config
-  (setq ispell-program-name "hunspell"
-          ispell-default-dictionary "en_GB")
-
-  (setq ispell-local-dictionary-alist
-'((nil "[[:alpha:]]" "[^[:alpha:]]" "['’]" t nil nil utf-8)))
+  (setq ispell-program-name "aspell")
+  (setq ispell-dictionary my-dictionary)
+  (add-to-list 'ispell-skip-region-alist '(":\\(PROPERTIES\\|LOGBOOK\\):" . ":END:"))
+  (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
   :bind (("<f12>" . ispell-buffer)
          ("S-<f12>" . ispell-word)))
  
