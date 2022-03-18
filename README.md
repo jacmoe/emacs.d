@@ -19,7 +19,7 @@ If you do not want to upgrade your version of Emacs, you can comment out the `ve
 
 On Linux, there are very likely to be a C compiler installed, but Windows is different.
 
-One option is to use MSYS2, which is Linux distribution for Windows. Follow the instructions on [](). Be sure to install the full mingw-w64 GCC software collection.
+One option is to use MSYS2, which is Linux distribution for Windows. Follow the instructions on [MSYS2 home page](https://www.msys2.org/). Be sure to install the full mingw-w64 GCC software collection.
 
 Make sure that you add the `bin` directory of you MSYS2 installation to your system path, so that Emacs can find it.
 
