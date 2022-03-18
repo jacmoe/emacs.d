@@ -23,8 +23,7 @@
 (when window-system
   (blink-cursor-mode 0)                          ; Disable the cursor blinking
   (scroll-bar-mode 0)                            ; Disable the scroll bar
-  (tool-bar-mode 0)                              ; Disable the tool bar
-  (tooltip-mode 0))                              ; Disable the tooltips
+  (tool-bar-mode 0))                             ; Disable the tool bar
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some sane defaults
