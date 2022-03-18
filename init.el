@@ -338,11 +338,11 @@
 ;; Interactive spelling
 (use-package ispell
   :config
-  (setq ispell-program-name "hunspell")
-  (setq ispell-local-dictionary "en_US") 
+  (setq ispell-program-name "hunspell"
+          ispell-default-dictionary my-default-dictionary)
 
   (setq ispell-local-dictionary-alist
-'(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "['’]" nil ("-d" "en_US") nil utf-8)))
+'((nil "[[:alpha:]]" "[^[:alpha:]]" "['’]" t nil nil utf-8)))
   :bind (("<f12>" . ispell-buffer)
          ("S-<f12>" . ispell-word)))
  
