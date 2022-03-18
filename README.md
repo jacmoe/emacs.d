@@ -13,6 +13,18 @@ If you have an older version installed, you need to install a new version. Versi
 
 If you do not want to upgrade your version of Emacs, you can comment out the `vertico` section of `init.el`, but upgrading is going to be worth the trouble!
 
+### C compiler
+
+`org-roam` uses a custom SQLite binary to store its database, and it will compile it when it installs. So there must be a C compiler available to Emacs.
+
+On Linux, there are very likely to be a C compiler installed, but Windows is different.
+
+One option is to use MSYS2, which is Linux distribution for Windows. Follow the instructions on [](). Be sure to install the full mingw-w64 GCC software collection.
+
+Make sure that you add the `bin` directory of you MSYS2 installation to your system path, so that Emacs can find it.
+
+On my machine, I had to add `C:\msys64\mingw64\bin`
+
 ### Aspell
 
 #### Linux
@@ -21,17 +33,20 @@ If Aspell is not installed, install `aspell` using your package manager.
 
 #### Windows
 
-To be written
+Assuming that you installed MSYS2, including the mingw compiler suite, you can simply open up a MSYS2 command line and run:
 
-### C compiler
+`pacman -Ss aspell`
 
-`org-roam` uses a custom SQLite binary to store its database, and it will compile it when it installs. So there must be a C compiler available to Emacs.
+That will give you a list of aspell related packages to install.
 
-On Linux, there are very likely to be a C compiler installed, but Windows is different.
+Here's the packages that I installed:
 
-See [https://www.orgroam.com/manual.html#C-Compiler](https://www.orgroam.com/manual.html#C-Compiler) for how to install a C compiler compatible with Emacs on Windows.
+`pacman -S mingw-w64-x86_64-aspell`
 
-If you don't want to deal with the C compiler, you need to comment out the `org-roam` section of `init.el`, but you don't want to miss out on the amazing features that `org-roam` provides! It's definitely worth the extra effort.
+`pacman -S mingw-w64-x86_64-aspell-en`
+
+If you followed the guide for how to install the C compiler, then Emacs will be able to find `aspell`, and all should be well.
+
 
 ## Installation ##
 
