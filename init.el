@@ -750,7 +750,3 @@ capture was not aborted."
   ("C-;" . boon-set-command-state); used to quit insert mode
   )
 
-(defun my-boon-fix-hook ()
-(define-key flyspell-mode-map (kbd "C-;") nil))
-;; (add-hook 'text-mode-hook 'my-boon-fix-hook)
-
