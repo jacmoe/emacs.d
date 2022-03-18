@@ -532,20 +532,44 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 
 
 <tr>
-<td class="org-left">C-F12</td>
-<td class="org-left">mark all spelling errors in document, refresh spelling on the fly</td>
+<td class="org-left">i</td>
+<td class="org-left">add word to private dictionary</td>
+</tr>
+
+
+<tr>
+<td class="org-left">r</td>
+<td class="org-left">change word</td>
+</tr>
+
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-left">skip word for this session</td>
+</tr>
+
+
+<tr>
+<td class="org-left">SPACE</td>
+<td class="org-left">skip word</td>
+</tr>
+
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-left">end spellchecking session</td>
+</tr>
+
+
+<tr>
+<td class="org-left">q</td>
+<td class="org-left">abort spell checking session</td>
 </tr>
 
 
 <tr>
 <td class="org-left">C-h</td>
 <td class="org-left">show options screen for spellchecking session</td>
-</tr>
-
-
-<tr>
-<td class="org-left">q</td>
-<td class="org-left">end spellchecking session</td>
 </tr>
 
 
@@ -1270,8 +1294,8 @@ Hint: use `C-x n w` to widen the view of the main org-mode buffer if needed.
 
 
 <tr>
-<td class="org-left">Mx-ttu</td>
-<td class="org-left">update tracktable</td>
+<td class="org-left">Mx-ttw</td>
+<td class="org-left">write new tracktable entry</td>
 </tr>
 
 

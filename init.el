@@ -752,5 +752,5 @@ capture was not aborted."
 
 (defun my-boon-fix-hook ()
 (define-key flyspell-mode-map (kbd "C-;") nil))
-(add-hook 'text-mode-hook 'my-boon-fix-hook)
+;; (add-hook 'text-mode-hook 'my-boon-fix-hook)
 
