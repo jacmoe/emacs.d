@@ -339,7 +339,7 @@
 (use-package ispell
   :config
   (setq ispell-program-name "hunspell"
-          ispell-default-dictionary my-default-dictionary)
+          ispell-default-dictionary "en_GB")
 
   (setq ispell-local-dictionary-alist
 '((nil "[[:alpha:]]" "[^[:alpha:]]" "['’]" t nil nil utf-8)))
