@@ -13,23 +13,15 @@ If you have an older version installed, you need to install a new version. Versi
 
 If you do not want to upgrade your version of Emacs, you can comment out the `vertico` section of `init.el`, but upgrading is going to be worth the trouble!
 
-### Hunspell
+### Aspell
 
 #### Linux
 
-Install `hunspell` using your package manager
+If Aspell is not installed, install `aspell` using your package manager.
 
 #### Windows
 
-Download `hunspell` from [ezwinports](https://sourceforge.net/projects/ezwinports/files/hunspell-1.3.2-3-w32-bin.zip/)
-
-Extract the archive and add the `bin` folder to your PATH variable so that Emacs can find `hunspell`.
-
-British and American English dictionaries are included, but if you need a dictionary for your language, you can download it from [https://www.freeoffice.com/en/download/dictionaries](https://www.freeoffice.com/en/download/dictionaries)
-
-Open and extract using 7zip or similar program. I believe you can change the extension to `.zip` if your archiver doesn't recognize it as an archive.
-
-Put the dictionary files, `.aff` and `.dic` into the `share/hunspell` in your `hunspell` directory.
+To be written
 
 ### C compiler
 
