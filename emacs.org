@@ -104,12 +104,16 @@ For example, ~C-x~ means hold down the ~Control~ key while typing ~x~.
 | C-x a g | Add global abbrev |
 
 *** Spell check
-| F12 | spellcheck buffer |
-| S-F12 | spellcheck word |
-| C-F12 | mark all spelling errors in document, refresh spelling on the fly |
-| C-h | show options screen for spellchecking session |
-| q | end spellchecking session |
-| M-x ispell-change-dictionary | change current dictionary |
+| F12                          | spellcheck buffer                             |
+| S-F12                        | spellcheck word                               |
+| i                            | add word to private dictionary                |
+| r                            | change word                                   |
+| a                            | skip word for this session                    |
+| SPACE                        | skip word                                     |
+| x                            | end spellchecking session                     |
+| q                            | abort spell checking session                  |
+| C-h                          | show options screen for spellchecking session |
+| M-x ispell-change-dictionary | change current dictionary                     |
 
 *** Tabs
 | C-j | perform ENTER followed by TAB |
