@@ -750,3 +750,14 @@ capture was not aborted."
   ("C-;" . boon-set-command-state); used to quit insert mode
   )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Undo-tree
+;;
+;; https://gitlab.com/tsc25/undo-tree
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package undo-tree
+:ensure t
+:init
+(global-undo-tree-mode))
+
