@@ -1,3 +1,4 @@
+# {{{
 #+TITLE: Emacs survival guide
 #+AUTHOR: Jacob Moen
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
@@ -9,6 +10,7 @@
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+STARTUP: showeverything
+# }}}
 
 * Emacs Survival Guide
 
