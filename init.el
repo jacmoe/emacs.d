@@ -15,6 +15,11 @@
 ;;
 ;; See README.md for more details.
 ;; Tell Emacs to trust themes
+
+;; fix for not being able to install undo-tree
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
+;; convince Emacs to trust themes so that we can install them
 (setq custom-safe-themes t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -229,6 +234,9 @@
 ;; Org-roam
 ;; Deft
 ;; Boon
+;; Undo-tree
+;; Mw-thesaurus
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -725,7 +733,7 @@ capture was not aborted."
 ;; Boon
 ;;
 ;; https://github.com/jyp/boon
-2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; An Ergonomic Command Mode for Emacs
 ;; Run tutorial with M-x boon-tutorial
 (use-package boon
@@ -760,4 +768,17 @@ capture was not aborted."
 :ensure t
 :init
 (global-undo-tree-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Mw-thesaurus
+;;
+;; https://github.com/agzam/mw-thesaurus.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package mw-thesaurus
+:ensure t
+:init
+(if (boundp 'my-mw-api-key)
+(setq mw-thesaurus--api-key my-mw-api-key))
+)
 
