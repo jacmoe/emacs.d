@@ -236,6 +236,7 @@
 ;; Boon
 ;; Undo-tree
 ;; Mw-thesaurus
+;; Emacs-powerthesaurus
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -780,5 +781,16 @@ capture was not aborted."
 :init
 (if (boundp 'my-mw-api-key)
 (setq mw-thesaurus--api-key my-mw-api-key))
+)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Emacs-powerthesaurus
+;;
+;; Https://github.com/agzam/mw-thesaurus.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package powerthesaurus
+:ensure t
 )
 
