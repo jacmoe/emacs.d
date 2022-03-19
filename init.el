@@ -811,3 +811,4 @@ capture was not aborted."
   :init
   (move-text-default-bindings)
   )
+
