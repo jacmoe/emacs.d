@@ -229,7 +229,6 @@
 ;; Magit
 ;; Org2blog
 ;; Org-sidebar
-;; Dictionary
 ;; Writeroom
 ;; Org-roam
 ;; Deft
@@ -567,14 +566,6 @@
 (defalias 'tti 'org-tracktable-insert-table)
 (defalias 'ttw 'org-tracktable-write)
 (defalias 'tts 'org-tracktable-status)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; Dictionary
-;;
-;; https://www.manueluberti.eu/emacs/2021/07/31/dictionary/
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package dictionary)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
