@@ -237,6 +237,7 @@
 ;; Undo-tree
 ;; Mw-thesaurus
 ;; Emacs-powerthesaurus
+;; Flymake-proselint
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -782,7 +783,6 @@ capture was not aborted."
 (if (boundp 'my-mw-api-key)
 (setq mw-thesaurus--api-key my-mw-api-key))
 )
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
