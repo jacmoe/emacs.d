@@ -47,6 +47,12 @@ Here's the packages that I installed:
 
 If you followed the guide for how to install the C compiler, then Emacs will be able to find `aspell`, and all should be well.
 
+### Proselint
+
+Proselint is required by the on-the-fly language checker.
+
+Simply follow the [Proselint installation instructions](https://github.com/amperser/proselint#installation) and make sure to, if on Windows, to add the location of the Proselint binary to your PATH. The message you get from Python's pip installation procedure reminds you of what exact path you need to add.
+
 
 ## Installation ##
 
