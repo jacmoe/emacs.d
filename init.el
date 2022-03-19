@@ -217,6 +217,7 @@
 ;; Desktop
 ;; Modeline
 ;; Vertico, savehist, and Marginalia
+;; CtrlF
 ;; Abbrev
 ;; Yasnippet
 ;; ISpell
@@ -304,6 +305,17 @@
 (marginalia-annotators '(marginalia-annotators-heavy marginalia/annotators-light nil))
 :init
 (marginalia-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; CtrlF
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package ctrlf
+:ensure t
+:config
+(ctrlf-mode t)
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
