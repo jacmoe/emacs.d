@@ -239,6 +239,7 @@
 ;; Mw-thesaurus
 ;; Emacs-powerthesaurus
 ;; Flymake-proselint
+;; Move-text
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -813,3 +814,14 @@ capture was not aborted."
                               (flymake-proselint-setup)))
   )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Move-text
+;;
+;; https://github.com/emacsfodder/move-text
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package move-text
+  :ensure t
+  :init
+  (move-text-default-bindings)
+  )
