@@ -206,10 +206,10 @@
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package spacemacs-theme
-:defer t
-:init
-(load-theme 'spacemacs-light t)
-)
+  :defer t
+  :init
+  (load-theme 'spacemacs-light t)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Features
@@ -275,8 +275,8 @@
 ;;
 (use-package spaceline :demand t
   :config
-                    (spaceline-emacs-theme)
-(setq powerline-arrow-shape 'arrow))
+  (spaceline-emacs-theme)
+  (setq powerline-arrow-shape 'arrow))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -289,22 +289,22 @@
 ;; Minimal interface for minibuffer completions
 (use-package vertico
   :ensure t
-:custom
-(vertico-cycle t)
+  :custom
+  (vertico-cycle t)
   :init
   (vertico-mode))
 
 (use-package savehist
-:init
-(savehist-mode))
+  :init
+  (savehist-mode))
 
 (use-package marginalia
-:after vertico
-:ensure t
-:custom
-(marginalia-annotators '(marginalia-annotators-heavy marginalia/annotators-light nil))
-:init
-(marginalia-mode))
+  :after vertico
+  :ensure t
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia/annotators-light nil))
+  :init
+  (marginalia-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -313,10 +313,10 @@
 ;; https://github.com/raxod502/ctrlf
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package ctrlf
-:ensure t
-:config
-(ctrlf-mode t)
-)
+  :ensure t
+  :config
+  (ctrlf-mode t)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -367,7 +367,7 @@
   (add-to-list 'ispell-skip-region-alist '("^# {{{" . "^# }}}"))
   :bind (("<f12>" . ispell-buffer)
          ("S-<f12>" . ispell-word)))
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;; Org-mode
@@ -377,14 +377,14 @@
 ;; A GNU Emacs major mode for keeping notes, authoring documents, computational notebooks,
 ;; literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain text system.
 (use-package org
-:ensure t)
+  :ensure t)
 
 ;; Nice bullets
 (use-package org-superstar
-    :config
-    (setq org-superstar-special-todo-items t)
-    (add-hook 'org-mode-hook (lambda ()
-                               (org-superstar-mode 1))))
+  :config
+  (setq org-superstar-special-todo-items t)
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-superstar-mode 1))))
 
 (setq inhibit-compacting-font-caches t)
 
@@ -392,8 +392,8 @@
 
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)"  "|" "DRAFT(d)")
-      (sequence "REVISE(r)" "|" "DONE")
-)))
+              (sequence "REVISE(r)" "|" "DONE")
+              )))
 
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning) ("IDEA" . "goldenrod1")  ("DRAFT" . "SpringGreen") ("REVISE" . "OliveDrab4") "|" ("DONE" . "SeaGreen4")))
@@ -413,7 +413,7 @@
 
 (setq org-capture-templates
       '(("n" "Note" entry (file+headline my-org-capture-notes "Notes")
-	 "* %?\n %a")))
+	     "* %?\n %a")))
 
 (defun +org/opened-buffer-files ()
   "Return the list of files currently opened in emacs"
@@ -434,8 +434,8 @@
 (setq org-refile-use-cache t)
 
 (run-with-idle-timer 300 t (lambda ()
-                                (org-refile-cache-clear)
-                                (org-refile-get-targets)))
+                             (org-refile-cache-clear)
+                             (org-refile-get-targets)))
 
 (global-set-key (kbd "<f7>") 'org-mark-ring-push)
 (global-set-key (kbd "M-<f7>") 'org-mark-ring-goto)
@@ -471,17 +471,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Toggles background transparency
 (defun toggle-transparency ()
-   (interactive)
-   (let ((alpha (frame-parameter nil 'alpha)))
-     (set-frame-parameter
-      nil 'alpha
-      (if (eql (cond ((numberp alpha) alpha)
-                     ((numberp (cdr alpha)) (cdr alpha))
-                     ;; Also handle undocumented (<active> <inactive>) form.
-                     ((numberp (cadr alpha)) (cadr alpha)))
-               100)
-          '(85 . 50) '(100 . 100)))))
- (global-set-key (kbd "C-c t") 'toggle-transparency)
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(85 . 50) '(100 . 100)))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -492,9 +492,9 @@
 ;;Guru mode disables some common keybindings and suggests the use of the established Emacs alternatives instead.
 (use-package guru-mode
   :config
-    (guru-global-mode t)
-    (guru-mode t)
-)
+  (guru-global-mode t)
+  (guru-mode t)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -511,7 +511,7 @@
   "count words between BEGIN and END (region); if no region defined, count words in buffer"
   (interactive "r")
   (let ((b (if mark-active begin (point-min)))
-      (e (if mark-active end (point-max))))
+        (e (if mark-active end (point-max))))
     (message "Word count: %s" (how-many "\\w+" b e))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -524,13 +524,13 @@
 (use-package ace-window
   :ensure t
   :init
-    (progn
-      (global-set-key [remap other-window] 'ace-window)
-      (custom-set-faces
-        '(aw-leading-char-face
-          ((t (:inherit ace-jump-face-foreground :height 3.0 :foreground "#DCDCCC")))))
+  (progn
+    (global-set-key [remap other-window] 'ace-window)
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground :height 3.0 :foreground "#DCDCCC")))))
     )
-)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -548,7 +548,7 @@
 ;; https://github.com/org2blog/org2blog
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package org2blog
-             :ensure t)
+  :ensure t)
 
 (setq org2blog/wp-blog-alist my-bloglist)
 
@@ -680,7 +680,7 @@ capture was not aborted."
   (interactive)
   (org-roam-capture- :node (org-roam-node-create)
                      :templates '(("i" "inbox" plain "* %?"
-                                  :if-new (file+head "Inbox.org" "#+title: Inbox\n")))))
+                                   :if-new (file+head "Inbox.org" "#+title: Inbox\n")))))
 
 (defun my/org-roam-capture-task ()
   (interactive)
@@ -700,8 +700,8 @@ capture was not aborted."
   (interactive)
   (let ((org-refile-keep t) ;; Set this to nil to delete the original!
         (org-roam-dailies-capture-templates
-          '(("t" "tasks" entry "%?"
-             :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Tasks")))))
+         '(("t" "tasks" entry "%?"
+            :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Tasks")))))
         (org-after-refile-insert-hook #'save-buffer)
         today-file
         pos)
@@ -772,9 +772,9 @@ capture was not aborted."
 ;; https://gitlab.com/tsc25/undo-tree
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package undo-tree
-:ensure t
-:init
-(global-undo-tree-mode))
+  :ensure t
+  :init
+  (global-undo-tree-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -783,11 +783,11 @@ capture was not aborted."
 ;; https://github.com/agzam/mw-thesaurus.el
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package mw-thesaurus
-:ensure t
-:init
-(if (boundp 'my-mw-api-key)
-(setq mw-thesaurus--api-key my-mw-api-key))
-)
+  :ensure t
+  :init
+  (if (boundp 'my-mw-api-key)
+      (setq mw-thesaurus--api-key my-mw-api-key))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -796,8 +796,8 @@ capture was not aborted."
 ;; https://github.com/SavchenkoValeriy/emacs-powerthesaurus
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package powerthesaurus
-:ensure t
-)
+  :ensure t
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -807,9 +807,9 @@ capture was not aborted."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package flymake-proselint
   :ensure t
-:init
-(add-hook 'text-mode-hook (lambda ()
-                            (flymake-mode)
-                            (flymake-proselint-setup)))
-)
+  :init
+  (add-hook 'text-mode-hook (lambda ()
+                              (flymake-mode)
+                              (flymake-proselint-setup)))
+  )
 
