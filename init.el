@@ -229,6 +229,7 @@
 ;; Magit
 ;; Org2blog
 ;; Org-sidebar
+;; Org-tracktable
 ;; Writeroom
 ;; Org-roam
 ;; Deft
