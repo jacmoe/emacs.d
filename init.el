@@ -224,7 +224,6 @@
 ;; Org-mode
 ;; Mixed-pitch
 ;; Transparency
-;; Gurumode
 ;; Wc-mode
 ;; Acewindow
 ;; Magit
@@ -483,19 +482,6 @@
               100)
          '(85 . 50) '(100 . 100)))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;; GuruMode
-;;
-;; https://github.com/bbatsov/guru-mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;Guru mode disables some common keybindings and suggests the use of the established Emacs alternatives instead.
-(use-package guru-mode
-  :config
-  (guru-global-mode t)
-  (guru-mode t)
-  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
