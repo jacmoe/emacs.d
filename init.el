@@ -774,6 +774,8 @@ capture was not aborted."
   :init
   (if (boundp 'my-mw-api-key)
       (setq mw-thesaurus--api-key my-mw-api-key))
+  :bind
+  ("<f6>" . mw-thesaurus-lookup-dwim)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -784,6 +786,11 @@ capture was not aborted."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package powerthesaurus
   :ensure t
+  :bind
+  ("C-c p d" . powerthesaurus-lookup-definitions-dwim)
+  ("C-c p t" . powerthesaurus-lookup-sentences-dwim)
+  ("S-<f8>" . powerthesaurus-lookup-antonyms-dwim)
+  ("<f8>" . powerthesaurus-lookup-synonyms-dwim)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
