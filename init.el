@@ -780,7 +780,7 @@ capture was not aborted."
 ;;
 ;; Emacs-powerthesaurus
 ;;
-;; Https://github.com/agzam/mw-thesaurus.el
+;; https://github.com/SavchenkoValeriy/emacs-powerthesaurus
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package powerthesaurus
 :ensure t
