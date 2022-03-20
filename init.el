@@ -578,7 +578,10 @@
 ;;"Writeroom-mode is a minor mode for Emacs that implements a distraction-free writing mode similar to the famous Writeroom editor for OS X."
 (use-package writeroom-mode
   :bind
-  (("<f9>" . writeroom-mode)
+  (
+  ("C-<" . writeroom-increase-width)
+  ("C->" . writeroom-decrease-width)
+  ("<f9>" . writeroom-mode)
    ("S-<f9>" . writeroom-toggle-mode-line )))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
