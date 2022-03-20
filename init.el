@@ -59,7 +59,7 @@
 (column-number-mode 0)                           ; Hide the column number
 (display-battery-mode 0)                         ; Hide the battery level
 (display-time-mode 1)                            ; Hide the time representation
-(fringe-mode '(50 . 50))                         ; Show vertical fringes
+(fringe-mode '(80 . 80))                         ; Show vertical fringes
 (global-hl-line-mode 0)                          ; Do not hightlight current line
 (global-subword-mode 1)                          ; Iterate through CamelCase words
 (menu-bar-mode 0)                                ; Disable the menu bar
@@ -821,4 +821,5 @@ capture was not aborted."
   :init
   (move-text-default-bindings)
   )
+
 
