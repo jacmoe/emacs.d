@@ -94,6 +94,7 @@
 (global-set-key (kbd "C-<f5>") 'bookmark-set)
 (global-set-key (kbd "<f5>")   'bookmark-jump)
 (global-set-key (kbd "S-<f5>") 'list-bookmarks)
+(global-set-key (kbd "C-`") 'diff-buffer-with-file) ; view what is modified
 (setq bookmark-save-flag 1)
 (recentf-mode 1)                        ; Remember recently opened files
 (global-set-key (kbd "C-c r") 'recentf-open-files)
@@ -847,5 +848,4 @@ capture was not aborted."
   :init
   (move-text-default-bindings)
   )
-
 
