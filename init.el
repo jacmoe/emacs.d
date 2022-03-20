@@ -245,7 +245,7 @@
 ;; Emacs-powerthesaurus
 ;; Flymake-proselint
 ;; Move-text
-
+;; Aggressive-indent
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -585,9 +585,9 @@
 (use-package writeroom-mode
   :bind
   (
-  ("C->" . writeroom-increase-width)
-  ("C-<" . writeroom-decrease-width)
-  ("<f9>" . writeroom-mode)
+   ("C->" . writeroom-increase-width)
+   ("C-<" . writeroom-decrease-width)
+   ("<f9>" . writeroom-mode)
    ("S-<f9>" . writeroom-toggle-mode-line )))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -728,11 +728,11 @@ capture was not aborted."
   (setq org-roam-ui-sync-theme t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start nil)
-          (add-to-list 'desktop-minor-mode-table
+  (add-to-list 'desktop-minor-mode-table
                '(org-roam-ui-mode nil))
   (add-to-list 'desktop-minor-mode-table
                '(org-roam-ui-follow-mode nil))
-)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -848,4 +848,15 @@ capture was not aborted."
   :init
   (move-text-default-bindings)
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Aggressive-indent
+;;
+;; https://github.com/Malabarba/aggressive-indent-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package aggressive-indent
+  :ensure t
+  :init
+  (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
 
