@@ -770,6 +770,9 @@ capture was not aborted."
         (setq boon-default-cursor-color "black")
         (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1")
         (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "white")
+        (define-key boon-command-map "L" 'forward-sentence)
+        (define-key boon-command-map "K" 'backward-sentence)
+        (add-hook 'ibuffer-hook 'turn-off-boon-mode)
         ))
   :bind
   ("C-c b" . turn-on-boon-mode)
