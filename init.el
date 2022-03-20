@@ -114,6 +114,9 @@
 ;; =garbage-collect= on focus-out. Emacs /should/ feel snappier.
 (add-hook 'after-init-hook (lambda () (setq gc-cons-threshold 800000)))
 (add-hook 'focus-out-hook 'garbage-collect)
+;; Don't ask to kill running processes when exiting Emacs. Just kill them! :)
+(setq confirm-kill-processes nil)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Very basic version scheme / backup routine
@@ -232,6 +235,7 @@
 ;; Org-tracktable
 ;; Writeroom
 ;; Org-roam
+;; Org-roam-ui
 ;; Deft
 ;; Boon
 ;; Undo-tree
@@ -709,6 +713,19 @@ capture was not aborted."
              (lambda ()
                (when (equal org-state "DONE")
                  (my/org-roam-copy-todo-to-today))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Org-roam-ui
+;;
+;; https://github.com/org-roam/org-roam-ui
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package org-roam-ui
+  :after org-roam
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
