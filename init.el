@@ -725,7 +725,12 @@ capture was not aborted."
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start nil))
+        org-roam-ui-open-on-start nil)
+          (add-to-list 'desktop-minor-mode-table
+               '(org-roam-ui-mode nil))
+  (add-to-list 'desktop-minor-mode-table
+               '(org-roam-ui-follow-mode nil))
+)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
