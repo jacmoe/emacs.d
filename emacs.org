@@ -177,8 +177,10 @@ For example, ~C-x~ means hold down the ~Control~ key while typing ~x~.
 | C-c  left / right | redo/undo window configuration |
 
 *** Writeroom
-| F9 | Writeroom mode |
-| S-F9 | Writeroom modeline toggle |
+| F9   | Writeroom mode            |
+| S-F9 | modeline toggle           |
+| C->  | Increase width            |
+| C-<  | Decrease width            |
 
 *** Magit
 | C-x g | run Magit |

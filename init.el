@@ -579,8 +579,8 @@
 (use-package writeroom-mode
   :bind
   (
-  ("C-<" . writeroom-increase-width)
-  ("C->" . writeroom-decrease-width)
+  ("C->" . writeroom-increase-width)
+  ("C-<" . writeroom-decrease-width)
   ("<f9>" . writeroom-mode)
    ("S-<f9>" . writeroom-toggle-mode-line )))
 

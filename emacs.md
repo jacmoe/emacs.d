@@ -978,7 +978,19 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 
 <tr>
 <td class="org-left">S-F9</td>
-<td class="org-left">Writeroom modeline toggle</td>
+<td class="org-left">modeline toggle</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-&gt;</td>
+<td class="org-left">Increase width</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C-&lt;</td>
+<td class="org-left">Decrease width</td>
 </tr>
 </tbody>
 </table>
