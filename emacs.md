@@ -401,6 +401,12 @@ For example, `C-x` means hold down the `Control` key while typing `x`.
 <td class="org-left">M-x follow-mode</td>
 <td class="org-left">toggle follow mode</td>
 </tr>
+
+
+<tr>
+<td class="org-left">C-x 4 0</td>
+<td class="org-left">kill current buffer and delete window</td>
+</tr>
 </tbody>
 </table>
 
