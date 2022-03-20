@@ -14,13 +14,10 @@
 ;; To install, clone .emacs.d/ into ~/.emacs.d/.
 ;;
 ;; See README.md for more details.
-;; Tell Emacs to trust themes
 
 ;; fix for not being able to install undo-tree
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-;; convince Emacs to trust themes so that we can install them
-(setq custom-safe-themes t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Use better defaults
@@ -116,7 +113,11 @@
 (add-hook 'focus-out-hook 'garbage-collect)
 ;; Don't ask to kill running processes when exiting Emacs. Just kill them! :)
 (setq confirm-kill-processes nil)
-
+;; convince Emacs to trust themes so that we can install them
+(setq custom-safe-themes t)
+;; parentheses
+(show-paren-mode)
+(electric-pair-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Very basic version scheme / backup routine
