@@ -27,3 +27,4 @@ places
 /request/
 /#*.*#
 /.ratpoison.desktop
+/rats-secret.el

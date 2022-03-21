@@ -128,20 +128,29 @@
     (kill-emacs)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load =.custom.el=
+;; Load =custom.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load =.secret.el=
+;; Load =secret.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load personal settings from secret.el. Needs to be created.
+;; If using Ratpoison, load personal settings from rats-secret.el
 ;; See secret.el.example
-(let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
-  (when (file-exists-p secret.el)
-    (load secret.el)))
+(if (equal (getenv "RATPOISON") "ratpoison")
+    (let ((rats-secret.el (expand-file-name "rats-secret.el" user-emacs-directory)))
+      (when (file-exists-p rats-secret.el)
+        (load rats-secret.el)))
+  )
+(unless (equal (getenv "RATPOISON") "ratpoison")
+  (let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
+    (when (file-exists-p secret.el)
+      (load secret.el)))
+  )
+
 
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
