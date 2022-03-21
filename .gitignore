@@ -26,3 +26,4 @@ places
 /secret.el
 /request/
 /#*.*#
+/.ratpoison.desktop

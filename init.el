@@ -226,8 +226,8 @@
 (use-package desktop
   :demand t
   :config
-  (if (getenv "RATPOISION")
-      (setq desktop-dirname "~/.emacs.d/ratpoison")
+  (if (equal (getenv "RATPOISON") "ratpoison")
+      (setq desktop-base-file-name ".ratpoison.desktop")
     )
   (desktop-save-mode 1)
   (add-to-list 'desktop-globals-to-save 'golden-ratio-adjust-factor))
