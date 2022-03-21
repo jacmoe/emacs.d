@@ -151,7 +151,6 @@
       (load secret.el)))
   )
 
-;; (call-process-shell-command "the_shell_script.sh" nil nil nil "arg1" "arg2")
 
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
@@ -226,6 +225,8 @@
 ;; Flymake-proselint
 ;; Move-text
 ;; Aggressive-indent
+;; Miscellaneous
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -843,3 +844,23 @@ capture was not aborted."
   :init
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Miscellaneous
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; switch to Danish keyboard layout
+(defun my/kbdk ()
+  (interactive)
+  (call-process-shell-command "setxkbmap" nil nil nil "dk")
+  )
+
+;; switch to American keyboard layout
+(defun my/kbus ()
+  (interactive)
+  (call-process-shell-command "setxkbmap" nil nil nil "us")
+  )
+
+(define-key global-map "\C-ck" 'my/kbdk)
+(define-key global-map "\C-cu" 'my/kbus)
