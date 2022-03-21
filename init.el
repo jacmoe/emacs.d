@@ -141,11 +141,11 @@
 ;; If using Ratpoison, load personal settings from rats-secret.el
 ;; See secret.el.example
 (if (equal (getenv "RATPOISON") "ratpoison")
-    (let ((rats-secret.el (expand-file-name "rats-secret.el" user-emacs-directory)))
-      (when (file-exists-p rats-secret.el)
-        (load rats-secret.el)))
-  )
-(unless (equal (getenv "RATPOISON") "ratpoison")
+    (progn
+      (let ((rats-secret.el (expand-file-name "rats-secret.el" user-emacs-directory)))
+        (when (file-exists-p rats-secret.el)
+          (load rats-secret.el)))
+      )
   (let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
     (when (file-exists-p secret.el)
       (load secret.el)))
@@ -759,13 +759,12 @@ capture was not aborted."
         (if (equal my-theme-shade "dark")
             (progn
               (setq boon-default-cursor-color "white")
-              (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1" :foreground "black")
               (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "black")
               )
           (setq boon-default-cursor-color "black")
-          (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1")
           (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "white")
           )
+        (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1" :foreground "black")
         (define-key boon-command-map "L" 'forward-sentence)
         (define-key boon-command-map "K" 'backward-sentence)
         (add-hook 'ibuffer-hook 'turn-off-boon-mode)
