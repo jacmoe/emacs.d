@@ -26,7 +26,7 @@
   ;; Also take a look at display-time-format and format-time-string
 
   ;; Start the Polybar panel
-  (efs/start-panel)
+  ;; (efs/start-panel)
 
   ;; Launch apps that will run in the background
   ;; (efs/run-in-background "dunst")
@@ -69,7 +69,7 @@
 (use-package exwm
   :config
   ;; Set the default number of workspaces
-  (setq exwm-workspace-number 5)
+  (setq exwm-workspace-number 1)
 
   ;; When window "class" updates, use it to set the buffer name
   (add-hook 'exwm-update-class-hook #'efs/exwm-update-class)
@@ -118,9 +118,9 @@
 
   ;; NOTE: This is disabled because we now use Polybar!
   ;; Load the system tray before exwm-init
-  ;; (require 'exwm-systemtray)
-  ;; (setq exwm-systemtray-height 32)
-  ;; (exwm-systemtray-enable)
+  (require 'exwm-systemtray)
+  (setq exwm-systemtray-height 32)
+  (exwm-systemtray-enable)
 
   ;; Automatically send the mouse cursor to the selected workspace's display
   (setq exwm-workspace-warp-cursor t)
