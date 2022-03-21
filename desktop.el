@@ -32,7 +32,8 @@
   ;; (efs/run-in-background "dunst")
   ;; (efs/run-in-background "nm-applet")
   ;; (efs/run-in-background "pasystray")
-  ;; (efs/run-in-background "blueman-applet"))
+  ;; (efs/run-in-background "blueman-applet")
+  )
 
 (defun efs/exwm-update-class ()
   (exwm-workspace-rename-buffer exwm-class-name))
@@ -83,7 +84,7 @@
   (add-hook 'exwm-init-hook #'efs/exwm-init-hook)
 
   ;; Rebind CapsLock to Ctrl
-  (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
+  ;; (start-process-shell-command "xmodmap" nil "xmodmap ~/.emacs.d/exwm/Xmodmap")
 
   ;; NOTE: Uncomment the following two options if you want window buffers
   ;;       to be available on all workspaces!
@@ -130,15 +131,15 @@
 
   ;; These keys should always pass through to Emacs
   (setq exwm-input-prefix-keys
-    '(?\C-x
-      ?\C-u
-      ?\C-h
-      ?\M-x
-      ?\M-`
-      ?\M-&
-      ?\M-:
-      ?\C-\M-j  ;; Buffer list
-      ?\C-\ ))  ;; Ctrl+Space
+        '(?\C-x
+          ?\C-u
+          ?\C-h
+          ?\M-x
+          ?\M-`
+          ?\M-&
+          ?\M-:
+          ?\C-\M-j  ;; Buffer list
+          ?\C-\ ))  ;; Ctrl+Space
 
   ;; Ctrl+Q will enable the next key to be sent directly
   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
