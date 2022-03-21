@@ -151,6 +151,7 @@
       (load secret.el)))
   )
 
+;; (call-process-shell-command "the_shell_script.sh" nil nil nil "arg1" "arg2")
 
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
