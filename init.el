@@ -192,7 +192,10 @@
 (use-package spacemacs-theme
   :defer t
   :init
-  (load-theme 'spacemacs-light t)
+  (if (equal my-theme-shade "dark")
+      (load-theme 'spacemacs-dark t)
+    (load-theme 'spacemacs-light t)
+    )
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -753,9 +756,16 @@ capture was not aborted."
         (boon-mode)
         (boon-powerline-theme)
         (setq boon-insert-cursor-color "orange")
-        (setq boon-default-cursor-color "black")
-        (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1")
-        (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "white")
+        (if (equal my-theme-shade "dark")
+            (progn
+              (setq boon-default-cursor-color "white")
+              (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1" :foreground "black")
+              (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "black")
+              )
+          (setq boon-default-cursor-color "black")
+          (set-face-attribute 'boon-modeline-cmd nil :background "LightSkyBlue1")
+          (set-face-attribute 'boon-modeline-ins nil :background "orange" :foreground "white")
+          )
         (define-key boon-command-map "L" 'forward-sentence)
         (define-key boon-command-map "K" 'backward-sentence)
         (add-hook 'ibuffer-hook 'turn-off-boon-mode)
