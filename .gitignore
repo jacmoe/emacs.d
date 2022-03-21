@@ -1,24 +1,12 @@
 # Emacs
 *~
 *.elc
-.custom.el
 .dir-locals.el
 .secret.el
-jacmoe.el
 auto-save-list/
 elpa/
 games/
-semanticdb/
-url/
-attic/
-
-# Third-party packages
 .emacs.desktop*
-.multiple-cursors.el
-.projectile
-.projectile.cache
-.projectile-bookmarks.eld
-/projectile-bookmarks.eld
 .directory
 *.org#
 bm-repository
@@ -36,6 +24,5 @@ network-security.data
 history
 places
 /secret.el
-/bah.el
 /request/
 /#*.*#
