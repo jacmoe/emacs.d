@@ -141,15 +141,15 @@
 
 
 ;; Apply settings
-(setq bookmark-default-file my-bookmarks)
-(setq-default line-spacing my-line-spacing)
-(blink-cursor-mode my-blink-cursor-mode) ; Enable/disable the cursor blinking
-(scroll-bar-mode my-scroll-bar-mode)     ; Enable/disable the scroll bar
-(tool-bar-mode my-tool-bar-mode)         ; Enable/disable the tool bar
-(menu-bar-mode my-menu-bar-mode)         ; Enable/disable the menu bar
+(setq bookmark-default-file my-bookmarks)   ; Where to save the bookmarks file
+(setq-default line-spacing my-line-spacing) ; The amount of space between lines in pixels
+(blink-cursor-mode my-blink-cursor-mode)    ; Enable/disable the cursor blinking
+(scroll-bar-mode my-scroll-bar-mode)        ; Enable/disable the scroll bar
+(tool-bar-mode my-tool-bar-mode)            ; Enable/disable the tool bar
+(menu-bar-mode my-menu-bar-mode)            ; Enable/disable the menu bar
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Initialize MELPA
+;; Initialize the Emacs package manager
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; fix for not being able to install undo-tree
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
