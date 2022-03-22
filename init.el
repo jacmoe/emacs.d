@@ -107,6 +107,11 @@
 ;; parentheses
 (show-paren-mode)
 (electric-pair-mode)
+;; put backup and auto-saves in .saves directory
+(setq backup-directory-alist
+      `((".*" . "~/.saves")))
+(setq auto-save-file-name-transforms
+      `((".*" "~/.saves" t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Validate Emacs' version
@@ -781,7 +786,8 @@ capture was not aborted."
 (use-package undo-tree
   :ensure t
   :init
-  (global-undo-tree-mode))
+  (global-undo-tree-mode)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
