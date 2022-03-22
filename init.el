@@ -15,17 +15,6 @@
 ;;
 ;; See README.md for more details.
 
-;; fix for not being able to install undo-tree
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Use better defaults
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(when window-system
-  (blink-cursor-mode 0)                          ; Disable the cursor blinking
-  (scroll-bar-mode 0)                            ; Disable the scroll bar
-  (tool-bar-mode 0))                             ; Disable the tool bar
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Some sane defaults
@@ -59,7 +48,6 @@
 (fringe-mode '(80 . 80))                         ; Show vertical fringes
 (global-hl-line-mode 0)                          ; Do not hightlight current line
 (global-subword-mode 1)                          ; Iterate through CamelCase words
-(menu-bar-mode 0)                                ; Disable the menu bar
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
 
@@ -155,10 +143,17 @@
 ;; Apply settings
 (setq bookmark-default-file my-bookmarks)
 (setq-default line-spacing my-line-spacing)
+(blink-cursor-mode my-blink-cursor-mode) ; Enable/disable the cursor blinking
+(scroll-bar-mode my-scroll-bar-mode)     ; Enable/disable the scroll bar
+(tool-bar-mode my-tool-bar-mode)         ; Enable/disable the tool bar
+(menu-bar-mode my-menu-bar-mode)         ; Enable/disable the menu bar
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Initialize MELPA
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; fix for not being able to install undo-tree
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; Dependency checks and [[https://melpa.org][MELPA]] initialization, sugar-wrapped.
 ;;
 ;; Define and initialise package repositories
@@ -915,3 +910,11 @@ capture was not aborted."
   (kill-buffer (current-buffer)))
 
 (global-set-key (kbd "C-x k") 'delete-current-buffer)
+
+;; align comments
+(defun my-align-comments (beginning end)
+  "Align comments within marked region."
+  (interactive "*r")
+  (let (indent-tabs-mode align-to-tab-stop)
+    (align-regexp beginning end (concat "\\(\\s-*\\)"
+                                        (regexp-quote comment-start)))))
