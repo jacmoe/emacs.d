@@ -2,7 +2,7 @@
 *~
 *.elc
 .dir-locals.el
-.secret.el
+.personal.el
 auto-save-list/
 elpa/
 games/
