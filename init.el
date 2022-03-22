@@ -228,6 +228,7 @@
 ;; Flymake-proselint
 ;; Move-text
 ;; Aggressive-indent
+;; Diminish
 ;; Miscellaneous
 
 
@@ -852,6 +853,24 @@ capture was not aborted."
   :ensure t
   :init
   (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Diminish
+;;
+;; https://github.com/myrjola/diminish.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'boon-local-mode)
+  (diminish 'undo-tree-mode)
+  (diminish 'abbrev-mode)
+  (diminish 'aggressive-indent-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'visual-line-mode)
+  (diminish 'subword-mode)
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
