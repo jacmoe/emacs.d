@@ -28,3 +28,4 @@ places
 /#*.*#
 /.ratpoison.desktop
 /rats-secret.el
+/.last-package-update-day

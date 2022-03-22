@@ -229,6 +229,7 @@
 ;; Move-text
 ;; Aggressive-indent
 ;; Diminish
+;; Auto-package-update
 ;; Miscellaneous
 
 
@@ -871,6 +872,20 @@ capture was not aborted."
   (diminish 'visual-line-mode)
   (diminish 'subword-mode)
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Auto-package-update
+;;
+;; https://github.com/rranelli/auto-package-update.el
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (setq auto-package-update-prompt-before-update t)
+  (setq auto-package-update-interval 7)
+  (auto-package-update-maybe))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
