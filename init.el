@@ -54,26 +54,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable some more goodies.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(fset 'yes-or-no-p 'y-or-n-p)                    ; Replace yes/no prompts with y/n
-(put 'downcase-region 'disabled nil)             ; Enable downcase-region
-(put 'upcase-region 'disabled nil)               ; Enable upcase-region
-(put 'narrow-to-region 'disabled nil)            ; Enable narrow to region
-(put 'narrow-to-page 'disabled nil)              ; Enable narrow to page
-(setq create-lockfiles nil)                      ; No need for ~ files when editing
+(fset 'yes-or-no-p 'y-or-n-p)                      ; Replace yes/no prompts with y/n
+(put 'downcase-region 'disabled nil)               ; Enable downcase-region
+(put 'upcase-region 'disabled nil)                 ; Enable upcase-region
+(put 'narrow-to-region 'disabled nil)              ; Enable narrow to region
+(put 'narrow-to-page 'disabled nil)                ; Enable narrow to page
+(setq create-lockfiles nil)                        ; No need for ~ files when editing
 (global-set-key (kbd "M-3") 'delete-other-windows) ; expand current pane
-(global-set-key (kbd "M-4") 'split-window-below) ; split pane top/bottom
-(global-set-key (kbd "M-2") 'delete-window)      ; close current pane
-(global-set-key (kbd "M-s") 'other-window)       ; cursor to other pane
+(global-set-key (kbd "M-4") 'split-window-below)   ; split pane top/bottom
+(global-set-key (kbd "M-2") 'delete-window)        ; close current pane
+(global-set-key (kbd "M-s") 'other-window)         ; cursor to other pane
 (global-unset-key (kbd "M-j"))
-(global-set-key (kbd "M-j") 'join-line)    ; join line
+(global-set-key (kbd "M-j") 'join-line)            ; join line
 (global-unset-key (kbd "C-M-p"))
-(global-set-key (kbd "C-M-p") 'scroll-down-line)    ; scroll down
+(global-set-key (kbd "C-M-p") 'scroll-down-line)   ; scroll down
 (global-unset-key (kbd "C-M-n"))
-(global-set-key (kbd "C-M-n") 'scroll-up-line)    ; scroll up
+(global-set-key (kbd "C-M-n") 'scroll-up-line)     ; scroll up
 (defalias 'ts 'transpose-sentences)
 (defalias 'tp 'transpose-paragraphs)
-(global-visual-line-mode t)                      ; turn on word wrap
-(setq sentence-end-double-space nil)                                       ; a sentence does not end with a period and two spaces
+(global-visual-line-mode t)                        ; turn on word wrap
+(setq sentence-end-double-space nil)               ; a sentence ends with only one space
 (winner-mode 1)
 (global-set-key (kbd "C-<down>") 'enlarge-window)
 (global-set-key (kbd "C-<up>") 'shrink-window)
@@ -84,7 +84,7 @@
 (global-set-key (kbd "S-<f5>") 'list-bookmarks)
 (global-set-key (kbd "C-`") 'diff-buffer-with-file) ; view what is modified
 (setq bookmark-save-flag 1)
-(recentf-mode 1)                        ; Remember recently opened files
+(recentf-mode 1)                                    ; Remember recently opened files
 (global-set-key (kbd "C-c r") 'recentf-open-files)
 ;; Remember and restore the last cursor location of opened files
 (save-place-mode 1)
@@ -123,20 +123,20 @@
   (load custom-file))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load =secret.el=
+;; Load =personal.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Load personal settings from secret.el. Needs to be created.
-;; If using Ratpoison, load personal settings from rats-secret.el
-;; See secret.el.example
+;; Load personal settings from personal.el which needs to be created.
+;; If using Ratpoison, load personal settings from rats-personal.el
+;; See personal.el.example
 (if (equal (getenv "RATPOISON") "ratpoison")
     (progn
-      (let ((rats-secret.el (expand-file-name "rats-secret.el" user-emacs-directory)))
-        (when (file-exists-p rats-secret.el)
-          (load rats-secret.el)))
+      (let ((rats-personal.el (expand-file-name "rats-personal.el" user-emacs-directory)))
+        (when (file-exists-p rats-personal.el)
+          (load rats-personal.el)))
       )
-  (let ((secret.el (expand-file-name "secret.el" user-emacs-directory)))
-    (when (file-exists-p secret.el)
-      (load secret.el)))
+  (let ((personal.el (expand-file-name "personal.el" user-emacs-directory)))
+    (when (file-exists-p personal.el)
+      (load personal.el)))
   )
 
 

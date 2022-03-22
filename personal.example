@@ -8,11 +8,11 @@
 ;; run "M-x eval-buffer" to remove garbage colors from previous theme
 (defconst my-theme-shade "dark")
 
-;; Turn off interface elements. Use t for true, nil for false
+;; Turn off interface elements. Use t for true, 0 for false
 (setq my-blink-cursor-mode t) ; Should the cursor blink?
-(setq my-scroll-bar-mode nil) ; Enable/disable the scroll bar
-(setq my-tool-bar-mode nil)   ; Enable/disable the tool bar
-(setq my-menu-bar-mode nil)   ; Enable/disable the menu bar
+(setq my-scroll-bar-mode 0)   ; Enable/disable the scroll bar
+(setq my-tool-bar-mode 0)     ; Enable/disable the tool bar
+(setq my-menu-bar-mode 0)     ; Enable/disable the menu bar
 
 ;; The following is used for the Merriam-Webster thesaurus look-up extension
 ;; This setting is optional!
