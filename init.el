@@ -907,3 +907,11 @@ capture was not aborted."
 
 (define-key global-map "\C-ck" 'my/kbdk)
 (define-key global-map "\C-cu" 'my/kbus)
+
+;; kill current buffer, without confirmation
+(defun delete-current-buffer ()
+                                        ; deletes the current buffer
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+(global-set-key (kbd "C-x k") 'delete-current-buffer)
