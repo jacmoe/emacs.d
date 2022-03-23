@@ -39,7 +39,7 @@
 
 (setq my-org-tracktable-daily-goal 1000)
 
-(setq my-font-size 130)  ;base font size. Try 150 or 170 if too small
+(setq my-font-size 140)  ;base font size. Try 150 or 170 if too small
 ;; choose fonts that you have installed, fixed width is mono spaced
 ;; Courier New, DejaVu Sans Mono
 (defvar my-fixed-font-family "DejaVu Sans Mono") 

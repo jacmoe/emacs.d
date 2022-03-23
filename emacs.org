@@ -22,22 +22,22 @@ For example, ~C-x~ means hold down the ~Control~ key while typing ~x~.
 
 * Regular
 ** Navigate
-| C-f / C-b     | move forward/backward by character                      |
-| M-f / M-b     | move forward/backward by word                           |
-| C-n / C-p     | move forward/backward by line                           |
-| C-a / C-e     | go to line beginning/end                                |
-| M-a / M-e     | go to sentence beginning/end                            |
-| M-{ / M-}     | go to paragraph beginning/end                           |
-| C-x [ / C-x ] | go to page beginning/end                                |
-| C-v           | scroll to next screen                                   |
-| M-v           | scroll to previous screen                               |
-| C-x <         | scroll left                                             |
-| C-x >         | scroll right                                            |
-| C-M-p         | scroll-down-line                                        |
-| C-M-n         | scroll-up-line                                          |
-| C-l           | scroll current line to center, top, bottom              |
-| M-r           | reposition cursor to center, top, bottom                |
-| M-m           | go to first non-whitespace on line, forward or backward |
+   | normal        | boon  | action                                                  |
+   |---------------+-------+---------------------------------------------------------|
+   | C-f / C-b     | k / l | move forward/backward by character                      |
+   | M-f / M-b     | j / ; | move forward/backward by word                           |
+   | C-n / C-p     | o / i | move forward/backward by line                           |
+   | C-a / C-e     | u / p | go to line beginning/end                                |
+   | M-a / M-e     | K / L | go to sentence beginning/end                            |
+   | M-{ / M-}     | I / O | go to paragraph beginning/end                           |
+   | C-x [ / C-x ] | < / > | go to page beginning/end                                |
+   | C-v           | none  | scroll to next screen                                   |
+   | M-v           | none  | scroll to previous screen                               |
+   | C-M-p         | same  | scroll-down-line                                        |
+   | C-M-n         | same  | scroll-up-line                                          |
+   | C-l           | none  | scroll current line to center, top, bottom              |
+   | M-r           | same  | reposition cursor to center, top, bottom                |
+   | M-m           |       | go to first non-whitespace on line, forward or backward |
 
 ** Editing
 *** Files

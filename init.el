@@ -109,7 +109,7 @@
 (electric-pair-mode)
 ;; put backup and auto-saves in .saves directory
 (setq backup-directory-alist
-      `((".*" . "~/.saves")))
+      (list (cons "." (concat user-emacs-directory "backup/"))))
 (setq auto-save-file-name-transforms
       `((".*" "~/.saves" t)))
 
