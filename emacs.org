@@ -2,8 +2,7 @@
 #+TITLE: Emacs survival guide
 #+AUTHOR: Jacob Moen
 #+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
-#+OPTIONS: toc:nil
-#+OPTIONS: num:nil
+#+OPTIONS: whn:nil toc:3
 #+DESCRIPTION:
 #+EXCLUDE_TAGS: noexport
 #+KEYWORDS:
