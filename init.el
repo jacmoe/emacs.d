@@ -50,6 +50,7 @@
 (global-subword-mode 1)                          ; Iterate through CamelCase words
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
+(setq warning-suppress-log-types '((comp)))      ; Disable annoying compilation warnings
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable some more goodies.
@@ -770,8 +771,8 @@ capture was not aborted."
         (define-key boon-command-map "L" 'forward-sentence)
         (define-key boon-command-map "K" 'backward-sentence)
         (add-hook 'ibuffer-hook 'turn-off-boon-mode)
-        (add-hook 'dired-mode-hook 'turn-off-boon-mode)
-        (add-hook 'recentf-dialog-hook 'turn-off-boon-mode)
+        (add-hook 'dired-hook-mode 'turn-off-boon-mode)
+        (add-hook 'recentf-dialog-mode-hook 'turn-off-boon-mode)
         ))
   :bind
   ("C-c b" . turn-on-boon-mode)
