@@ -51,6 +51,8 @@
 (mouse-avoidance-mode 'animate)                  ; Move pointer to avoid collision with point
 (global-set-key (kbd "C-x C-b") 'ibuffer)        ; Use ibuffer instead of list buffers
 (setq warning-suppress-log-types '((comp)))      ; Disable annoying compilation warnings
+(setq auto-window-vscroll nil)                   ; Speed up cursor movement
+(setq read-process-output-max (* 1024 1024))     ; Read more data from child processes
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Enable some more goodies.
@@ -124,9 +126,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load =custom.el=
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+;; (setq-default custom-file (expand-file-name "custom.el" user-emacs-directory))
+;; (when (file-exists-p custom-file)
+;;   (load custom-file))
+
+;; prevent custom from preserving state
+(setq custom-file (make-temp-file "emacs-custom"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load =personal.el=
@@ -218,6 +223,7 @@
 ;; Org2blog
 ;; Org-sidebar
 ;; Org-tracktable
+;; Ox-twbs
 ;; Writeroom
 ;; Org-roam
 ;; Org-roam-ui
@@ -563,6 +569,16 @@
 (defalias 'tti 'org-tracktable-insert-table)
 (defalias 'ttw 'org-tracktable-write)
 (defalias 'tts 'org-tracktable-status)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Ox-twbs
+;;
+;; https://github.com/marsmining/ox-twbs
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Export org-mode docs as HTML compatible with Twitter Bootstrap.
+(use-package ox-twbs
+  :ensure t )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
