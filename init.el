@@ -770,6 +770,8 @@ capture was not aborted."
         (define-key boon-command-map "L" 'forward-sentence)
         (define-key boon-command-map "K" 'backward-sentence)
         (add-hook 'ibuffer-hook 'turn-off-boon-mode)
+        (add-hook 'dired-mode-hook 'turn-off-boon-mode)
+        (add-hook 'recentf-dialog-hook 'turn-off-boon-mode)
         ))
   :bind
   ("C-c b" . turn-on-boon-mode)
@@ -787,7 +789,7 @@ capture was not aborted."
   :ensure t
   :init
   (global-undo-tree-mode)
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+  (setq undo-tree-history-directory-alist '(("." . "~/.undotree"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -924,3 +926,8 @@ capture was not aborted."
   (let (indent-tabs-mode align-to-tab-stop)
     (align-regexp beginning end (concat "\\(\\s-*\\)"
                                         (regexp-quote comment-start)))))
+
+
+;; Stuff to do
+
+;; (setq backup-directory-alist (list (cons "." (concat user-emacs-directory "backup/"))))
