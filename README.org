@@ -11,41 +11,41 @@ This configuration requires at least Emacs 27.1.
 
 If you have an older version installed, you need to install a new version. Version 27.2 is recommended, but 27.1 will do.
 
-If you do not want to upgrade your version of Emacs, you can comment out the ~vertico~ section of ~init.el~, but upgrading is going to be worth the trouble!
+If you do not want to upgrade your version of Emacs, you can comment out the =vertico= section of =init.el=, but upgrading is going to be worth the trouble!
 
 *** C compiler
 
-~org-roam~ uses a custom SQLite binary to store its database, and it will compile it when it installs. So there must be a C compiler available to Emacs.
+=org-roam= uses a custom SQLite binary to store its database, and it will compile it when it installs. So there must be a C compiler available to Emacs.
 
 On Linux, there are very likely to be a C compiler installed, but Windows is different.
 
 One option is to use MSYS2, which is Linux distribution for Windows. Follow the instructions on [[https://www.msys2.org/][MSYS2 home page]]. Be sure to install the full mingw-w64 GCC software collection.
 
-Make sure that you add the ~bin~ directory of you MSYS2 installation to your system path, so that Emacs can find it.
+Make sure that you add the =bin= directory of you MSYS2 installation to your system path, so that Emacs can find it.
 
-On my machine, I had to add ~C:\msys64\mingw64\bin~
+On my machine, I had to add =C:\msys64\mingw64\bin=
 
 *** Aspell
 
 **** Linux
 
-If Aspell is not installed, install ~aspell~ using your package manager.
+If Aspell is not installed, install =aspell= using your package manager.
 
 **** Windows
 
 Assuming that you installed MSYS2, including the mingw compiler suite, you can simply open up a MSYS2 command line and run:
 
-~pacman -Ss aspell~
+=pacman -Ss aspell=
 
 That will give you a list of aspell related packages to install.
 
 Here's the packages that I installed:
 
-~pacman -S mingw-w64-x86_64-aspell~
+=pacman -S mingw-w64-x86_64-aspell=
 
-~pacman -S mingw-w64-x86_64-aspell-en~
+=pacman -S mingw-w64-x86_64-aspell-en=
 
-If you followed the guide for how to install the C compiler, then Emacs will be able to find ~aspell~, and all should be well.
+If you followed the guide for how to install the C compiler, then Emacs will be able to find =aspell=, and all should be well.
 
 *** Proselint
 
@@ -56,12 +56,12 @@ Simply follow the [[https://github.com/amperser/proselint#installation][Proselin
 
 ** Installation 
 
-Clone this repository, or download archive and extract, into ~.emacs.d~ in your home directory. That would be in ~C:/Users/[username]/.emacs.d~ on Windows, and ~~/.emacs.d~ on Linux.
+Clone this repository, or download archive and extract, into =.emacs.d= in your home directory. That would be in =C:/Users/[username]/.emacs.d= on Windows, and =~/.emacs.d= on Linux.
 
-Create ~secret.el~ using ~secret.el.template~ as a template.
+Create =secret.el= using =secret.el.template= as a template.
 
 **Important!**
-If you are on Windows, you need to set the ~HOME~ environment variable to point to your user directory (usually ~c:/Users/[username]~). This Emacs configuration uses it to determine the location of the Emacs configuration directory when you are on Windows.
+If you are on Windows, you need to set the =HOME= environment variable to point to your user directory (usually =c:/Users/[username]=). This Emacs configuration uses it to determine the location of the Emacs configuration directory when you are on Windows.
 
 
 ** How to use it 
