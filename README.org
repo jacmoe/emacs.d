@@ -56,7 +56,7 @@ Simply follow the [[https://github.com/amperser/proselint#installation][Proselin
 
 ** Installation 
 
-Clone this repository, or download archive and extract, into ~.emacs.d~ in your home directory. That would be in ~C:/Users/[username]/.emacs.d~ on Windows, and ~~/.emacs.d~ on Linux.
+Clone this repository, or download archive and extract, into ~.emacs.d~ in your home directory. That would be in ~C:/Users/[username]/.emacs.d~ on Windows, and ~\~/.emacs.d~ on Linux.
 
 Create ~secret.el~ using ~secret.el.template~ as a template.
 
