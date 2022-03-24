@@ -60,7 +60,7 @@ Clone this repository, or download archive and extract, into =.emacs.d= in your 
 
 Create =secret.el= using =secret.el.template= as a template.
 
-**Important!**
+*Important!*
 If you are on Windows, you need to set the =HOME= environment variable to point to your user directory (usually =c:/Users/[username]=). This Emacs configuration uses it to determine the location of the Emacs configuration directory when you are on Windows.
 
 
