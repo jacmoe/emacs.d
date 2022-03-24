@@ -1,7 +1,7 @@
 * emacs.d
 My emacs configuration, optimized for creative writing.
 
-![](https://github.com/jacmoe/emacs.d/blob/master/emacsd.png)
+[[file:./emacsd.png]]
 
 ** Prerequisites 
 
@@ -19,7 +19,7 @@ If you do not want to upgrade your version of Emacs, you can comment out the ~ve
 
 On Linux, there are very likely to be a C compiler installed, but Windows is different.
 
-One option is to use MSYS2, which is Linux distribution for Windows. Follow the instructions on [MSYS2 home page](https://www.msys2.org/). Be sure to install the full mingw-w64 GCC software collection.
+One option is to use MSYS2, which is Linux distribution for Windows. Follow the instructions on [[https://www.msys.org/][MSYS2 home page]]. Be sure to install the full mingw-w64 GCC software collection.
 
 Make sure that you add the ~bin~ directory of you MSYS2 installation to your system path, so that Emacs can find it.
 
@@ -51,7 +51,7 @@ If you followed the guide for how to install the C compiler, then Emacs will be 
 
 Proselint is required by the on-the-fly language checker.
 
-Simply follow the [Proselint installation instructions](https://github.com/amperser/proselint#installation) and make sure to, if on Windows, to add the location of the Proselint binary to your PATH. The message you get from Python's pip installation procedure reminds you of what exact path you need to add.
+Simply follow the [[https://github.com/amperser/proselint#installation][Proselint installation instructions]] and make sure to, if on Windows, to add the location of the Proselint binary to your PATH. The message you get from Python's pip installation procedure reminds you of what exact path you need to add.
 
 
 ** Installation 
@@ -66,6 +66,6 @@ If you are on Windows, you need to set the ~HOME~ environment variable to point 
 
 ** How to use it 
 
-See the [Emacs survival guide](emacs.md) where most of the keyboard commands are listed. I usually have it open in a buffer for whenever I am wondering what keyboard command to use.
+See the [[file: ./emacs.org][Emacs Survival Guide]] where most of the keyboard commands are listed. I usually have it open in a buffer for whenever I am wondering what keyboard command to use.
 
-See my [Creative Writing with Emacs](https://jacmoes.wordpress.com/2019/09/24/creative-writing-with-emacs/) blog post for a more thorough explanation, and rationale, for using Emacs for creative writing.
+See my [[https://jacmoes.wordpress.com/2019/09/24/creative-writing-with-emacs/][Creative Writing with Emacs]] blog post for a more thorough explanation, and rationale, for using Emacs for creative writing.
