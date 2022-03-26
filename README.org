@@ -1,3 +1,14 @@
+* IMPORTANT NOTICE
+Since my Emacs configuration is now built on top of [[https://github.com/hlissner/doom-emacs][Doom-Emacs]], which uses a personal folder named =.doom.d=, I have now created a new repository for the continued development.
+
+Find it here: [[https://github.com/jacmoe/.doom.d][https://github.com/jacmoe/.doom.d]]
+
+I am *not* going to be using Evil mode, don't worry. I am still relying on Boon-mode for modal editing.
+
+Using Doom-Emacs makes it faster and more stable. And, to be honest, the code is a lot cleaner :)
+
+--------------------
+
 * emacs.d
 My emacs configuration, optimized for creative writing.
 
